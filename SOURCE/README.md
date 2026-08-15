@@ -6,6 +6,10 @@ scaffold in the rest of this repository exists to *govern* this content.
 
 > EXPERIMENTAL / PROVISIONAL, v0.2 draft. Exploratory, not settled.
 
+**Curious how it was built?** [`THE-MAKING-OF-LORE.md`](THE-MAKING-OF-LORE.md) tells the story — a
+boring copypasta exercise that accidentally demonstrated LORE's own principles (a human as the data
+pipe, an evidence-destruction moment caught mid-act).
+
 ## Start here — the five core volumes (`CORE-VOLUMES/`)
 Read these first, in order — the whole model in five reads:
 1. **Volume 0 — Origin, Philosophy, and Design Intent** ← start here
@@ -30,7 +34,8 @@ Everything else deepens a facet.
 Browse the folder for the full set.
 
 ## Also here
-- `SIDEBARS/` — extended discursive sidebars (Volumes 91, 92, 115 deep-dives).
+- `THE-MAKING-OF-LORE.md` — the trimmed story of how LORE was built.
+- `SIDEBARS/` — the **raw** meta-discussion the story was distilled from, kept un-trimmed as evidence (see `SIDEBARS/README.md`).
 - `DECISION-HISTORY/` — the change log and foundational decision notes.
 - `long-horizon-rationale.proposed.md` — LORE's own long-horizon requirements (see `KNOWN-FINDINGS.md`, KF-05).
 

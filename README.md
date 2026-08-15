@@ -15,6 +15,9 @@ No prior exposure needed. Start below.
 with `CORE-VOLUMES/` (Volume 0 → 4): the whole model in five reads. [`SOURCE/README.md`](SOURCE/README.md)
 is a themed index to the rest.
 
+**Curious how it was built?** [`SOURCE/THE-MAKING-OF-LORE.md`](SOURCE/THE-MAKING-OF-LORE.md) — the
+story of a boring copypasta exercise that accidentally demonstrated LORE's own principles.
+
 ## Find your part (pick the one that sounds like you)
 | You are… | Open these, in order |
 |---|---|
