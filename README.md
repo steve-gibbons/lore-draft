@@ -18,6 +18,20 @@ is a themed index to the rest.
 **Curious how it was built?** [`SOURCE/THE-MAKING-OF-LORE.md`](SOURCE/THE-MAKING-OF-LORE.md) — the
 story of a boring copypasta exercise that accidentally demonstrated LORE's own principles.
 
+## Agents that can't browse GitHub
+Some assistants' web-fetch tools can't read GitHub's JavaScript UI (Gemini and Perplexity's default
+fetcher both hit this). Use **raw** file URLs — plain text, usually fetchable even when the repo
+page isn't:
+
+- README — `https://raw.githubusercontent.com/steve-gibbons/lore-draft/main/README.md`
+- Governance — `…​/main/AGENTS.md`
+- Known findings — `…​/main/KNOWN-FINDINGS.md`
+- Reviewer guide — `…​/main/REVIEWERS.md`
+- Core invariants — `…​/main/CORE-INVARIANTS.md`
+- Corpus index — `…​/main/SOURCE/README.md`
+
+If raw fetch still fails: paste the files, connect a GitHub tool, or upload an archive.
+
 ## Find your part (pick the one that sounds like you)
 | You are… | Open these, in order |
 |---|---|

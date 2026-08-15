@@ -18,6 +18,10 @@ The **v0.5 governance scaffold**:
 - `TOOLS/lore_validate.py` — the 10 governance checks (the enforcement TCB)
 - `CORPUS-MANIFEST.yaml` and the directory scaffold (`INTAKE/`, `SOURCE/`, etc.)
 
+> **Can't your agent reach GitHub?** Some fetchers can't read GitHub's JS UI. Use raw URLs like
+> `https://raw.githubusercontent.com/steve-gibbons/lore-draft/main/AGENTS.md` — the README's
+> "Agents that can't browse GitHub" section lists them.
+
 ## 2. Bootstrap (read-only)
 ```
 git clone <this repo URL>
