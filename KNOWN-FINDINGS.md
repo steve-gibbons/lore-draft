@@ -14,15 +14,17 @@ lenses are *grounded in the public work of* their namesakes, never their opinion
 **Dispositions below are agent-proposed, pending author confirmation.**
 Legend: 🔴 mitigate-now · 🟡 fast-follower · 🔵 accepted-risk (draft stage) · ⚪ wontfix · 🟢 keep
 
+**Progress:** KF-02 hook fixed (CI workflow pending a token-scope grant) · KF-04 & KF-05-rationale drafted (`CORE-INVARIANTS.md`, `SOURCE/long-horizon-rationale.proposed.md`) · KF-14 filed as a needs-decision record (`DECISION-LICENSING.needs-decision.md`).
+
 ## Priority view (deduped across all ten lenses)
 
 | ID | Finding | Lenses | Severity | Disposition (proposed) |
 |----|---------|--------|----------|-------------|
 | KF-01 | Trust boundaries are **declarative, not authenticated** (author-only status, agent-vs-author, identity all self-asserted) | P1·P2·P3·P4·C6 | **Major** | 🟡 fast-follower (design: authenticated author signal) |
-| KF-02 | **No enforcement at rest** — validator opt-in, pre-commit hook uninstalled & currently un-installable | P1·P2 | **Major** | 🔴 mitigate-now (fix hook + add CI) |
+| KF-02 | **No enforcement at rest** — validator opt-in, pre-commit hook uninstalled & currently un-installable | P1·P2 | **Major** | ✅ hook fixed · CI ⏳ (needs `workflow` scope) |
 | KF-03 | **Single-point / parser-differential enforcement** (hand-rolled YAML parser is the whole TCB) | P1·P2 | **Major** | 🟡 fast-follower |
-| KF-04 | **The TCB is never defined or minimized** | P2·P6 | **Major** | 🔴 mitigate-now (write the Core/TCB doc — foundational, cheap) |
-| KF-05 | **Governance-across-time is unbuilt** — no succession, consolidation, or sousveillance of authority | P6·C5 | **Major** | 🟡 fast-follower (+ 🔴 now: promote the long-horizon rationale — dogfood) |
+| KF-04 | **The TCB is never defined or minimized** | P2·P6 | **Major** | ✅ drafted — `CORE-INVARIANTS.md` (proposed) |
+| KF-05 | **Governance-across-time is unbuilt** — no succession, consolidation, or sousveillance of authority | P6·C5 | **Major** | 🟡 fast-follower · ✅ rationale promoted |
 | KF-06 | **Evidence integrity advisory, not forensic** | P1·P3·C6 | Moderate | 🟡 fast-follower |
 | KF-07 | **Agent-consumption use case not realizable** (context-package contract is a stub) | P4 | Moderate | 🔵 accepted-risk (phase-2 scope) |
 | KF-08 | **Object/relationship & status ontology thin/conflated** | P1·P5 | Moderate | 🟡 fast-follower |
@@ -31,7 +33,7 @@ Legend: 🔴 mitigate-now · 🟡 fast-follower · 🔵 accepted-risk (draft sta
 | KF-11 | **AFFIRM — strong foundations to protect** | P2·P3·P4·P5·P6 | Info | 🟢 keep (invariants) |
 | KF-12 | **No retention / disposition / legal-hold model** (preserve-everything, no records lifecycle) | C6 | Moderate | 🟡 fast-follower |
 | KF-13 | **No integration surface / adoption path / scale story** (interoperability gap) | C2 | Moderate | 🟡 fast-follower (adoption-path doc could be a quick win) |
-| KF-14 | **Unsustainable single-maintainer governance** — no contribution/evolution/versioning process; **no LICENSE** | C5 | **Major** | 🔴 mitigate-now (add LICENSE) + 🟡 fast-follower (governance process) |
+| KF-14 | **Unsustainable single-maintainer governance** — no contribution/evolution/versioning process; **no LICENSE** | C5 | **Major** | 📋 needs-decision filed (`DECISION-LICENSING`); LICENSE pending ratification |
 | KF-15 | **Data-architecture model undefined** — Act-vs-State / event-sourcing, projections, concurrency/merge semantics | C7 | Moderate | 🟡 fast-follower |
 
 ## Cross-lens convergence (conviction signal)
