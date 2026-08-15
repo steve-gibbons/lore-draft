@@ -39,6 +39,15 @@ called for ("define the TCB for LORE"); *authenticating* it is the fast-follower
    values, always handle errors), elevated to LORE gospel; asserted (engineering discipline via
    component design + review), not corpus-validator-enforced.*
 
+10. **Representability precedes enforcement** *(from C02)*. LORE cannot reliably enforce a distinction
+    it does not **represent**. A merely *named* distinction is asserted, not enforced — the diagnosis
+    behind KF-01 (asserted authority) and KF-06 (advisory immutability, until represented as a manifest).
+    *Represent, then enforce.* — *grounded in CS / infosec fundamentals (CSC101 / infosec101); asserted design law.*
+11. **Authority has lineage** *(from C12)*. Authority is a traceable chain of origin and delegation, not
+    mere possession; possession without lineage is not authority. LORE must be able to trace where
+    authority came from. — *grounded in infosec fundamentals (chain of trust; CSC101 / infosec101);
+    asserted — lineage is not yet cryptographically enforced (KF-01).*
+
 ## Trusted Computing Base (what must be trusted for the above to hold)
 - **The validator** (`TOOLS/lore_validate.py`) — the single enforcement point. *(KF-03: hand-rolled
   parser, no defense in depth.)*
