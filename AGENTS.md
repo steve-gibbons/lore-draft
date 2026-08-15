@@ -1,7 +1,7 @@
 # AGENTS.md — LORE Corpus Workbench Agent Operating Rules (v3)
 
 **Version**: 3.0.0  
-**Authority**: Author remains sole authority for acceptance, promotion, publication, and interpretation of ambiguity. Antigravity/Agent does not acquire promotion rights by receiving handoffs.
+**Authority**: Author remains sole authority for acceptance, promotion, publication, and interpretation of ambiguity. Agents do not acquire promotion rights by receiving handoffs.
 
 ---
 
