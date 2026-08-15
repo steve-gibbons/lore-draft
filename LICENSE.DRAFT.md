@@ -9,7 +9,7 @@ Copyright © 2026 Steve Gibbons. All rights reserved except as expressly granted
 
 ## 1. Purpose & scope (provisional)
 LORE is **EXPERIMENTAL and PROVISIONAL**, published as a curated draft for **review, evaluation, and
-demonstration of principles only**. This license governs that period.
+demonstration of principles only, by principals only**. This license governs that period.
 
 ## 2. Grant
 You are permitted, at no charge, to:
