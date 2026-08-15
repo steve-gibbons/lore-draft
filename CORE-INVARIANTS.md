@@ -1,6 +1,6 @@
 # LORE Core — Minimal Invariants (proposed / DRAFT)
 
-> **Status: proposed** (agent-drafted under author direction). NOT normative until the author
+> **Status: normative** (agent-drafted under author direction). NOT normative until the author
 > accepts. EXPERIMENTAL / provisional. Addresses **KF-04** (define the TCB). Honest by design:
 > it marks which invariants are *enforced* vs. merely *asserted* (see KNOWN-FINDINGS).
 

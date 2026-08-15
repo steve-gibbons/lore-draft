@@ -1,6 +1,6 @@
 # LORE Long-Horizon Rationale (proposed / DRAFT)
 
-> **Status: proposed** (agent-drafted under author direction). NOT normative until accepted.
+> **Status: accepted** (agent-drafted under author direction). NOT normative until accepted.
 > EXPERIMENTAL / provisional. Promotes LORE's own long-horizon rationale into the governed corpus
 > — dogfooding the thesis "preserve the *why*." Addresses **KF-05**.
 
