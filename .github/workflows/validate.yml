@@ -1,0 +1,18 @@
+name: LORE validate
+
+# Enforcement-at-rest for the governance checks (addresses KF-02): runs the 10-check
+# validator on every push and pull request, so governance isn't only an opt-in local step.
+on: [push, pull_request]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: false            # validator needs no LFS objects
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - name: Run LORE governance validator (10 checks)
+        run: python3 TOOLS/lore_validate.py
