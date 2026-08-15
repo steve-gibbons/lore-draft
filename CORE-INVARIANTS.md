@@ -31,6 +31,14 @@ called for ("define the TCB for LORE"); *authenticating* it is the fast-follower
    realized by the status enums, decision/proposal records, and the assisted-evaluation procedure;
    not yet validator-enforced.*
 
+9. **Executed is not success** *(LORE development / engineering scope)*. A LORE component MUST
+   **return error information**, and its callers MUST **handle** it — errors are never swallowed, and
+   execution is never assumed to be success. This applies **at every trust boundary LORE owns**
+   (cf. invariant on context/trust crossings): we do not control other systems' internals, but we
+   impose it on the bits in scope for us. — *grounded in CS fundamentals (CSC101 — always check return
+   values, always handle errors), elevated to LORE gospel; asserted (engineering discipline via
+   component design + review), not corpus-validator-enforced.*
+
 ## Trusted Computing Base (what must be trusted for the above to hold)
 - **The validator** (`TOOLS/lore_validate.py`) — the single enforcement point. *(KF-03: hand-rolled
   parser, no defense in depth.)*
