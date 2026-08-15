@@ -1,0 +1,25 @@
+id: OBJREF-PUBLIC-PROVENANCE-001
+type: object-ref
+status: generated
+alias: "public-draft provenance backlink"
+
+target_id: "TR-PUBLIC-EXPORT-001"
+target_type: transformation-record
+target_sha256: "bf271fb67abbc8ff85b0462301723058836421b7340b88cf6f341b91fbb6cb4b"
+resolved: false                       # target held in private canonical corpus; not publicly resolvable
+custody: "private canonical LORE corpus"
+public_genesis_commit: "1571b93"
+
+verification: >
+  A party with access to the private canonical corpus can confirm authenticity by computing the
+  SHA-256 of transformation-record TR-PUBLIC-EXPORT-001 and checking it equals target_sha256.
+
+note: >
+  OBJECT_REF != OBJECT. This is a verifiable reference (alias), not the record itself. The record
+  documents what this public draft included, excluded, and genericized from the private corpus.
+  The reference cannot reconstruct the private source.
+
+experimental_scope:
+  provisional: true
+  production_ready: false
+  permitted_use: "evaluation of LORE and demonstration of principles only"
