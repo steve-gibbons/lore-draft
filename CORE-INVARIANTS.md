@@ -24,6 +24,12 @@ called for ("define the TCB for LORE"); *authenticating* it is the fast-follower
 6. **Reference ≠ identity.** An `object-ref` is an alias to an object, never the object; ALIAS ≠
    IDENTITY. — *partial (Check 7 checks the id exists, not that it resolves — KF-08)*
 7. **No fabrication.** Agents do not invent corpus content or fabricate provenance. — *asserted*
+8. **Conversation states are not flattened.** A design / agent conversation carries at least four
+   distinct states — *exploration → candidate → decision → artifact* — and each must stay
+   distinguishable; distinctions must not be lost at the transcript boundary. *An invariant
+   requirement of LORE's conversation / agent-trace governance use case.* — *asserted (procedural):
+   realized by the status enums, decision/proposal records, and the assisted-evaluation procedure;
+   not yet validator-enforced.*
 
 ## Trusted Computing Base (what must be trusted for the above to hold)
 - **The validator** (`TOOLS/lore_validate.py`) — the single enforcement point. *(KF-03: hand-rolled
