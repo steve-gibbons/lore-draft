@@ -3,17 +3,10 @@ set -e
 
 echo "=== Running LORE Workbench Pre-Commit Hook ==="
 
-# Check write permissions on INTAKE/raw/
-if [ -d "INTAKE/raw" ]; then
-    # Exempt README.md to match lore_validate.py Check 6 (which skips README.md).
-    WRITABLE_RAW=$(find INTAKE/raw -type f -perm /222 ! -name 'README.md' 2>/dev/null || true)
-    if [ -n "$WRITABLE_RAW" ]; then
-        echo "ERROR: Writable files detected under INTAKE/raw/. Raw evidence must be read-only (chmod a-w)."
-        echo "Writable files:"
-        echo "$WRITABLE_RAW"
-        exit 1
-    fi
-fi
+# INTAKE/raw integrity is enforced by lore_validate.py Check 6 via a git-preservable
+# SHA-256 manifest (INTAKE/RAW-MANIFEST.sha256) — not filesystem permissions, which git
+# does not preserve. Regenerate the manifest with TOOLS/lore_freeze_raw.py after any
+# intake. The validator run below performs the check.
 
 # Run lore_validate.py
 if [ -f "TOOLS/lore_validate.py" ]; then

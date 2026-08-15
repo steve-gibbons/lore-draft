@@ -18,8 +18,9 @@ called for ("define the TCB for LORE"); *authenticating* it is the fast-follower
    (`candidate/unknown/unresolved/quarantined/evidence-only`). — *enforced for proposals (Check 9)*
 4. **Explicit transformation provenance.** Every `derived`/`generated` artifact records inputs
    (path + SHA-256) and the transformation. — *enforced when present (Check 8)*
-5. **INTAKE/raw immutability.** Raw evidence is never mutated once landed. — *advisory (KF-06):
-   filesystem convention, not tamper-evident*
+5. **INTAKE/raw integrity.** Raw evidence is never mutated once landed. — *manifest-verified
+   (git-preservable SHA-256, Check 6); mutation is tamper-detectable. Full forensic
+   (signing / external witness) still open (KF-06).*
 6. **Reference ≠ identity.** An `object-ref` is an alias to an object, never the object; ALIAS ≠
    IDENTITY. — *partial (Check 7 checks the id exists, not that it resolves — KF-08)*
 7. **No fabrication.** Agents do not invent corpus content or fabricate provenance. — *asserted*

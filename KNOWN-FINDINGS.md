@@ -25,7 +25,7 @@ Legend: 🔴 mitigate-now · 🟡 fast-follower · 🔵 accepted-risk (draft sta
 | KF-03 | **Single-point / parser-differential enforcement** (hand-rolled YAML parser is the whole TCB) | P1·P2 | **Major** | 🟡 fast-follower |
 | KF-04 | **The TCB is never defined or minimized** | P2·P6 | **Major** | ✅ drafted — `CORE-INVARIANTS.md` (proposed) |
 | KF-05 | **Governance-across-time is unbuilt** — no succession, consolidation, or sousveillance of authority | P6·C5 | **Major** | 🟡 fast-follower · ✅ rationale promoted |
-| KF-06 | **Evidence integrity advisory, not forensic** | P1·P3·C6 | Moderate | 🟡 fast-follower |
+| KF-06 | **Evidence integrity advisory, not forensic** | P1·P3·C6 | Moderate | ✅ hardened — manifest Check 6 (git-preservable) · forensic signing open |
 | KF-07 | **Agent-consumption use case not realizable** (context-package contract is a stub) | P4 | Moderate | 🔵 accepted-risk (phase-2 scope) |
 | KF-08 | **Object/relationship & status ontology thin/conflated** | P1·P5 | Moderate | 🟡 fast-follower |
 | KF-09 | **Unmapped overlap with prior art** (PROV-O, RDF, OAIS/ISO, event-sourcing) | P5·C2·C6·C7 | Moderate | 🟡 fast-follower |

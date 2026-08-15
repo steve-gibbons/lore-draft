@@ -177,17 +177,57 @@ class LoreValidator:
         return len(errors) == 0, errors
 
     def check_intake_raw_immutability(self):
-        """Check 6: INTAKE/raw Immutability Check."""
+        """Check 6: INTAKE/raw content integrity via a git-preservable SHA-256 manifest.
+
+        Replaces filesystem-permission checks (chmod a-w), which git does not preserve —
+        so they could not survive a fresh checkout or pass in CI (see KF-06). The manifest
+        `INTAKE/RAW-MANIFEST.sha256` records the hash of every raw evidence file; this check
+        detects mutation, unrecorded arrivals, and deleted evidence. It travels with the repo
+        and is tamper-detectable in git history. Regenerate with TOOLS/lore_freeze_raw.py.
+        (chmod a-w is still applied locally as advisory defense-in-depth, but is not required.)
+        """
         intake_raw = os.path.join(self.repo_root, 'INTAKE', 'raw')
+        manifest_path = os.path.join(self.repo_root, 'INTAKE', 'RAW-MANIFEST.sha256')
+        skip = {'README.md', '.DS_Store'}
         errors = []
-        if os.path.exists(intake_raw):
-            for root, dirs, files in os.walk(intake_raw):
-                for f in files:
-                    if f == 'README.md': continue
-                    full_p = os.path.join(root, f)
-                    mode = os.stat(full_p).st_mode
-                    if mode & stat.S_IWUSR or mode & stat.S_IWGRP or mode & stat.S_IWOTH:
-                        errors.append(f"Check 6 Fail: File '{full_p}' under INTAKE/raw/ is writable.")
+        if not os.path.exists(intake_raw):
+            return True, []
+
+        # Actual raw files on disk -> sha256 (paths relative to INTAKE/raw)
+        actual = {}
+        for root, dirs, files in os.walk(intake_raw):
+            for f in files:
+                if f in skip:
+                    continue
+                full_p = os.path.join(root, f)
+                rel = os.path.relpath(full_p, intake_raw)
+                with open(full_p, 'rb') as fh:
+                    actual[rel] = hashlib.sha256(fh.read()).hexdigest()
+
+        # Expected from the manifest
+        expected = {}
+        if os.path.exists(manifest_path):
+            with open(manifest_path, encoding='utf-8') as mh:
+                for line in mh:
+                    line = line.strip()
+                    if not line or line.startswith('#'):
+                        continue
+                    parts = line.split(None, 1)  # "<sha256>  <relative-path>"
+                    if len(parts) == 2:
+                        expected[parts[1].strip()] = parts[0].strip().lower()
+
+        if actual and not expected:
+            return False, ["Check 6 Fail: raw evidence present but INTAKE/RAW-MANIFEST.sha256 "
+                           "is missing (run TOOLS/lore_freeze_raw.py)."]
+
+        for rel, sha in sorted(actual.items()):
+            if rel not in expected:
+                errors.append(f"Check 6 Fail: unrecorded raw file (not in manifest): '{rel}'.")
+            elif expected[rel] != sha:
+                errors.append(f"Check 6 Fail: raw evidence mutated (hash mismatch): '{rel}'.")
+        for rel in sorted(expected):
+            if rel not in actual:
+                errors.append(f"Check 6 Fail: manifest evidence missing on disk: '{rel}'.")
         return len(errors) == 0, errors
 
     def check_corpus_manifest(self):
@@ -225,10 +265,10 @@ def main():
     # 1. Validate INTAKE/raw Immutability (Check 6)
     c6_ok, c6_errs = validator.check_intake_raw_immutability()
     if c6_ok:
-        print("[PASS] Check 6: INTAKE/raw Immutability")
+        print("[PASS] Check 6: INTAKE/raw Integrity (manifest)")
         total_passed += 1
     else:
-        print("[FAIL] Check 6: INTAKE/raw Immutability")
+        print("[FAIL] Check 6: INTAKE/raw Integrity (manifest)")
         for e in c6_errs: print(f"  - {e}")
         total_failed += 1
 
