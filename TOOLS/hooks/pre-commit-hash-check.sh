@@ -5,7 +5,8 @@ echo "=== Running LORE Workbench Pre-Commit Hook ==="
 
 # Check write permissions on INTAKE/raw/
 if [ -d "INTAKE/raw" ]; then
-    WRITABLE_RAW=$(find INTAKE/raw -type f -perm /222 2>/dev/null || true)
+    # Exempt README.md to match lore_validate.py Check 6 (which skips README.md).
+    WRITABLE_RAW=$(find INTAKE/raw -type f -perm /222 ! -name 'README.md' 2>/dev/null || true)
     if [ -n "$WRITABLE_RAW" ]; then
         echo "ERROR: Writable files detected under INTAKE/raw/. Raw evidence must be read-only (chmod a-w)."
         echo "Writable files:"
