@@ -11,6 +11,10 @@ workflows. This repo is a curated public draft of the governance scaffold.
 
 No prior exposure needed. Start below.
 
+**Want to read LORE itself?** The corpus — ~130 short volumes — is in [`SOURCE/`](SOURCE/). Start
+with `CORE-VOLUMES/` (Volume 0 → 4): the whole model in five reads. [`SOURCE/README.md`](SOURCE/README.md)
+is a themed index to the rest.
+
 ## Find your part (pick the one that sounds like you)
 | You are… | Open these, in order |
 |---|---|
@@ -43,7 +47,7 @@ No prior exposure needed. Start below.
 | `TOOLS/` | The validator (10 checks), the hat/prompt assembler, the git hook | everyone |
 | `TESTS/` | Positive/negative fixtures proving the validator actually enforces the rules | skeptics |
 | `META-CONTEXT/reviewer-panel/` | The reviewer "hats" (lenses), profiles, and the assembler's inputs | reviewers, AI |
-| `SOURCE/` | The corpus's own content (currently: LORE's long-horizon rationale) | governance |
+| `SOURCE/` | **The LORE corpus** — ~130 human-readable volumes (core + extended), sidebars, decision history | anyone reading LORE |
 | `INTAKE/` | The landing zone for incoming evidence (raw → normalized), with immutability rules | contributors |
 | `INTEGRATIONS/`, `SANDBOX/` | Phase-2 stubs | — |
 | `.github/`, `.claude/` | Copilot instructions + CI; the `/lore-hat` command | AI-tool users |
@@ -62,14 +66,18 @@ No prior exposure needed. Start below.
    ```
    (or run `python3 TOOLS/lore_prompt.py P1-SEC-THREATMODEL`). Try `hat list` to see all six lenses.
 
-3. **Read the honest self-critique** — [`KNOWN-FINDINGS.md`](KNOWN-FINDINGS.md). A governance system
+3. **Read the model in five volumes** — [`SOURCE/CORE-VOLUMES/`](SOURCE/CORE-VOLUMES/), starting
+   with *Volume 0 — Origin, Philosophy, and Design Intent*. The [`SOURCE/`](SOURCE/) index maps the
+   ~120 extended volumes by theme.
+
+4. **Read the honest self-critique** — [`KNOWN-FINDINGS.md`](KNOWN-FINDINGS.md). A governance system
    that publishes its own weaknesses before you find them is either confident or foolish; you decide.
 
-4. **See the core idea in one file** — [`PROVENANCE.md`](PROVENANCE.md). This public repo proves
+5. **See the core idea in one file** — [`PROVENANCE.md`](PROVENANCE.md). This public repo proves
    where it came from *without* being able to reconstruct the private source. That's ALIAS ≠ IDENTITY,
    made literal.
 
-5. **See reasoning preserved, not just outcomes** — [`DECISION-LICENSING.needs-decision.md`](DECISION-LICENSING.needs-decision.md)
+6. **See reasoning preserved, not just outcomes** — [`DECISION-LICENSING.needs-decision.md`](DECISION-LICENSING.needs-decision.md)
    records a decision *before it's made*: the tension, the options, and the direction chosen.
 
 ## For maintainers

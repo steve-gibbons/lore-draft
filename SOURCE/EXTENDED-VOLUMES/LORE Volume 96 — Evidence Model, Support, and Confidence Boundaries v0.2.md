@@ -1,0 +1,407 @@
+# LORE Volume 96 — Evidence Model, Support, and Confidence Boundaries
+
+## Version 0.2 Draft
+
+---
+
+# 1. Purpose
+
+This volume defines how LORE represents evidence.
+
+The purpose is to address a fundamental challenge:
+
+> Systems make decisions based on claims, but not all claims have equal support.
+
+---
+
+# 2. Core Principle
+
+The governing principle:
+
+> Evidence supports trust decisions; evidence is not itself truth.
+
+---
+
+# 3. Evidence Philosophy
+
+Modern systems consume enormous amounts of information:
+
+- logs,
+- documents,
+- telemetry,
+- attestations,
+- measurements,
+- human statements,
+- automated reports.
+
+The existence of information does not guarantee reliability.
+
+---
+
+# 4. Evidence Definition
+
+Evidence is information that supports or challenges an assertion, decision, or relationship.
+
+Evidence answers:
+
+- Why should this be believed?
+- What supports this claim?
+- How reliable is the source?
+- How current is the information?
+
+---
+
+# 5. Evidence Structure
+
+Evidence may include:
+
+```text id="m7q4vx"
+Source
+
++
+
+Collection Method
+
++
+
+Timestamp
+
++
+
+Context
+
++
+
+Integrity
+
++
+
+Relationship to Claim
+```
+
+---
+
+# 6. Evidence vs Assertion
+
+Important distinction:
+
+```text id="q8n5mp"
+Assertion:
+
+"The system is owned by Team A"
+```
+
+```text id="x6m3qw"
+Evidence:
+
+Asset records
+
++
+
+Repository ownership
+
++
+
+Approval history
+```
+
+---
+
+# 7. Evidence vs Truth
+
+LORE does not determine absolute truth.
+
+Instead:
+
+```text id="p9v5kr"
+Claim
+
++
+
+Evidence
+
++
+
+Context
+
+=
+
+Confidence Assessment
+```
+
+---
+
+# 8. Evidence Sources
+
+Evidence may originate from:
+
+## Human Sources
+
+Examples:
+
+- approvals,
+- reviews,
+- statements.
+
+---
+
+## System Sources
+
+Examples:
+
+- inventories,
+- logs,
+- configuration systems.
+
+---
+
+## External Sources
+
+Examples:
+
+- certificates,
+- vendor attestations,
+- public records.
+
+---
+
+# 9. Evidence Quality
+
+Evidence quality may depend on:
+
+- reliability,
+- freshness,
+- completeness,
+- independence,
+- integrity.
+
+---
+
+# 10. Evidence Freshness
+
+Evidence changes in value over time.
+
+Example:
+
+```text id="r7n4kp"
+Yesterday's Inventory
+
+may not represent
+
+Today's Environment
+```
+
+---
+
+# 11. Evidence Provenance
+
+Evidence should preserve:
+
+- origin,
+- collection process,
+- modifications,
+- responsible party.
+
+---
+
+# 12. Evidence Chain
+
+A trust relationship may depend on multiple evidence sources.
+
+Example:
+
+```text id="v8m3qx"
+Decision
+
+requires
+
+Assertion
+
+requires
+
+Evidence A
+
++
+
+Evidence B
+
++
+
+Evidence C
+```
+
+---
+
+# 13. Evidence Conflict
+
+Evidence may disagree.
+
+Example:
+
+```text id="k4p8mw"
+Inventory System:
+
+Owner = Team A
+
+
+Repository:
+
+Owner = Team B
+```
+
+A mature system preserves the conflict rather than silently selecting a preferred answer.
+
+---
+
+# 14. Evidence Evaluation
+
+Evidence evaluation may consider:
+
+- source authority,
+- confidence,
+- relevance,
+- timing,
+- consistency.
+
+---
+
+# 15. Evidence and Automation
+
+Automated systems frequently treat data as authoritative.
+
+LORE challenges this assumption:
+
+```text id="wye826"
+Available Data
+
+≠
+
+Reliable Evidence
+```
+
+---
+
+# 16. Evidence and AI Systems
+
+AI systems require evidence awareness.
+
+An agent should understand:
+
+- what information it received,
+- where it came from,
+- how reliable it is,
+- whether it is appropriate for the decision.
+
+---
+
+# 17. Evidence Security Risks
+
+Potential attacks:
+
+## Evidence Forgery
+
+Creating false supporting information.
+
+---
+
+## Evidence Poisoning
+
+Introducing misleading information.
+
+---
+
+## Evidence Removal
+
+Deleting inconvenient history.
+
+---
+
+## Evidence Manipulation
+
+Changing context or interpretation.
+
+---
+
+# 18. Evidence Failure Modes
+
+Potential failures:
+
+## Unsupported Claim
+
+No meaningful evidence exists.
+
+---
+
+## Stale Evidence
+
+Previously valid information is no longer applicable.
+
+---
+
+## Circular Evidence
+
+Multiple sources repeat the same unsupported claim.
+
+---
+
+## Misapplied Evidence
+
+Valid evidence used outside its intended context.
+
+---
+
+# 19. Evidence Invariants
+
+Candidate requirements:
+
+## Invariant 1
+
+Evidence SHOULD preserve provenance.
+
+---
+
+## Invariant 2
+
+Evidence SHOULD remain distinguishable from claims.
+
+---
+
+## Invariant 3
+
+Evidence SHOULD include context.
+
+---
+
+## Invariant 4
+
+Evidence SHOULD preserve historical state.
+
+---
+
+## Invariant 5
+
+Evidence quality SHOULD be explainable.
+
+---
+
+# 20. Review Questions
+
+Reviewers should challenge:
+
+1. What qualifies as evidence?
+2. How is evidence quality assessed?
+3. How are conflicting sources handled?
+4. How is evidence protected from manipulation?
+5. How much evidence is sufficient for a decision?
+
+---
+
+# 21. Closing Principle
+
+> The goal is not to collect more information. The goal is to understand which information deserves influence.
+
+---
+
+LORE Volume 96 — Evidence Model, Support, and Confidence Boundaries v0.2.md
+
+One-liner: **The detective looked at the mountain of evidence and said, "Great. Now we just need to find the one piece that wasn't generated by the same guy with 47 fake mustaches."**
