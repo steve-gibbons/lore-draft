@@ -1,0 +1,15 @@
+id: TR-2026-001
+type: transformation-record
+title: "Intake Normalization of Raw Evidence"
+status: derived
+inputs:
+  - "INTAKE/raw/evidence_file_001.txt"
+transformation:
+  name: "markdown-stripper"
+  description: "Extracted plain text notes from raw markdown file."
+  parameters:
+    strip_comments: true
+outputs:
+  - "INTAKE/normalized/evidence_file_001.norm.txt"
+provenance:
+  created_by: "agent/antigravity"

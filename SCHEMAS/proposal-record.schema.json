@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://lore.corpus.workbench/schemas/proposal-record.schema.json",
+  "title": "Proposal Record Schema",
+  "type": "object",
+  "required": ["id", "type", "title", "status", "proposer", "summary"],
+  "properties": {
+    "id": { "type": "string" },
+    "type": { "type": "string", "const": "proposal-record" },
+    "title": { "type": "string" },
+    "status": { "type": "string" },
+    "proposer": { "type": "string" },
+    "summary": { "type": "string" },
+    "proposed_changes": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "rationale": { "type": "string" }
+  },
+  "additionalProperties": true
+}

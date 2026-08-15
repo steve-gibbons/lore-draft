@@ -1,0 +1,10 @@
+# NEGATIVE TEST FIXTURE: Derived transformation record missing required 'inputs' list.
+id: TR-FAIL-004
+type: transformation-record
+title: "Unanchored Transformation"
+status: derived
+transformation:
+  name: "magic-transform"
+  description: "Transformation missing input anchors."
+outputs:
+  - "INTAKE/normalized/output.txt"

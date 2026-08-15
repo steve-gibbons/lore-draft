@@ -1,0 +1,10 @@
+id: ART-2026-001
+type: artifact-record
+title: "Candidate Architecture Overview"
+status: candidate
+description: "Draft architecture overview for LORE Corpus Workbench."
+path: "DOCS/architecture-overview.md"
+sha256: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+created_at: "2026-08-14T10:00:00Z"
+provenance:
+  created_by: "agent/antigravity"

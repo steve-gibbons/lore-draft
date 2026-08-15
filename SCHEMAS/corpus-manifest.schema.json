@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://lore.corpus.workbench/schemas/corpus-manifest.schema.json",
+  "title": "Corpus Manifest Schema (Phase-1 Minimal)",
+  "type": "object",
+  "required": ["corpus", "version", "status", "schemas", "registries"],
+  "properties": {
+    "corpus": { "type": "string" },
+    "version": { "type": "string" },
+    "status": { "type": "string" },
+    "description": { "type": "string" },
+    "schemas": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "registries": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "tools": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "generated_at": { "type": "string" }
+  },
+  "additionalProperties": true
+}

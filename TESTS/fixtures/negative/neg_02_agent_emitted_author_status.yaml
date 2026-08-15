@@ -1,0 +1,9 @@
+# NEGATIVE TEST FIXTURE: Agent attempts to emit author-only status without preseed provenance.
+id: ART-FAIL-002
+type: artifact-record
+title: "Agent Escalated Status Artifact"
+status: canonical
+description: "This fixture should fail validation because an agent emitted canonical status without preseed provenance."
+provenance:
+  created_by: "agent/antigravity"
+  author_preseeded: false

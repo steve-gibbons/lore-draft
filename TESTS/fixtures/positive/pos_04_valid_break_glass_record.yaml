@@ -1,0 +1,10 @@
+id: BG-2026-001
+type: break-glass-record
+title: "Emergency Read-Access Request"
+status: proposed
+actor: "operator/example"
+reason: "Inspect raw intake file permissions following system crash recovery."
+scope: "INTAKE/raw/"
+expires_at: "2026-08-15T00:00:00Z"
+revocation_trail:
+  - "Proposed at 2026-08-14T15:00:00Z"

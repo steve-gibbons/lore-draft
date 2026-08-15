@@ -1,0 +1,20 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://lore.corpus.workbench/schemas/anti-pattern.schema.json",
+  "title": "Anti-Pattern Schema",
+  "type": "object",
+  "required": ["id", "type", "name", "status", "problem", "remedy"],
+  "properties": {
+    "id": { "type": "string" },
+    "type": { "type": "string", "const": "anti-pattern" },
+    "name": { "type": "string" },
+    "status": { "type": "string" },
+    "problem": { "type": "string" },
+    "remedy": { "type": "string" },
+    "consequences": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  },
+  "additionalProperties": true
+}

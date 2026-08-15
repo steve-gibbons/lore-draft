@@ -1,0 +1,8 @@
+# OS / editor cruft — keep it out of the reviewer's clone
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+*.swp
+*~

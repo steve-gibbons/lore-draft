@@ -1,0 +1,108 @@
+version: "1.0.0"
+description: "Closed status enums and allowed state transition matrix for LORE Corpus Workbench artifacts."
+
+enum:
+  agent_writable:
+    - candidate
+    - proposed
+    - derived
+    - generated
+    - evidence-only
+    - quarantined
+    - unknown
+    - unresolved
+  author_only:
+    - accepted
+    - normative
+    - canonical
+    - verified
+    - released
+    - superseded
+    - deleted
+
+transitions:
+  candidate:
+    allowed_next:
+      - proposed
+      - derived
+      - generated
+      - quarantined
+      - unknown
+      - unresolved
+      - accepted
+      - deleted
+  proposed:
+    allowed_next:
+      - candidate
+      - accepted
+      - quarantined
+      - unresolved
+      - deleted
+  derived:
+    allowed_next:
+      - candidate
+      - proposed
+      - accepted
+      - superseded
+      - deleted
+  generated:
+    allowed_next:
+      - candidate
+      - proposed
+      - accepted
+      - superseded
+      - deleted
+  evidence-only:
+    allowed_next:
+      - candidate
+      - quarantined
+      - derived
+      - accepted
+  quarantined:
+    allowed_next:
+      - candidate
+      - proposed
+      - unknown
+      - deleted
+  unknown:
+    allowed_next:
+      - candidate
+      - evidence-only
+      - quarantined
+      - unresolved
+  unresolved:
+    allowed_next:
+      - candidate
+      - proposed
+      - quarantined
+  accepted:
+    allowed_next:
+      - normative
+      - canonical
+      - verified
+      - released
+      - superseded
+      - deleted
+  normative:
+    allowed_next:
+      - canonical
+      - superseded
+      - deleted
+  canonical:
+    allowed_next:
+      - superseded
+      - deleted
+  verified:
+    allowed_next:
+      - released
+      - superseded
+      - deleted
+  released:
+    allowed_next:
+      - superseded
+      - deleted
+  superseded:
+    allowed_next:
+      - deleted
+  deleted:
+    allowed_next: []

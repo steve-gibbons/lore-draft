@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://lore.corpus.workbench/schemas/artifact-record.schema.json",
+  "title": "Artifact Record Schema",
+  "type": "object",
+  "required": ["id", "type", "title", "status"],
+  "properties": {
+    "id": { "type": "string" },
+    "type": { "type": "string", "const": "artifact-record" },
+    "title": { "type": "string" },
+    "status": { "type": "string" },
+    "description": { "type": "string" },
+    "path": { "type": "string" },
+    "sha256": { "type": "string" },
+    "created_at": { "type": "string" },
+    "provenance": {
+      "type": "object",
+      "properties": {
+        "author_preseeded": { "type": "boolean" },
+        "created_by": { "type": "string" }
+      }
+    }
+  },
+  "additionalProperties": true
+}

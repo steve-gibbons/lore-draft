@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://lore.corpus.workbench/schemas/integration-contract.schema.json",
+  "title": "[FUTURE] Integration Contract Schema Stub",
+  "type": "object",
+  "description": "[FUTURE] Stub schema body reserved for Phase-2 integration contracts and external service boundaries.",
+  "properties": {
+    "stub": {
+      "type": "string",
+      "const": "[FUTURE] Integration contract specification pending phase-2 author authorization."
+    }
+  },
+  "additionalProperties": true
+}

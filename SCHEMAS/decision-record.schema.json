@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://lore.corpus.workbench/schemas/decision-record.schema.json",
+  "title": "Decision Record Schema",
+  "type": "object",
+  "required": ["id", "type", "title", "status", "decision_maker", "rationale"],
+  "properties": {
+    "id": { "type": "string" },
+    "type": { "type": "string", "const": "decision-record" },
+    "title": { "type": "string" },
+    "status": { "type": "string" },
+    "decision_maker": { "type": "string" },
+    "rationale": { "type": "string" },
+    "decided_at": { "type": "string" },
+    "provenance": {
+      "type": "object",
+      "properties": {
+        "author_preseeded": { "type": "boolean" },
+        "created_by": { "type": "string" }
+      }
+    }
+  },
+  "additionalProperties": true
+}

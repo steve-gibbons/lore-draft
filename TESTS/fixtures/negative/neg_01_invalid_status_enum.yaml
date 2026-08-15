@@ -1,0 +1,7 @@
+# NEGATIVE TEST FIXTURE: Uses invalid status not present in closed enum.
+id: ART-FAIL-001
+type: artifact-record
+title: "Invalid Status Artifact"
+status: invalid_custom_status
+description: "This fixture should fail validation due to unknown status value."
+path: "DOCS/invalid.md"

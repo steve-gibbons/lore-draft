@@ -1,0 +1,11 @@
+# PRESEEDED TEST FIXTURE: Pre-existing decision record authored and accepted by human author.
+id: DEC-2026-001
+type: decision-record
+title: "Canonical Hash Generator Decoupling"
+status: accepted
+decision_maker: "Author"
+rationale: "Decouple monotonic counter and timestamp from canonical identity hashing."
+decided_at: "2026-08-14T12:00:00Z"
+provenance:
+  author_preseeded: true
+  created_by: "author"

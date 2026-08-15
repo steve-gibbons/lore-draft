@@ -1,0 +1,10 @@
+# NEGATIVE TEST FIXTURE: Illegal status transition from deleted to normative.
+id: DEC-FAIL-003
+type: decision-record
+title: "Revived Deleted Decision"
+status: normative
+previous_status: deleted
+decision_maker: "Author"
+rationale: "Illegally reviving a deleted decision directly into normative."
+provenance:
+  author_preseeded: true

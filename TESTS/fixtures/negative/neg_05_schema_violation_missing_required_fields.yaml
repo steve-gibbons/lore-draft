@@ -1,0 +1,6 @@
+# NEGATIVE TEST FIXTURE: Proposal record missing required 'proposer' field.
+id: PROP-FAIL-005
+type: proposal-record
+title: "Anonymous Proposal"
+status: proposed
+summary: "Proposal missing required proposer field."

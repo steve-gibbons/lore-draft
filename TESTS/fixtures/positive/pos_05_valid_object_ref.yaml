@@ -1,0 +1,7 @@
+id: REF-2026-001
+type: object-ref
+target_id: "DEC-2026-001"
+status: evidence-only
+alias: "HashDecouplingDecisionRef"
+target_type: "decision-record"
+resolved: true
