@@ -24,7 +24,7 @@ Legend: 🔴 mitigate-now · 🟡 fast-follower · 🔵 accepted-risk (draft sta
 | KF-02 | **No enforcement at rest** - validator opt-in, pre-commit hook uninstalled & currently un-installable | P1·P2 | **Major** | ✅ hook fixed · CI ⏳ (needs `workflow` scope) |
 | KF-03 | **Single-point / parser-differential enforcement** (hand-rolled YAML parser is the whole TCB) | P1·P2 | **Major** | 🟡 fast-follower |
 | KF-04 | **The TCB is never defined or minimized** | P2·P6 | **Major** | ✅ drafted - `CORE-INVARIANTS.md` (proposed) |
-| KF-05 | **Governance-across-time is unbuilt** - no succession, consolidation, or sousveillance of authority | P6·C5 | **Major** | 🟡 fast-follower · ✅ rationale promoted |
+| KF-05 | **Governance-across-time is unbuilt** - no succession, consolidation, or sousveillance of authority | P6·C5 | **Major** | 🟡 fast-follower · ✅ rationale promoted · ▶ owner action open (`GOVERNANCE-LOCKIN.action.md` - blocks v1.0.0) |
 | KF-06 | **Evidence integrity advisory, not forensic** | P1·P3·C6 | Moderate | ✅ hardened - manifest Check 6 (git-preservable) · forensic signing open |
 | KF-07 | **Agent-consumption use case not realizable** (context-package contract is a stub) | P4 | Moderate | 🔵 accepted-risk (phase-2 scope) |
 | KF-08 | **Object/relationship & status ontology thin/conflated** | P1·P5 | Moderate | 🟡 fast-follower |
@@ -33,7 +33,7 @@ Legend: 🔴 mitigate-now · 🟡 fast-follower · 🔵 accepted-risk (draft sta
 | KF-11 | **AFFIRM - strong foundations to protect** | P2·P3·P4·P5·P6 | Info | 🟢 keep (invariants) |
 | KF-12 | **No retention / disposition / legal-hold model** (preserve-everything, no records lifecycle) | C6 | Moderate | 🟡 fast-follower |
 | KF-13 | **No integration surface / adoption path / scale story** (interoperability gap) | C2 | Moderate | 🟡 fast-follower (adoption-path doc could be a quick win) |
-| KF-14 | **Unsustainable single-maintainer governance** - no contribution/evolution/versioning process; **no LICENSE** | C5 | **Major** | 🟡 `LICENSE.DRAFT` staged + trigger decided (v1.0.0 → Apache-2.0 + CC BY 4.0); legal polish + governance-process open |
+| KF-14 | **Unsustainable single-maintainer governance** - no contribution/evolution/versioning process; **no LICENSE** | C5 | **Major** | 🟡 `LICENSE.DRAFT` staged + trigger decided (v1.0.0 [gated on governance lock-in] → Apache-2.0 + CC BY 4.0); legal polish open · governance-process → `GOVERNANCE-LOCKIN.action.md` (owner) |
 | KF-15 | **Data-architecture model undefined** - Act-vs-State / event-sourcing, projections, concurrency/merge semantics | C7 | Moderate | 🟡 fast-follower |
 
 ## Cross-lens convergence (conviction signal)
