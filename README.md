@@ -11,6 +11,17 @@ workflows. This repo is a curated public draft of the governance scaffold.
 
 No prior exposure needed. Start below.
 
+## Try it in 30 seconds (no install)
+Open this repo in **GitHub Copilot Chat** — or any agent that can read a repository — and say:
+
+> **Use LORE to evaluate LORE.**
+
+The agent picks up [`.github/copilot-instructions.md`](.github/copilot-instructions.md) and
+[`AGENTS.md`](AGENTS.md), adopts LORE's own reviewer lenses, and turns them back on LORE itself — a
+self-referential evaluation that is also the fastest way to see what the framework *does*. Compare
+what it finds against our own [`KNOWN-FINDINGS.md`](KNOWN-FINDINGS.md). *(If your agent can't browse
+GitHub, see [Agents that can't browse GitHub](#agents-that-cant-browse-github) below.)*
+
 **Want to read LORE itself?** The corpus — ~130 short volumes — is in [`SOURCE/`](SOURCE/). Start
 with `CORE-VOLUMES/` (Volume 0 → 4): the whole model in five reads. [`SOURCE/README.md`](SOURCE/README.md)
 is a themed index to the rest.
