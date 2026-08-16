@@ -33,7 +33,7 @@ Legend: 🔴 mitigate-now · 🟡 fast-follower · 🔵 accepted-risk (draft sta
 | KF-11 | **AFFIRM — strong foundations to protect** | P2·P3·P4·P5·P6 | Info | 🟢 keep (invariants) |
 | KF-12 | **No retention / disposition / legal-hold model** (preserve-everything, no records lifecycle) | C6 | Moderate | 🟡 fast-follower |
 | KF-13 | **No integration surface / adoption path / scale story** (interoperability gap) | C2 | Moderate | 🟡 fast-follower (adoption-path doc could be a quick win) |
-| KF-14 | **Unsustainable single-maintainer governance** — no contribution/evolution/versioning process; **no LICENSE** | C5 | **Major** | 📋 needs-decision filed (`DECISION-LICENSING`); LICENSE pending ratification |
+| KF-14 | **Unsustainable single-maintainer governance** — no contribution/evolution/versioning process; **no LICENSE** | C5 | **Major** | 🟡 `LICENSE.DRAFT` staged + trigger decided (v1.0.0 → Apache-2.0 + CC BY 4.0); legal polish + governance-process open |
 | KF-15 | **Data-architecture model undefined** — Act-vs-State / event-sourcing, projections, concurrency/merge semantics | C7 | Moderate | 🟡 fast-follower |
 
 ## Cross-lens convergence (conviction signal)

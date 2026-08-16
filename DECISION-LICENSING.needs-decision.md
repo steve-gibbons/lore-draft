@@ -5,7 +5,9 @@
 > tensions, options, and recommended direction we can articulate now — so the decision, when made,
 > is made in context. EXPERIMENTAL / provisional. Relates to **KF-14** (add LICENSE) and **KF-05**.
 >
-> **Decision-maker:** Author.  **Decision:** pending.
+> **Decision-maker:** Author.  **Decision (2026-08-15):** near-term = the Provisional Evaluation
+> license (drafted at `LICENSE.DRAFT.md`, *by principals only*); long-haul = Apache-2.0 + CC BY 4.0;
+> **trigger = the v1.0.0 milestone.** Remaining: legal polish + rename `LICENSE.DRAFT.md → LICENSE`.
 
 ## The tension (stated plainly)
 LORE holds two objectives that pull against each other, and the license is where they collide:

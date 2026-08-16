@@ -11,6 +11,9 @@ Copyright © 2026 Steve Gibbons. All rights reserved except as expressly granted
 LORE is **EXPERIMENTAL and PROVISIONAL**, published as a curated draft for **review, evaluation, and
 demonstration of principles only, by principals only**. This license governs that period.
 
+*A **principal** here is an identifiable, accountable party (per LORE's principal model) — not
+anonymous or automated / proxy access. (Draft term; to be tightened in polish.)*
+
 ## 2. Grant
 You are permitted, at no charge, to:
 - access, read, and study this repository;
@@ -30,8 +33,8 @@ The author intends to **relicense** LORE upon its exit from draft:
 - **Specification / documentation → CC BY 4.0**
 
 This is a transparent, advance pre-commitment (an act of the long-horizon accountability LORE
-preaches). The exact trigger — a version milestone, a governance milestone, or a date — is to be
-fixed in [`DECISION-LICENSING.needs-decision.md`](DECISION-LICENSING.needs-decision.md).
+preaches). The trigger is the **v1.0.0 milestone**: on tagging `v1.0.0`, LORE relicenses as above. See
+[`DECISION-LICENSING.needs-decision.md`](DECISION-LICENSING.needs-decision.md) for the rationale.
 
 ## 5. Provenance & AI-generated content
 Portions of this corpus originated in AI-assisted design conversations. Copyright coverage of purely

@@ -1,7 +1,7 @@
 # LORE — a governed-memory experiment
 
 > **EXPERIMENTAL / PROVISIONAL public draft.** For evaluation and demonstration of principles
-> only — not production-ready. Licensing is a decision-in-progress ([`DECISION-LICENSING.needs-decision.md`](DECISION-LICENSING.needs-decision.md)).
+> only — not production-ready. Provisionally licensed for evaluation *by principals* (see [`LICENSE.DRAFT.md`](LICENSE.DRAFT.md)); relicenses to Apache-2.0 + CC BY 4.0 at the **v1.0.0** milestone.
 
 **What is this, in one breath?** LORE is a small, self-contained framework for recording not
 just *what* a project decided, but **why**, **who had the authority to decide it**, and **what's
@@ -52,7 +52,7 @@ If raw fetch still fails: paste the files, connect a GitHub tool, or upload an a
 | `AGENTS.md` | **The heart** — authority model, what agents may/may not do, the closed status set |
 | `CORE-INVARIANTS.md` | The minimal "what must be true" (the trusted core / TCB), honestly marking enforced vs. asserted |
 | `KNOWN-FINDINGS.md` | Our own pre-review self-assessment — known weaknesses, so reviewers skip the obvious |
-| `DECISION-LICENSING.needs-decision.md` | A governed decision-*in-progress* — states the tension and the direction LORE commits to |
+| `DECISION-LICENSING.needs-decision.md` | The licensing decision — tension, options, and the committed direction (eval-only → Apache-2.0 + CC BY 4.0 at v1.0.0) |
 | `CORPUS-MANIFEST.yaml` | Machine-readable index of the corpus |
 | `PROVENANCE.md` | How this public draft relates to its private origin — verifiable, without exposing it |
 

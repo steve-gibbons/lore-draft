@@ -1,7 +1,7 @@
-# LORE Core — Minimal Invariants (proposed / DRAFT)
+# LORE Core — Minimal Invariants (normative)
 
-> **Status: normative** (agent-drafted under author direction). NOT normative until the author
-> accepts. EXPERIMENTAL / provisional. Addresses **KF-04** (define the TCB). Honest by design:
+> **Status: normative** — ratified by the author 2026-08-15 (agent-drafted under author direction).
+> EXPERIMENTAL / provisional. Addresses **KF-04** (define the TCB). Honest by design:
 > it marks which invariants are *enforced* vs. merely *asserted* (see KNOWN-FINDINGS).
 
 The **LORE Core** is the minimal set of invariants that must hold for a LORE corpus to be
@@ -55,6 +55,7 @@ called for ("define the TCB for LORE"); *authenticating* it is the fast-follower
 - **Artifact integrity** — that files are what they claim. *(KF-06: hashes opt-in.)*
 
 ## Honest posture
-Invariants **1, 3, 4** are reliably enforced (when fields are present). Invariants **2, 5, 6, 7**
-are **asserted, not authenticated** — the central finding (KF-01). Minimizing this core and then
-*authenticating* it is LORE's primary hardening path.
+Invariants **1, 3, 4** are reliably enforced (when fields are present). **Invariant 5 is now
+manifest-verified** (git-preservable, tamper-detectable; KF-06 hardened). Invariants **2, 6, 7** —
+and the added rules **8–11** — remain **asserted, not authenticated** (KF-01). *Authenticating* this
+core is LORE's primary hardening path.
