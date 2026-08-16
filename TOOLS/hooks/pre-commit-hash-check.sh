@@ -20,5 +20,19 @@ else
     echo "WARNING: TOOLS/lore_validate.py not found."
 fi
 
+# Guard: a `*.asc`-style rule in .gitignore would silently block NEW detached
+# signatures (KEYS/*.asc, RAW-MANIFEST.sha256.asc, author-only artifact sigs)
+# from being added - the core of the signing workflow (KF-01). We probe
+# hypothetical paths because `git check-ignore` skips already-tracked files.
+echo "Checking signatures cannot be gitignored..."
+sig_bad=0
+for p in KEYS/__sigguard__.asc INTAKE/__sigguard__.asc __sigguard__.asc; do
+    if git check-ignore -q "$p" 2>/dev/null; then
+        echo "ERROR: .gitignore would ignore '$p' - a '*.asc'-style rule crept in. Remove it."
+        sig_bad=1
+    fi
+done
+[ "$sig_bad" -eq 0 ] || { echo "ERROR: signatures would be gitignored. Commit aborted."; exit 1; }
+
 echo "=== LORE Pre-Commit Check Passed ==="
 exit 0
