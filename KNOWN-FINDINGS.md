@@ -20,7 +20,7 @@ Legend: 🔴 mitigate-now · 🟡 fast-follower · 🔵 accepted-risk (draft sta
 
 | ID | Finding | Lenses | Severity | Disposition (proposed) |
 |----|---------|--------|----------|-------------|
-| KF-01 | Trust boundaries are **declarative, not authenticated** (author-only status, agent-vs-author, identity all self-asserted) | P1·P2·P3·P4·C6 | **Major** | 🟡 fast-follower · ✅ decided + building (`DECISION-AUTH-IDENTITY.accepted.md`, Option C): ✅ root list + Check 2 signature-binding + CI crypto gate; ◻ CI wiring + delegation |
+| KF-01 | Trust boundaries are **declarative, not authenticated** (author-only status, agent-vs-author, identity all self-asserted) | P1·P2·P3·P4·C6 | **Major** | 🟡 fast-follower · ✅ Option C built (`DECISION-AUTH-IDENTITY.accepted.md`): root list + signature-bound Check 2 + CI gate at `--strict`; ⏸ delegation deferred (author-only stays root-only); T5 key-custody still open |
 | KF-02 | **No enforcement at rest** - validator opt-in, pre-commit hook uninstalled & currently un-installable | P1·P2 | **Major** | ✅ hook fixed · CI ⏳ (needs `workflow` scope) |
 | KF-03 | **Single-point / parser-differential enforcement** (hand-rolled YAML parser is the whole TCB) | P1·P2 | **Major** | 🟡 fast-follower |
 | KF-04 | **The TCB is never defined or minimized** | P2·P6 | **Major** | ✅ drafted - `CORE-INVARIANTS.md` (proposed) |

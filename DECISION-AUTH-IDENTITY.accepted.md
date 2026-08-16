@@ -61,13 +61,19 @@ not all-or-nothing.
    invariant 11 already cite): trusted fingerprint(s) + policy. *Resolved the dangling reference.*
 2. ✅ **Enforce at rest (represent/enforce split - see below).** Rewired Check 2 in
    `lore_validate.py` to bind author-only status to a registered signer reference; added the CI
-   crypto gate `TOOLS/lore_verify_author_sig.py`. *(Closes T1-T3.)* Remaining: the author signs the
-   one legacy artifact (`reviewer-panel-roster.candidate.yaml`); CI wiring is task 3.
-3. ◻ **Defense-in-depth in transit.** Verify signed commits in CI, and run the author-sig gate in
-   CI (folds into KF-02's CI enablement). *(Hardens T2.)*
-4. ◻ **Delegation / lineage.** Agent-signing subkey certified by the primary, so agents never wield
-   the author root; policy in `REGISTRIES/trusted-signers.txt`. *(Closes T6; invariant 11.)*
-   *Substrate already present:* the subkeys exist and are listed (root + `delegated:agent`).
+   crypto gate `TOOLS/lore_verify_author_sig.py`. *(Closes T1-T3.)* The one legacy author-only
+   artifact (`reviewer-panel-roster.candidate.yaml`) was **demoted to `candidate`** - it was never
+   author-signed and its filename already said candidate - so nothing is left under migration grace.
+3. ✅ **Defense-in-depth in transit (author-sig gate).** The gate runs in CI at `--strict` in both
+   repos (`.github/workflows/validate.yml`, with a tolerant key-import). Invoked locally via
+   `./lore verify-authors` (private wrapper). ◻ **Signed-commit verification (B2) deferred** -
+   optional, and gated on KF-02's CI-token grant. *(Hardens T2.)*
+4. ⏸ **Delegation / lineage - DEFERRED (author decision 2026-08-15).** Author-only status **stays
+   root-only**; the agent-signing subkey is *not* wired into the author-only gate until a concrete
+   need for delegated **authority** arises ("until something comes up that needs author(ity)"). The
+   verifier already defaults to root-only (`--accept-delegated` exists but is unused); the
+   `delegated:agent` key stays listed in `REGISTRIES/trusted-signers.txt` for when it's needed.
+   *(T6 remains theoretical until then; invariant 11 is satisfied by root-only signing today.)*
 
 ## Resolved architecture (task 2, 2026-08-15)
 Signature verification is **split** so the core validator stays zero-dependency (ratified choice):
@@ -82,8 +88,9 @@ Signature verification is **split** so the core validator stays zero-dependency 
   (invariant 11). Verifying needs no secret, so it runs in CI.
 - **Migration:** a bare `provenance.author_preseeded: true` is still accepted by Check 2 but emits a
   **deprecation warning**; the gate reports such artifacts as UNSIGNED (a warning by default,
-  a hard failure under `--strict`). Flip to `--strict` and drop the `author_preseeded` grace at
-  v1.0.0. *(Migration scope is tiny: one real author-only artifact today.)*
+  a hard failure under `--strict`). CI already runs the gate at `--strict`; drop the
+  `author_preseeded` grace entirely at v1.0.0. *(Migration scope is now zero: the one legacy
+  author-only artifact was demoted to `candidate`, so `--strict` passes clean.)*
 - **Note:** `lore_verify_manifest_sig.py` was **not** promoted to public - the public repo has no
   `INTAKE/RAW-MANIFEST.sha256` for it to verify, and the generalized author-sig gate supersedes it
   for author-only artifacts. The manifest verifier stays in the private repo where the raw manifest

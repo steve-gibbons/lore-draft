@@ -1,6 +1,6 @@
 id: REVIEWER-PANEL-ROSTER-001
 type: reviewer-panel-roster
-status: accepted
+status: candidate   # agent-writable; the panel is proposed, not author-accepted (matches the .candidate filename). KF-01: author-only status now requires a signature, and this roster was never author-signed.
 generated_by: agent
 under_author_direction: true
 author_preseeded: false
