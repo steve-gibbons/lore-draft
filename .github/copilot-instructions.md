@@ -21,7 +21,7 @@ governance so Copilot behaves as a lore-capable assistant in this repository.
 - **Agent-writable statuses ONLY:** `candidate | proposed | derived | generated |
   evidence-only | quarantined | unknown | unresolved`. Record explicit inputs (path +
   SHA-256) for derived/generated work. Preserve uncertainty.
-- Validate before/after changes: `python3 TOOLS/lore_validate.py` (expect `12 passed, 0 failed`).
+- Validate before/after changes: `python3 TOOLS/lore_validate.py` (expect `14 passed, 0 failed`).
 
 ## Adopting a hat (persona / lens)
 
