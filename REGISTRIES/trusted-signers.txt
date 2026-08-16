@@ -1,0 +1,42 @@
+# LORE - trusted signers (EXPERIMENTAL / provisional TEST HARNESS)
+#
+# Names the OpenPGP signing keys that count as LORE authority, and at what LEVEL.
+# It is the "allowed_signers" root for Track F (forensic integrity, Option C), and it
+# makes CORE-INVARIANT 11 (authority has lineage) executable: trust is bound to the
+# SIGNING-key fingerprint (role), and every accepted signature must additionally CHAIN
+# to a `root` key (lineage), which the verifier enforces.
+#
+# STATUS: conceptual test harness, explicitly intended to be replaced by robust key
+# management (HSM / hardware token, rotation, revocation, multi-party custody). Not
+# production trust infrastructure. See META-CONTEXT/forensic-integrity.accepted.md.
+#
+# ROLES
+#   root             - the author-authority root (KF-01). Author-hand acts. The raw
+#                      evidence manifest is a ROOT-ONLY act.
+#   delegated:agent  - a signing subkey the author delegates to an agent, so the agent
+#                      may sign LOWER-trust artifacts under a key whose lineage traces to
+#                      the author primary - without ever wielding the root. The agent
+#                      holds only this subkey's secret in real use.
+#
+# GOVERNANCE: only the author edits this file. An agent must never sign with a `root`
+# key, nor add/relabel entries. Adding a delegated key is an author act (it is certified
+# by the author primary at key-creation time).
+#
+# FORMAT: one entry per line -  <40-hex signing-key fingerprint>  <role>  <label>
+# '#' lines and blank lines ignored. Whitespace-separated; label may contain spaces.
+
+# SHARED-KEYRING NOTE (test harness): all secrets live in one keyring here, so `gpg -u
+# D9B04B5C` may default to whichever signing subkey gpg prefers - including a delegated
+# one. ALWAYS pin the intended key with a trailing '!'. Root act:
+#   gpg --armor --detach-sign -u '7309F037A9457C7601C7F3BF068354FBD9B04B5C!' <file>
+# Agent act: -u '<agent-subkey-fpr>!'. In production the two hands hold separate secrets
+# and this ambiguity disappears.
+
+# --- ROOT (author-hand) ---
+7309F037A9457C7601C7F3BF068354FBD9B04B5C  root  Steve Gibbons - author primary (D9B04B5C)
+678FD0793A31D313E98471EF36BA3FC140BEDA0B  root  author signing subkey [S] 2026-08-01 (lineage: D9B04B5C)
+
+# --- DELEGATED (agent-hand) - author: uncomment ONE and confirm it is the agent key ---
+# Candidates present in the keyring (both ed25519 [S], created 2026-08-16):
+# 9952EC3552CBDB2021C06A36DC647A2B43EDBC2F  delegated:agent  agent signing subkey (lineage: D9B04B5C)
+F3BA0EDE2275818A1C2109FDAFFF11415A261321  delegated:agent  agent signing subkey (lineage: D9B04B5C)
