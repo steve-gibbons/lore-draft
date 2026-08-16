@@ -14,7 +14,7 @@ lenses are *grounded in the public work of* their namesakes, never their opinion
 **Dispositions below are agent-proposed, pending author confirmation.**
 Legend: 🔴 mitigate-now · 🟡 fast-follower · 🔵 accepted-risk (draft stage) · ⚪ wontfix · 🟢 keep
 
-**Progress:** KF-02 hook fixed (CI workflow pending a token-scope grant) · KF-04 & KF-05-rationale drafted (`CORE-INVARIANTS.md`, `SOURCE/long-horizon-rationale.proposed.md`) · KF-14 filed as a needs-decision record (`DECISION-LICENSING.needs-decision.md`).
+**Progress:** KF-02 hook fixed (CI workflow pending a token-scope grant) · KF-04 & KF-05-rationale drafted (`CORE-INVARIANTS.md`, `SOURCE/long-horizon-rationale.accepted.md`) · KF-14 recorded as an accepted decision (`DECISION-LICENSING.accepted.md`).
 
 ## Priority view (deduped across all ten lenses)
 

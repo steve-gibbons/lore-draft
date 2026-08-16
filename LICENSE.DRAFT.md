@@ -34,7 +34,7 @@ The author intends to **relicense** LORE upon its exit from draft:
 
 This is a transparent, advance pre-commitment (an act of the long-horizon accountability LORE
 preaches). The trigger is the **v1.0.0 milestone**: on tagging `v1.0.0`, LORE relicenses as above. See
-[`DECISION-LICENSING.needs-decision.md`](DECISION-LICENSING.needs-decision.md) for the rationale.
+[`DECISION-LICENSING.accepted.md`](DECISION-LICENSING.accepted.md) for the rationale.
 
 ## 5. Provenance & AI-generated content
 Portions of this corpus originated in AI-assisted design conversations. Copyright coverage of purely
@@ -45,6 +45,6 @@ arrangement, and directed code**. Provenance and attribution are preserved throu
 Provided **"AS IS"**, without warranty of any kind. Not production-ready. Use at your own risk.
 
 ---
-*Draft prepared 2026-08-15 to capture author intent (see `DECISION-LICENSING.needs-decision.md`).
+*Draft prepared 2026-08-15 to capture author intent (see `DECISION-LICENSING.accepted.md`).
 To be reviewed and polished — a wave-2 Legal / Records-management task — before it becomes the
 effective `LICENSE`.*

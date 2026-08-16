@@ -37,7 +37,7 @@ Browse the folder for the full set.
 - `THE-MAKING-OF-LORE.md` — the trimmed story of how LORE was built.
 - `SIDEBARS/` — the **raw** meta-discussion the story was distilled from, kept un-trimmed as evidence (see `SIDEBARS/README.md`).
 - `DECISION-HISTORY/` — the change log and foundational decision notes.
-- `long-horizon-rationale.proposed.md` — LORE's own long-horizon requirements (see `KNOWN-FINDINGS.md`, KF-05).
+- `long-horizon-rationale.accepted.md` — LORE's own long-horizon requirements (see `KNOWN-FINDINGS.md`, KF-05).
 
 ## Provenance
 Derived from the LORE v0.5 corpus package (private canonical). This public copy is the

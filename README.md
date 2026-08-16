@@ -50,7 +50,7 @@ If raw fetch still fails: paste the files, connect a GitHub tool, or upload an a
 | **Building AI agents** | [`AGENTS.md`](AGENTS.md) (the rules agents follow) → [`META-CONTEXT/reviewer-panel/`](META-CONTEXT/reviewer-panel/) (the "hat/lens" system) → [`.github/copilot-instructions.md`](.github/copilot-instructions.md) |
 | **Security / threat-modeling** | [`KNOWN-FINDINGS.md`](KNOWN-FINDINGS.md) (KF-01…) → [`CORE-INVARIANTS.md`](CORE-INVARIANTS.md) (the TCB) → [`TOOLS/lore_validate.py`](TOOLS/lore_validate.py) |
 | **Ontology / knowledge representation** | [`SCHEMAS/`](SCHEMAS/) → [`REGISTRIES/artifact-statuses.yaml`](REGISTRIES/artifact-statuses.yaml) → `object-ref` (ALIAS ≠ IDENTITY) |
-| **Governance / records / legal** | [`AGENTS.md`](AGENTS.md) → [`DECISION-LICENSING.needs-decision.md`](DECISION-LICENSING.needs-decision.md) → [`SOURCE/long-horizon-rationale.proposed.md`](SOURCE/long-horizon-rationale.proposed.md) |
+| **Governance / records / legal** | [`AGENTS.md`](AGENTS.md) → [`DECISION-LICENSING.accepted.md`](DECISION-LICENSING.accepted.md) → [`SOURCE/long-horizon-rationale.accepted.md`](SOURCE/long-horizon-rationale.accepted.md) |
 | **A skeptic ("does it even work?")** | run the validator (below), then read [`KNOWN-FINDINGS.md`](KNOWN-FINDINGS.md) — we pre-published our own flaws |
 | **A formal reviewer** | [`REVIEWERS.md`](REVIEWERS.md) — the full review guide |
 
@@ -63,7 +63,7 @@ If raw fetch still fails: paste the files, connect a GitHub tool, or upload an a
 | `AGENTS.md` | **The heart** — authority model, what agents may/may not do, the closed status set |
 | `CORE-INVARIANTS.md` | The minimal "what must be true" (the trusted core / TCB), honestly marking enforced vs. asserted |
 | `KNOWN-FINDINGS.md` | Our own pre-review self-assessment — known weaknesses, so reviewers skip the obvious |
-| `DECISION-LICENSING.needs-decision.md` | The licensing decision — tension, options, and the committed direction (eval-only → Apache-2.0 + CC BY 4.0 at v1.0.0) |
+| `DECISION-LICENSING.accepted.md` | The licensing decision — tension, options, and the committed direction (eval-only → Apache-2.0 + CC BY 4.0 at v1.0.0) |
 | `CORPUS-MANIFEST.yaml` | Machine-readable index of the corpus |
 | `PROVENANCE.md` | How this public draft relates to its private origin — verifiable, without exposing it |
 
@@ -105,7 +105,7 @@ If raw fetch still fails: paste the files, connect a GitHub tool, or upload an a
    where it came from *without* being able to reconstruct the private source. That's ALIAS ≠ IDENTITY,
    made literal.
 
-6. **See reasoning preserved, not just outcomes** — [`DECISION-LICENSING.needs-decision.md`](DECISION-LICENSING.needs-decision.md)
+6. **See reasoning preserved, not just outcomes** — [`DECISION-LICENSING.accepted.md`](DECISION-LICENSING.accepted.md)
    records a decision *before it's made*: the tension, the options, and the direction chosen.
 
 ## For maintainers

@@ -1,6 +1,6 @@
-# Decision Record — LORE Licensing (NEEDS-DECISION)
+# Decision Record — LORE Licensing (DECIDED)
 
-> **Status: needs-decision** (proposed; agent-drafted under author direction). The author (sole
+> **Status: accepted** (author-ratified 2026-08-15; agent-drafted under author direction). The author (sole
 > authority) has deferred the final choice for fresh eyes. This record preserves the *why* — the
 > tensions, options, and recommended direction we can articulate now — so the decision, when made,
 > is made in context. EXPERIMENTAL / provisional. Relates to **KF-14** (add LICENSE) and **KF-05**.
