@@ -94,30 +94,94 @@ def get_registry(repo_root):
     transitions = reg_doc.get('transitions', {})
     return agent_writable, author_only, transitions
 
+def load_trusted_signers(repo_root):
+    """Return {fpr_upper: role} from REGISTRIES/trusted-signers.txt.
+
+    Dependency-free: the core validator reads this registry to confirm that a
+    signature *reference* on an author-only artifact names a REGISTERED signer
+    (Check 2, KF-01). It does NOT do cryptography - the actual gpg verification
+    (GOODSIG/VALIDSIG, lineage to a root, role policy) is the separate CI gate
+    TOOLS/lore_verify_author_sig.py. This split keeps the core 10 checks
+    zero-dependency while still moving author-only status from a self-asserted
+    boolean to a signature bound to a known key. (CORE-INVARIANT 10: represent,
+    then enforce.)
+    """
+    signers = {}
+    path = os.path.join(repo_root, 'REGISTRIES', 'trusted-signers.txt')
+    if not os.path.isfile(path):
+        return signers
+    with open(path, encoding='utf-8') as fh:
+        for line in fh:
+            line = line.strip()
+            if not line or line.startswith('#'):
+                continue
+            parts = line.split(None, 2)
+            if len(parts) < 2:
+                continue
+            fpr = parts[0].upper().replace(' ', '')
+            signers[fpr] = parts[1]
+    return signers
+
 class LoreValidator:
     def __init__(self, repo_root):
         self.repo_root = repo_root
         self.agent_writable, self.author_only, self.transitions = get_registry(repo_root)
         self.all_statuses = (self.agent_writable or set()).union(self.author_only or set())
+        self.trusted_signers = load_trusted_signers(repo_root)
 
     def validate_file(self, filepath):
         doc = load_doc(filepath)
         errors = []
-        
+        warnings = []
+
         # Check 1: Status Enum Check
         status = doc.get('status')
         if status:
             if status not in self.all_statuses:
                 errors.append(f"Check 1 Fail: Status '{status}' is not in closed status enum.")
 
-        # Check 2: Agent Status Emission Rule
+        # Check 2: Author-only Emission Rule (KF-01 - authenticated, not self-asserted).
+        # Authority to hold an author-only status must be BOUND to a registered signer,
+        # not minted by a self-written boolean. The core check (dependency-free) verifies
+        # the REPRESENTATION: a signature reference naming a signer in the trusted-signers
+        # registry, whose detached .asc exists on disk. The CRYPTO enforcement (that the
+        # signature actually verifies, chains to a root, and carries an allowed role) is
+        # the separate CI gate TOOLS/lore_verify_author_sig.py. During migration, a bare
+        # `author_preseeded: true` is still accepted but DEPRECATED (warning) - it must be
+        # replaced by a signature before v1.0.0 (DECISION-AUTH-IDENTITY.accepted.md).
         if status in self.author_only:
             provenance = doc.get('provenance', {})
-            author_preseeded = False
-            if isinstance(provenance, dict):
-                author_preseeded = provenance.get('author_preseeded', False)
-            if not author_preseeded:
-                errors.append(f"Check 2 Fail: Author-only status '{status}' emitted without author preseed provenance.")
+            if not isinstance(provenance, dict):
+                provenance = {}
+            sig_ref = provenance.get('signature')
+            signer_fpr = provenance.get('signer_fpr')
+            author_preseeded = provenance.get('author_preseeded', False)
+
+            if sig_ref or signer_fpr:
+                # Authenticated path: both the reference and the signer id are required.
+                if not (sig_ref and signer_fpr):
+                    errors.append(f"Check 2 Fail: Author-only status '{status}' has an "
+                                  "incomplete signature reference (need both "
+                                  "provenance.signature and provenance.signer_fpr).")
+                else:
+                    fpr = str(signer_fpr).upper().replace(' ', '')
+                    asc_path = os.path.join(self.repo_root, sig_ref)
+                    if fpr not in self.trusted_signers:
+                        errors.append(f"Check 2 Fail: Author-only status '{status}' signed by "
+                                      f"'{fpr}', which is not in REGISTRIES/trusted-signers.txt "
+                                      "(unregistered signer - possible forgery).")
+                    elif not os.path.isfile(asc_path):
+                        errors.append(f"Check 2 Fail: Author-only status '{status}' references "
+                                      f"signature '{sig_ref}', but that detached .asc is missing.")
+                    # else: representation valid; crypto validity is the CI gate's job.
+            elif author_preseeded is True:
+                warnings.append(f"Check 2 (migration): Author-only status '{status}' relies on "
+                                "the deprecated `author_preseeded` boolean with no signature. "
+                                "Sign it (provenance.signature + signer_fpr) before v1.0.0 - "
+                                "see DECISION-AUTH-IDENTITY.accepted.md.")
+            else:
+                errors.append(f"Check 2 Fail: Author-only status '{status}' emitted without "
+                              "author authority (no signature reference, no preseed provenance).")
 
         # Check 3: Status Transition Check
         prev_status = doc.get('previous_status')
@@ -174,7 +238,7 @@ class LoreValidator:
         if doc_type == 'proposal-record' and status not in self.agent_writable:
             errors.append(f"Check 9 Fail: Unverified proposal must retain uncertainty status, got '{status}'.")
 
-        return len(errors) == 0, errors
+        return len(errors) == 0, errors, warnings
 
     def check_intake_raw_immutability(self):
         """Check 6: INTAKE/raw content integrity via a git-preservable SHA-256 manifest.
@@ -292,9 +356,10 @@ def main():
     print(f"\n--- Validating Positive Fixtures ({len(pos_fixtures)}) ---")
     for pf in sorted(pos_fixtures):
         fname = os.path.basename(pf)
-        ok, errs = validator.validate_file(pf)
+        ok, errs, warns = validator.validate_file(pf)
         if ok:
             print(f"[PASS] Positive Fixture: {fname}")
+            for w in warns: print(f"  ~ {w}")
             total_passed += 1
         else:
             print(f"[FAIL] Positive Fixture: {fname}")
@@ -304,7 +369,7 @@ def main():
     print(f"\n--- Validating Negative Fixtures ({len(neg_fixtures)}) ---")
     for nf in sorted(neg_fixtures):
         fname = os.path.basename(nf)
-        ok, errs = validator.validate_file(nf)
+        ok, errs, warns = validator.validate_file(nf)
         if not ok:
             print(f"[PASS] Negative Fixture Correctly Rejected: {fname}")
             total_passed += 1

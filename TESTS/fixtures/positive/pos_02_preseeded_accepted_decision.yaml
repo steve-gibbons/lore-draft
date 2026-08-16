@@ -1,4 +1,8 @@
-# PRESEEDED TEST FIXTURE: Pre-existing decision record authored and accepted by human author.
+# PRESEEDED TEST FIXTURE: author-only status carried by an authenticated signature
+# reference (KF-01 end state). The core validator confirms the signer is registered in
+# REGISTRIES/trusted-signers.txt and the detached .asc exists; the CI gate
+# (TOOLS/lore_verify_author_sig.py) does the gpg crypto. author_preseeded is retained as
+# a corroborating claim during migration (belt-and-suspenders).
 id: DEC-2026-001
 type: decision-record
 title: "Canonical Hash Generator Decoupling"
@@ -9,3 +13,5 @@ decided_at: "2026-08-14T12:00:00Z"
 provenance:
   author_preseeded: true
   created_by: "author"
+  signature: "TESTS/fixtures/positive/pos_02_preseeded_accepted_decision.yaml.asc"
+  signer_fpr: "7309F037A9457C7601C7F3BF068354FBD9B04B5C"

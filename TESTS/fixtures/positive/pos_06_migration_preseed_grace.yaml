@@ -1,0 +1,15 @@
+# POSITIVE TEST FIXTURE: migration-grace path. An existing author-only artifact still
+# carrying only the deprecated `author_preseeded: true` (no signature yet). It PASSES the
+# core validator but emits a Check 2 migration warning - it must be signed before v1.0.0
+# (DECISION-AUTH-IDENTITY.accepted.md). This documents the transitional grandfather
+# behavior, not the end state.
+id: DEC-2026-LEGACY
+type: decision-record
+title: "Legacy accepted record awaiting signature"
+status: accepted
+decision_maker: "Author"
+rationale: "Pre-signature author-only artifact retained under migration grace."
+decided_at: "2026-08-10T09:00:00Z"
+provenance:
+  author_preseeded: true
+  created_by: "author"

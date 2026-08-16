@@ -1,0 +1,13 @@
+# NEGATIVE TEST FIXTURE: forgery attempt. An author-only status carrying a signature
+# reference whose signer_fpr is NOT in REGISTRIES/trusted-signers.txt. This is the core
+# attack KF-01 targets - minting authority with an unregistered key. Check 2 must reject
+# it (unregistered signer), even though the .asc "exists" and the boolean tricks are gone.
+id: ART-FAIL-006
+type: artifact-record
+title: "Forged canonical status via unregistered key"
+status: canonical
+description: "Should fail: signature references a signer not in the trusted-signers registry."
+provenance:
+  created_by: "attacker"
+  signature: "TESTS/fixtures/negative/neg_06_unregistered_signer_forgery.yaml.asc"
+  signer_fpr: "DEADBEEFDEADBEEFDEADBEEFDEADBEEFDEADBEEF"

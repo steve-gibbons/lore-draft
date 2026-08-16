@@ -57,16 +57,37 @@ hardening layers that ship after. Each layer is independently useful, so the bui
 not all-or-nothing.
 
 ## Build tasks (on ratification)
-1. **Represent the root.** Create `REGISTRIES/trusted-signers.txt` (the file `KEYS/README.md` and
-   invariant 11 already cite): trusted fingerprint(s) + policy. *Resolves the dangling reference.*
-2. **Enforce at rest.** Promote `lore_verify_manifest_sig.py` into public `TOOLS/`; change Check 2
-   so an author-only status requires a valid detached signature over the artifact's canonical bytes
-   from a trusted-signers fingerprint - not a boolean. *(Closes T1-T3.)*
-3. **Defense-in-depth in transit.** Verify signed commits in CI (folds into KF-02's CI enablement).
-   *(Hardens T2.)*
-4. **Delegation / lineage.** Add the agent-signing subkey certified by the primary, so agents never
-   wield the author root; record its policy in `REGISTRIES/trusted-signers.txt`. *(Closes T6;
-   invariant 11.)*
+1. ✅ **Represent the root.** Created `REGISTRIES/trusted-signers.txt` (the file `KEYS/README.md` and
+   invariant 11 already cite): trusted fingerprint(s) + policy. *Resolved the dangling reference.*
+2. ✅ **Enforce at rest (represent/enforce split - see below).** Rewired Check 2 in
+   `lore_validate.py` to bind author-only status to a registered signer reference; added the CI
+   crypto gate `TOOLS/lore_verify_author_sig.py`. *(Closes T1-T3.)* Remaining: the author signs the
+   one legacy artifact (`reviewer-panel-roster.candidate.yaml`); CI wiring is task 3.
+3. ◻ **Defense-in-depth in transit.** Verify signed commits in CI, and run the author-sig gate in
+   CI (folds into KF-02's CI enablement). *(Hardens T2.)*
+4. ◻ **Delegation / lineage.** Agent-signing subkey certified by the primary, so agents never wield
+   the author root; policy in `REGISTRIES/trusted-signers.txt`. *(Closes T6; invariant 11.)*
+   *Substrate already present:* the subkeys exist and are listed (root + `delegated:agent`).
+
+## Resolved architecture (task 2, 2026-08-15)
+Signature verification is **split** so the core validator stays zero-dependency (ratified choice):
+- **Core `lore_validate.py` Check 2 (dependency-free, runs everywhere)** verifies the
+  *representation*: an author-only artifact must carry `provenance.signature` (path to a detached
+  `.asc`) **and** `provenance.signer_fpr` naming a fingerprint listed in
+  `REGISTRIES/trusted-signers.txt`, with the `.asc` present on disk. A signature by an *unregistered*
+  key is rejected (forgery). No gpg is invoked here.
+- **CI gate `TOOLS/lore_verify_author_sig.py` (gpg, public key only)** does the *cryptography*:
+  GOODSIG/VALIDSIG over the artifact bytes, signing key matches the declared `signer_fpr`, role is
+  allowed (`root`; `--accept-delegated` for lower-trust), and lineage chains to a `root`
+  (invariant 11). Verifying needs no secret, so it runs in CI.
+- **Migration:** a bare `provenance.author_preseeded: true` is still accepted by Check 2 but emits a
+  **deprecation warning**; the gate reports such artifacts as UNSIGNED (a warning by default,
+  a hard failure under `--strict`). Flip to `--strict` and drop the `author_preseeded` grace at
+  v1.0.0. *(Migration scope is tiny: one real author-only artifact today.)*
+- **Note:** `lore_verify_manifest_sig.py` was **not** promoted to public - the public repo has no
+  `INTAKE/RAW-MANIFEST.sha256` for it to verify, and the generalized author-sig gate supersedes it
+  for author-only artifacts. The manifest verifier stays in the private repo where the raw manifest
+  lives.
 
 ## Resolved implementation choices
 1. **Mechanism: ratified - Option C (layered).**
