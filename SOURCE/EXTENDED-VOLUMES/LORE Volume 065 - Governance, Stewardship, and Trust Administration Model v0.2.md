@@ -1,4 +1,4 @@
-# LORE Volume 65 — Governance, Stewardship, and Trust Administration Model
+# LORE Volume 65 - Governance, Stewardship, and Trust Administration Model
 
 ## Version 0.2 Draft
 
@@ -299,4 +299,4 @@ The governing principle:
 
 ---
 
-LORE Volume 65 — Governance, Stewardship, and Trust Administration Model v0.2.md
+LORE Volume 65 - Governance, Stewardship, and Trust Administration Model v0.2.md

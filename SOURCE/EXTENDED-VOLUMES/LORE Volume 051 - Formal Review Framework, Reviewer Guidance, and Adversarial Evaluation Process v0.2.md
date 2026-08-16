@@ -1,4 +1,4 @@
-# LORE Volume 51 — Formal Review Framework, Reviewer Guidance, and Adversarial Evaluation Process
+# LORE Volume 51 - Formal Review Framework, Reviewer Guidance, and Adversarial Evaluation Process
 
 ## Version 0.2 Draft
 
@@ -340,4 +340,4 @@ The governing principle:
 
 ---
 
-LORE Volume 51 — Formal Review Framework, Reviewer Guidance, and Adversarial Evaluation Process v0.2.md
+LORE Volume 51 - Formal Review Framework, Reviewer Guidance, and Adversarial Evaluation Process v0.2.md

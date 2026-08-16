@@ -1,4 +1,4 @@
-# LORE Volume 41 — Operational Model, Deployment Patterns, and Runtime Behavior
+# LORE Volume 41 - Operational Model, Deployment Patterns, and Runtime Behavior
 
 ## Version 0.2 Draft
 
@@ -455,4 +455,4 @@ The governing principle:
 
 ---
 
-LORE Volume 41 — Operational Model, Deployment Patterns, and Runtime Behavior v0.2.md
+LORE Volume 41 - Operational Model, Deployment Patterns, and Runtime Behavior v0.2.md

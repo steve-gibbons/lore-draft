@@ -1,5 +1,5 @@
 <!-- lore_anchor_id: 4r7m2q -->
-# LORE Volume 4 — Implementation, Integration, and Ecosystem
+# LORE Volume 4 - Implementation, Integration, and Ecosystem
 
 **Filename:** `LORE-Volume-4-Implementation-and-Ecosystem.md`  
 **Status:** Draft  
@@ -574,7 +574,7 @@ The system that preserves trust must itself be trustworthy.
 
 ---
 
-**End of LORE Volume 4 — Implementation, Integration, and Ecosystem**
+**End of LORE Volume 4 - Implementation, Integration, and Ecosystem**
 ```
 
 That completes the first five-volume corpus draft.

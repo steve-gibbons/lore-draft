@@ -1,4 +1,4 @@
-# LORE Volume 9 — Evidence, Provenance, and Trust Evaluation Model
+# LORE Volume 9 - Evidence, Provenance, and Trust Evaluation Model
 
 ## Version 0.2 Draft
 
@@ -459,4 +459,4 @@ The governing principle:
 
 ---
 
-LORE Volume 9 — Evidence, Provenance, and Trust Evaluation Model v0.2.md
+LORE Volume 9 - Evidence, Provenance, and Trust Evaluation Model v0.2.md

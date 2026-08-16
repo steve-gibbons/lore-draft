@@ -1,4 +1,4 @@
-# LORE Volume 109 — Governance Model, Stewardship, and Accountable Evolution
+# LORE Volume 109 - Governance Model, Stewardship, and Accountable Evolution
 
 ## Version 0.2 Draft
 
@@ -342,6 +342,6 @@ Reviewers should challenge:
 
 ---
 
-LORE Volume 109 — Governance Model, Stewardship, and Accountable Evolution v0.2.md
+LORE Volume 109 - Governance Model, Stewardship, and Accountable Evolution v0.2.md
 
 One-liner: **The committee approved the governance framework unanimously. Nobody could explain who had the authority to schedule the vote, but fortunately the governance process had a form for that.**

@@ -1,4 +1,4 @@
-# LORE Volume 54 — Threat Model, Attack Surface, and Security Analysis Framework
+# LORE Volume 54 - Threat Model, Attack Surface, and Security Analysis Framework
 
 ## Version 0.2 Draft
 
@@ -454,4 +454,4 @@ A trust system must therefore make its own trust assumptions visible.
 
 ---
 
-LORE Volume 54 — Threat Model, Attack Surface, and Security Analysis Framework v0.2.md
+LORE Volume 54 - Threat Model, Attack Surface, and Security Analysis Framework v0.2.md

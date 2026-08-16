@@ -1,4 +1,4 @@
-# LORE Volume 28 — Governance, Stewardship, and Ecosystem Evolution
+# LORE Volume 28 - Governance, Stewardship, and Ecosystem Evolution
 
 ## Version 0.2 Draft
 
@@ -378,4 +378,4 @@ The governing principle:
 
 ---
 
-LORE Volume 28 — Governance, Stewardship, and Ecosystem Evolution v0.2.md
+LORE Volume 28 - Governance, Stewardship, and Ecosystem Evolution v0.2.md

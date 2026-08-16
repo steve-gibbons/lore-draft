@@ -1,4 +1,4 @@
-# LORE Volume 66 — Capability Model and Authorization Architecture
+# LORE Volume 66 - Capability Model and Authorization Architecture
 
 ## Version 0.2 Draft
 
@@ -474,4 +474,4 @@ The governing principle:
 
 ---
 
-LORE Volume 66 — Capability Model and Authorization Architecture v0.2.md
+LORE Volume 66 - Capability Model and Authorization Architecture v0.2.md

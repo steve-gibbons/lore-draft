@@ -1,4 +1,4 @@
-# LORE Volume 118 — Provenance Model, Origin, History, and Transformation Tracking
+# LORE Volume 118 - Provenance Model, Origin, History, and Transformation Tracking
 
 ## Version 0.2 Draft
 
@@ -389,6 +389,6 @@ Reviewers should challenge:
 
 ---
 
-LORE Volume 118 — Provenance Model, Origin, History, and Transformation Tracking v0.2.md
+LORE Volume 118 - Provenance Model, Origin, History, and Transformation Tracking v0.2.md
 
 One-liner: **The engineer asked, "Where did this file come from?" The filesystem replied, "I know where it is. Please stop asking me about its childhood."**

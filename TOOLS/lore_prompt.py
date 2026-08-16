@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-LORE prompt assembler  —  EXPERIMENTAL / PROVISIONAL (not production-ready).
+LORE prompt assembler  -  EXPERIMENTAL / PROVISIONAL (not production-ready).
 
 Composes: governance kernel + role profile + lens card  ->  ready-to-paste prompt.
 The kernel/profile lives in ONE place (profiles/*.txt) so no swapped "hat" can drift
@@ -29,7 +29,7 @@ LENS_DELIM = re.compile(r'^###\s+LENS:\s+(\S+)\s*$', re.M)
 
 BANNER = (
     "============================================================\n"
-    "EXPERIMENTAL · PROVISIONAL WORK PRODUCT — NOT PRODUCTION-READY\n"
+    "EXPERIMENTAL · PROVISIONAL WORK PRODUCT - NOT PRODUCTION-READY\n"
     "Sole permitted use: evaluation of the LORE corpus itself and\n"
     "demonstration of principles. Not suitable for any other process.\n"
     "============================================================"
@@ -62,7 +62,7 @@ def print_index(profiles, lenses, hint=False):
     for lid in sorted(lenses):
         print("  - " + lid)
     if hint:
-        print("\n(no lens given — pass one, e.g.:  python3 TOOLS/lore_prompt.py P1-SEC-THREATMODEL)")
+        print("\n(no lens given - pass one, e.g.:  python3 TOOLS/lore_prompt.py P1-SEC-THREATMODEL)")
 
 
 def main():

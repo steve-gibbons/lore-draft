@@ -1,4 +1,4 @@
-# LORE Volume 90 — Object Model, Identity of Things, and Semantic Representation
+# LORE Volume 90 - Object Model, Identity of Things, and Semantic Representation
 
 ## Version 0.2 Draft
 
@@ -393,6 +393,6 @@ Reviewers should challenge:
 
 ---
 
-LORE Volume 90 — Object Model, Identity of Things, and Semantic Representation v0.2.md
+LORE Volume 90 - Object Model, Identity of Things, and Semantic Representation v0.2.md
 
-One-liner: **The database said, "I know the object exists." The architect asked, "Great — which one?" The database replied, "The one with 47 aliases and no owner."**
+One-liner: **The database said, "I know the object exists." The architect asked, "Great - which one?" The database replied, "The one with 47 aliases and no owner."**

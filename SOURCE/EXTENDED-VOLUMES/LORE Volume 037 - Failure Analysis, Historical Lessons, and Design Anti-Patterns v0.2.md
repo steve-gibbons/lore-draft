@@ -1,4 +1,4 @@
-# LORE Volume 37 — Failure Analysis, Historical Lessons, and Design Anti-Patterns
+# LORE Volume 37 - Failure Analysis, Historical Lessons, and Design Anti-Patterns
 
 ## Version 0.2 Draft
 
@@ -509,4 +509,4 @@ The governing principle:
 
 ---
 
-LORE Volume 37 — Failure Analysis, Historical Lessons, and Design Anti-Patterns v0.2.md
+LORE Volume 37 - Failure Analysis, Historical Lessons, and Design Anti-Patterns v0.2.md

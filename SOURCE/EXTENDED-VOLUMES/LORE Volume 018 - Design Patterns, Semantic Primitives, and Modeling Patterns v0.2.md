@@ -1,4 +1,4 @@
-# LORE Volume 18 — Design Patterns, Semantic Primitives, and Modeling Patterns
+# LORE Volume 18 - Design Patterns, Semantic Primitives, and Modeling Patterns
 
 ## Version 0.2 Draft
 
@@ -641,4 +641,4 @@ The governing principle:
 
 ---
 
-LORE Volume 18 — Design Patterns, Semantic Primitives, and Modeling Patterns v0.2.md
+LORE Volume 18 - Design Patterns, Semantic Primitives, and Modeling Patterns v0.2.md

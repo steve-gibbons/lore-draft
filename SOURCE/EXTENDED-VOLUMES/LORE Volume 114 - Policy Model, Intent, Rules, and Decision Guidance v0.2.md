@@ -1,4 +1,4 @@
-# LORE Volume 114 — Policy Model, Intent, Rules, and Decision Guidance
+# LORE Volume 114 - Policy Model, Intent, Rules, and Decision Guidance
 
 ## Version 0.2 Draft
 
@@ -382,6 +382,6 @@ Reviewers should challenge:
 
 ---
 
-LORE Volume 114 — Policy Model, Intent, Rules, and Decision Guidance v0.2.md
+LORE Volume 114 - Policy Model, Intent, Rules, and Decision Guidance v0.2.md
 
 One-liner: **The policy engine said, "The rule is clear." The operator replied, "Great. Now explain why the rule exists." The engine opened a ticket with itself.**

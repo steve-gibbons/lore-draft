@@ -1,4 +1,4 @@
-# LORE Volume 117 — Intent Model, Purpose, and Meaning Preservation
+# LORE Volume 117 - Intent Model, Purpose, and Meaning Preservation
 
 ## Version 0.2 Draft
 
@@ -344,6 +344,6 @@ Reviewers should challenge:
 
 ---
 
-LORE Volume 117 — Intent Model, Purpose, and Meaning Preservation v0.2.md
+LORE Volume 117 - Intent Model, Purpose, and Meaning Preservation v0.2.md
 
 One-liner: **The robot completed the task perfectly. The humans stared at the result and asked the ancient engineering question: "Yes, but why did we want that?"**

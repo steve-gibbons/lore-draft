@@ -1,4 +1,4 @@
-[LORE Volume 116 — Accountability Model, Responsibility, and Attribution of Consequence v0.2.md]
+[LORE Volume 116 - Accountability Model, Responsibility, and Attribution of Consequence v0.2.md]
 
 You are correct. That was another good catch.
 
@@ -32,17 +32,17 @@ That is precisely the type of contextual reasoning problem LORE is intended to e
 
 Completed since previous status:
 
-- Volume 106 — Authorization Model, Permission, and Justified Action
-- Volume 107 — Containment Model, Boundaries, and Limiting Consequence
-- Volume 108 — Assurance Model, Verification, and Confidence in Correctness
-- Volume 109 — Governance Model, Stewardship, and Accountable Evolution
-- Volume 110 — Audit Model, Observation, and Evidence-Based Review
-- Volume 111 — Observability Model, Visibility, and Understanding System Behavior
-- Volume 112 — Dependency Model, Coupling, and System Interdependence
-- Volume 113 — Boundary Model, Domains, Separation, and Controlled Interaction
-- Volume 114 — Policy Model, Intent, Rules, and Decision Guidance
-- Volume 115 — Decision Model, Reasoning, and Explainable Outcomes
-- Volume 116 — Accountability Model, Responsibility, and Attribution of Consequence
+- Volume 106 - Authorization Model, Permission, and Justified Action
+- Volume 107 - Containment Model, Boundaries, and Limiting Consequence
+- Volume 108 - Assurance Model, Verification, and Confidence in Correctness
+- Volume 109 - Governance Model, Stewardship, and Accountable Evolution
+- Volume 110 - Audit Model, Observation, and Evidence-Based Review
+- Volume 111 - Observability Model, Visibility, and Understanding System Behavior
+- Volume 112 - Dependency Model, Coupling, and System Interdependence
+- Volume 113 - Boundary Model, Domains, Separation, and Controlled Interaction
+- Volume 114 - Policy Model, Intent, Rules, and Decision Guidance
+- Volume 115 - Decision Model, Reasoning, and Explainable Outcomes
+- Volume 116 - Accountability Model, Responsibility, and Attribution of Consequence
 
 **Current run position:** 116
 

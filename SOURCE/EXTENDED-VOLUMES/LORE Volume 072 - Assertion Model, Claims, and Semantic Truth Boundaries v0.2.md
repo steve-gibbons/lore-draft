@@ -1,4 +1,4 @@
-# LORE Volume 72 — Assertion Model, Claims, and Semantic Truth Boundaries
+# LORE Volume 72 - Assertion Model, Claims, and Semantic Truth Boundaries
 
 ## Version 0.2 Draft
 
@@ -422,4 +422,4 @@ The governing principle:
 
 ---
 
-LORE Volume 72 — Assertion Model, Claims, and Semantic Truth Boundaries v0.2.md
+LORE Volume 72 - Assertion Model, Claims, and Semantic Truth Boundaries v0.2.md

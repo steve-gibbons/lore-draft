@@ -179,7 +179,7 @@ class LoreValidator:
     def check_intake_raw_immutability(self):
         """Check 6: INTAKE/raw content integrity via a git-preservable SHA-256 manifest.
 
-        Replaces filesystem-permission checks (chmod a-w), which git does not preserve —
+        Replaces filesystem-permission checks (chmod a-w), which git does not preserve -
         so they could not survive a fresh checkout or pass in CI (see KF-06). The manifest
         `INTAKE/RAW-MANIFEST.sha256` records the hash of every raw evidence file; this check
         detects mutation, unrecorded arrivals, and deleted evidence. It travels with the repo

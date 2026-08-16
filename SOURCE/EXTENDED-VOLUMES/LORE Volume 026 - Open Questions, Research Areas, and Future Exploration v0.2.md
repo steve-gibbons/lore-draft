@@ -1,4 +1,4 @@
-# LORE Volume 26 — Open Questions, Research Areas, and Future Exploration
+# LORE Volume 26 - Open Questions, Research Areas, and Future Exploration
 
 ## Version 0.2 Draft
 
@@ -380,4 +380,4 @@ The governing principle:
 
 ---
 
-LORE Volume 26 — Open Questions, Research Areas, and Future Exploration v0.2.md
+LORE Volume 26 - Open Questions, Research Areas, and Future Exploration v0.2.md

@@ -1,4 +1,4 @@
-# LORE Volume 107 — Containment Model, Boundaries, and Limiting Consequence
+# LORE Volume 107 - Containment Model, Boundaries, and Limiting Consequence
 
 ## Version 0.2 Draft
 
@@ -351,6 +351,6 @@ Reviewers should challenge:
 
 ---
 
-LORE Volume 107 — Containment Model, Boundaries, and Limiting Consequence v0.2.md
+LORE Volume 107 - Containment Model, Boundaries, and Limiting Consequence v0.2.md
 
 One-liner: **The castle engineer said, "The walls are perfect." The dragon asked, "Excellent. How many rooms can I reach after I get through one door?"**

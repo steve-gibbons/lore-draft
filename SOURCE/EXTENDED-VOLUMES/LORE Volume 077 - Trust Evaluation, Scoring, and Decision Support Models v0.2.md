@@ -1,4 +1,4 @@
-# LORE Volume 77 — Trust Evaluation, Scoring, and Decision Support Models
+# LORE Volume 77 - Trust Evaluation, Scoring, and Decision Support Models
 
 ## Version 0.2 Draft
 
@@ -468,4 +468,4 @@ The governing principle:
 
 ---
 
-LORE Volume 77 — Trust Evaluation, Scoring, and Decision Support Models v0.2.md
+LORE Volume 77 - Trust Evaluation, Scoring, and Decision Support Models v0.2.md

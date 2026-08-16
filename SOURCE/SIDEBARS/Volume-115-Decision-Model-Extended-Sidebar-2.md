@@ -13,16 +13,16 @@ The last checkpoint ("approximately 0–5 additional core model volumes remain")
 **Status report:**
 
 - Completed in this generated run since the last checkpoint:
-  - Volume 106 — Authorization Model
-  - Volume 107 — Containment Model
-  - Volume 108 — Assurance Model
-  - Volume 109 — Governance Model
-  - Volume 110 — Audit Model
-  - Volume 111 — Observability Model
-  - Volume 112 — Dependency Model
-  - Volume 113 — Boundary Model
-  - Volume 114 — Policy Model
-  - Volume 115 — Decision Model
+  - Volume 106 - Authorization Model
+  - Volume 107 - Containment Model
+  - Volume 108 - Assurance Model
+  - Volume 109 - Governance Model
+  - Volume 110 - Audit Model
+  - Volume 111 - Observability Model
+  - Volume 112 - Dependency Model
+  - Volume 113 - Boundary Model
+  - Volume 114 - Policy Model
+  - Volume 115 - Decision Model
 
 - Current estimate:
   - I no longer have a reliable remaining-volume count.

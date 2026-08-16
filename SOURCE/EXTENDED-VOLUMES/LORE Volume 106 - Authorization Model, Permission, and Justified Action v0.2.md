@@ -1,4 +1,4 @@
-# LORE Volume 106 — Authorization Model, Permission, and Justified Action
+# LORE Volume 106 - Authorization Model, Permission, and Justified Action
 
 ## Version 0.2 Draft
 
@@ -385,6 +385,6 @@ Reviewers should challenge:
 
 ---
 
-LORE Volume 106 — Authorization Model, Permission, and Justified Action v0.2.md
+LORE Volume 106 - Authorization Model, Permission, and Justified Action v0.2.md
 
 One-liner: **The access control system said, "Permission granted." The risk engine replied, "Wonderful. Now please explain why we wanted that permission in the first place."**

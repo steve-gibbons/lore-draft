@@ -1,4 +1,4 @@
-# LORE Volume 80 — Semantic Transparency, Explainability, and System Introspection
+# LORE Volume 80 - Semantic Transparency, Explainability, and System Introspection
 
 ## Version 0.2 Draft
 
@@ -413,4 +413,4 @@ Reviewers should challenge:
 
 ---
 
-LORE Volume 80 — Semantic Transparency, Explainability, and System Introspection v0.2.md
+LORE Volume 80 - Semantic Transparency, Explainability, and System Introspection v0.2.md

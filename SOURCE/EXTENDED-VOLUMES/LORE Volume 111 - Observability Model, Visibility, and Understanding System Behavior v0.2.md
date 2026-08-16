@@ -1,4 +1,4 @@
-# LORE Volume 111 — Observability Model, Visibility, and Understanding System Behavior
+# LORE Volume 111 - Observability Model, Visibility, and Understanding System Behavior
 
 ## Version 0.2 Draft
 
@@ -334,6 +334,6 @@ Reviewers should challenge:
 
 ---
 
-LORE Volume 111 — Observability Model, Visibility, and Understanding System Behavior v0.2.md
+LORE Volume 111 - Observability Model, Visibility, and Understanding System Behavior v0.2.md
 
 One-liner: **The monitoring dashboard turned green and announced, "Everything is fine." The operator asked, "Then why is the building on fire?" The dashboard requested a better definition of "everything."**

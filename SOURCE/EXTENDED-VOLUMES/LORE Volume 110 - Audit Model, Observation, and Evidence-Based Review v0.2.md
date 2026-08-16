@@ -1,4 +1,4 @@
-# LORE Volume 110 — Audit Model, Observation, and Evidence-Based Review
+# LORE Volume 110 - Audit Model, Observation, and Evidence-Based Review
 
 ## Version 0.2 Draft
 
@@ -367,6 +367,6 @@ Reviewers should challenge:
 
 ---
 
-LORE Volume 110 — Audit Model, Observation, and Evidence-Based Review v0.2.md
+LORE Volume 110 - Audit Model, Observation, and Evidence-Based Review v0.2.md
 
 One-liner: **The auditor asked, "Where is the evidence?" The system replied, "I have 47 million log entries." The auditor smiled and asked, "Wonderful. Which three explain what happened?"**

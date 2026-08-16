@@ -1,4 +1,4 @@
-# LORE Volume 63 — Economic Model, Incentives, and Adoption Dynamics
+# LORE Volume 63 - Economic Model, Incentives, and Adoption Dynamics
 
 ## Version 0.2 Draft
 
@@ -335,4 +335,4 @@ The governing principle:
 
 ---
 
-LORE Volume 63 — Economic Model, Incentives, and Adoption Dynamics v0.2.md
+LORE Volume 63 - Economic Model, Incentives, and Adoption Dynamics v0.2.md

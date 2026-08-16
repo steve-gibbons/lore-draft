@@ -1,4 +1,4 @@
-# LORE Volume 20 — Domain Extensions, Ecosystem Model, and Governance Boundaries
+# LORE Volume 20 - Domain Extensions, Ecosystem Model, and Governance Boundaries
 
 ## Version 0.2 Draft
 
@@ -336,4 +336,4 @@ The governing principle:
 
 ---
 
-LORE Volume 20 — Domain Extensions, Ecosystem Model, and Governance Boundaries v0.2.md
+LORE Volume 20 - Domain Extensions, Ecosystem Model, and Governance Boundaries v0.2.md

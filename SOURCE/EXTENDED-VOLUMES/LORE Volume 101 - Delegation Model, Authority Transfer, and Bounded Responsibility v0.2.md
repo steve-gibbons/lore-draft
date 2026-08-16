@@ -1,4 +1,4 @@
-# LORE Volume 101 — Delegation Model, Authority Transfer, and Bounded Responsibility
+# LORE Volume 101 - Delegation Model, Authority Transfer, and Bounded Responsibility
 
 ## Version 0.2 Draft
 
@@ -334,6 +334,6 @@ Reviewers should challenge:
 
 ---
 
-LORE Volume 101 — Delegation Model, Authority Transfer, and Bounded Responsibility v0.2.md
+LORE Volume 101 - Delegation Model, Authority Transfer, and Bounded Responsibility v0.2.md
 
 One-liner: **The wizard said, "I delegated the spellcasting." The apprentice said, "Great, who did I delegate it to?" The wizard checked the scroll and discovered a delegation tree shaped suspiciously like a hydra.**

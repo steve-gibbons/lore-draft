@@ -1,4 +1,4 @@
-# LORE Volume 15 — Privacy, Ownership, Consent, and Human Control Model
+# LORE Volume 15 - Privacy, Ownership, Consent, and Human Control Model
 
 ## Version 0.2 Draft
 
@@ -439,4 +439,4 @@ The governing principle:
 
 ---
 
-LORE Volume 15 — Privacy, Ownership, Consent, and Human Control Model v0.2.md
+LORE Volume 15 - Privacy, Ownership, Consent, and Human Control Model v0.2.md

@@ -1,4 +1,4 @@
-# LORE Volume 21 — Canonical Data Model, Serialization, and Interchange Principles
+# LORE Volume 21 - Canonical Data Model, Serialization, and Interchange Principles
 
 ## Version 0.2 Draft
 
@@ -421,4 +421,4 @@ The governing principle:
 
 ---
 
-LORE Volume 21 — Canonical Data Model, Serialization, and Interchange Principles v0.2.md
+LORE Volume 21 - Canonical Data Model, Serialization, and Interchange Principles v0.2.md

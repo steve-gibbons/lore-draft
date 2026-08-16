@@ -1,4 +1,4 @@
-# LORE Volume 19 — Epistemology, Assumptions, and Model Limitations
+# LORE Volume 19 - Epistemology, Assumptions, and Model Limitations
 
 ## Version 0.2 Draft
 
@@ -344,4 +344,4 @@ The governing principle:
 
 ---
 
-LORE Volume 19 — Epistemology, Assumptions, and Model Limitations v0.2.md
+LORE Volume 19 - Epistemology, Assumptions, and Model Limitations v0.2.md

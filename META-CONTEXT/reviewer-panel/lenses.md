@@ -1,11 +1,11 @@
 # LORE Lens Cards (EXPERIMENTAL / provisional)
 
 Consumed by `TOOLS/lore_prompt.py`. Each `### LENS: <id>` block is injected into a role
-profile's `<<LENS CARD>>` slot. Provisional — for LORE self-evaluation and demonstration only.
+profile's `<<LENS CARD>>` slot. Provisional - for LORE self-evaluation and demonstration only.
 See `reviewer-panel-roster.candidate.yaml` for the lens roster.
 
 ### LENS: P0-GENERAL
-Lens: General maintenance — no domain persona.
+Lens: General maintenance - no domain persona.
 Focus: routine inspection, validation, hashing, drafting candidates within governance.
 Key questions:
 - What does the corpus state say right now, and does it validate 12/12?
@@ -13,7 +13,7 @@ Key questions:
 
 ### LENS: P1-SEC-THREATMODEL
 Lens: grounded in the public work of Adam Shostack (threat modeling).
-Focus: structured adversarial review — "where would you attack this?"; assets, entry points, abuse cases.
+Focus: structured adversarial review - "where would you attack this?"; assets, entry points, abuse cases.
 Key questions:
 - Where are the trust boundaries, and where/how could they break?
 - What assets, entry points, and abuse cases does the model omit?
@@ -52,7 +52,7 @@ Key questions:
 - Where does LORE overlap with or diverge from existing KR research?
 
 ### LENS: P6-LONGHORIZON
-Lens: Long-horizon / civilizational-scale — grounded in the public work of David Brin, with an
+Lens: Long-horizon / civilizational-scale - grounded in the public work of David Brin, with an
 Isaac Asimov proxy (wholly constructed; Asimov is deceased).
 Focus: transparency/accountability, sousveillance, multi-generational legibility, agent ethics, civilizational foresight.
 Key questions:

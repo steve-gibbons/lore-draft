@@ -1,4 +1,4 @@
-# LORE Volume 52 — Open Research Questions, Unknowns, and Future Exploration Areas
+# LORE Volume 52 - Open Research Questions, Unknowns, and Future Exploration Areas
 
 ## Version 0.2 Draft
 
@@ -319,4 +319,4 @@ The governing principle:
 
 ---
 
-LORE Volume 52 — Open Research Questions, Unknowns, and Future Exploration Areas v0.2.md
+LORE Volume 52 - Open Research Questions, Unknowns, and Future Exploration Areas v0.2.md

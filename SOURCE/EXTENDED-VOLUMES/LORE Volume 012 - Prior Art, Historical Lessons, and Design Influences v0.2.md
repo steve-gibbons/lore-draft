@@ -1,4 +1,4 @@
-# LORE Volume 12 — Prior Art, Historical Lessons, and Design Influences
+# LORE Volume 12 - Prior Art, Historical Lessons, and Design Influences
 
 ## Version 0.2 Draft
 
@@ -571,4 +571,4 @@ The governing principle:
 
 ---
 
-LORE Volume 12 — Prior Art, Historical Lessons, and Design Influences v0.2.md
+LORE Volume 12 - Prior Art, Historical Lessons, and Design Influences v0.2.md

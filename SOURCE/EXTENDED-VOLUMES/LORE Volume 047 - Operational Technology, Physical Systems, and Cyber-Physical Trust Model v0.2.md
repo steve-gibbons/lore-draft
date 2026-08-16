@@ -1,4 +1,4 @@
-# LORE Volume 47 — Operational Technology, Physical Systems, and Cyber-Physical Trust Model
+# LORE Volume 47 - Operational Technology, Physical Systems, and Cyber-Physical Trust Model
 
 ## Version 0.2 Draft
 
@@ -462,4 +462,4 @@ The governing principle:
 
 ---
 
-LORE Volume 47 — Operational Technology, Physical Systems, and Cyber-Physical Trust Model v0.2.md
+LORE Volume 47 - Operational Technology, Physical Systems, and Cyber-Physical Trust Model v0.2.md

@@ -1,4 +1,4 @@
-# LORE Volume 50 — Prior Art, Historical Influences, and Existing Technology Relationship Map
+# LORE Volume 50 - Prior Art, Historical Influences, and Existing Technology Relationship Map
 
 ## Version 0.2 Draft
 
@@ -459,4 +459,4 @@ The governing principle:
 
 ---
 
-LORE Volume 50 — Prior Art, Historical Influences, and Existing Technology Relationship Map v0.2.md
+LORE Volume 50 - Prior Art, Historical Influences, and Existing Technology Relationship Map v0.2.md

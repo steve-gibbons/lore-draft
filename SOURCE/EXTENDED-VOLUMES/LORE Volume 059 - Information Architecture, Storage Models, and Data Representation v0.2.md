@@ -1,4 +1,4 @@
-# LORE Volume 59 — Information Architecture, Storage Models, and Data Representation
+# LORE Volume 59 - Information Architecture, Storage Models, and Data Representation
 
 ## Version 0.2 Draft
 
@@ -410,4 +410,4 @@ The governing principle:
 
 ---
 
-LORE Volume 59 — Information Architecture, Storage Models, and Data Representation v0.2.md
+LORE Volume 59 - Information Architecture, Storage Models, and Data Representation v0.2.md

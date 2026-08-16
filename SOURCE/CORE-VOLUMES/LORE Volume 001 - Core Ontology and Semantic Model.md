@@ -1,5 +1,5 @@
 <!-- lore_anchor_id: 8f3m1p -->
-# LORE Volume 1 — Core Ontology and Semantic Model
+# LORE Volume 1 - Core Ontology and Semantic Model
 
 **Filename:** `LORE-Volume-1-Core-Ontology-and-Semantics.md`  
 **Status:** Draft  
@@ -583,7 +583,7 @@ The foundation of trust is knowing what kind of thing you know.
 
 ---
 
-**End of LORE Volume 1 — Core Ontology and Semantic Model**
+**End of LORE Volume 1 - Core Ontology and Semantic Model**
 ```
 
 Volume 2 follows.

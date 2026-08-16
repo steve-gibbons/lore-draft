@@ -1,4 +1,4 @@
-# LORE Volume 120 — Validity Model, Applicability, and Temporal Relevance
+# LORE Volume 120 - Validity Model, Applicability, and Temporal Relevance
 
 ## Version 0.2 Draft
 
@@ -368,6 +368,6 @@ Reviewers should challenge:
 
 ---
 
-LORE Volume 120 — Validity Model, Applicability, and Temporal Relevance v0.2.md
+LORE Volume 120 - Validity Model, Applicability, and Temporal Relevance v0.2.md
 
 One-liner: **The security badge said "AUTHORIZED." The guard asked, "For what, where, and when?" The badge quietly entered a retirement planning program.**

@@ -1,4 +1,4 @@
-# LORE Volume 44 — Implementation Architecture and Reference Platform Model
+# LORE Volume 44 - Implementation Architecture and Reference Platform Model
 
 ## Version 0.2 Draft
 
@@ -422,4 +422,4 @@ The governing principle:
 
 ---
 
-LORE Volume 44 — Implementation Architecture and Reference Platform Model v0.2.md
+LORE Volume 44 - Implementation Architecture and Reference Platform Model v0.2.md

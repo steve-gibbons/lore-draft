@@ -14,7 +14,7 @@ experimental_scope:
 purpose: >
   Wave-1 reviewer lenses for evaluating the LORE corpus. Each lens is an agent-lens Evaluator
   persona (a lore-capable assistant configured per lens). A named lens is a LENS grounded in
-  that person's public work — NEVER a claim of their opinion, involvement, or endorsement
+  that person's public work - NEVER a claim of their opinion, involvement, or endorsement
   (ALIAS != IDENTITY; no fabricated provenance). Deceased figures are wholly constructed lenses.
 
 persona_grounding_rule: >

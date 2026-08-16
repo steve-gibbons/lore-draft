@@ -1,4 +1,4 @@
-# LORE Volume 11 — Reference Architecture and Implementation Patterns
+# LORE Volume 11 - Reference Architecture and Implementation Patterns
 
 ## Version 0.2 Draft
 
@@ -514,4 +514,4 @@ The governing principle:
 
 ---
 
-LORE Volume 11 — Reference Architecture and Implementation Patterns v0.2.md
+LORE Volume 11 - Reference Architecture and Implementation Patterns v0.2.md

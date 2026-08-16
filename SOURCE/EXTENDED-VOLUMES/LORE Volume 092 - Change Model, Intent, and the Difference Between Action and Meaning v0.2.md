@@ -1,4 +1,4 @@
-# LORE Volume 92 — Change Model, Intent, and the Difference Between Action and Meaning
+# LORE Volume 92 - Change Model, Intent, and the Difference Between Action and Meaning
 
 ## Version 0.2 Draft
 
@@ -381,6 +381,6 @@ Reviewers should challenge:
 
 ---
 
-LORE Volume 92 — Change Model, Intent, and the Difference Between Action and Meaning v0.2.md
+LORE Volume 92 - Change Model, Intent, and the Difference Between Action and Meaning v0.2.md
 
 One-liner: **The change request said "minor update." The diff replied, "Define minor." The incident commander quietly opened a fresh coffee.**

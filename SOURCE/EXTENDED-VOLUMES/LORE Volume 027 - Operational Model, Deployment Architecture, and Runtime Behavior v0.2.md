@@ -1,4 +1,4 @@
-# LORE Volume 27 — Operational Model, Deployment Architecture, and Runtime Behavior
+# LORE Volume 27 - Operational Model, Deployment Architecture, and Runtime Behavior
 
 ## Version 0.2 Draft
 
@@ -489,4 +489,4 @@ The governing principle:
 
 ---
 
-LORE Volume 27 — Operational Model, Deployment Architecture, and Runtime Behavior v0.2.md
+LORE Volume 27 - Operational Model, Deployment Architecture, and Runtime Behavior v0.2.md

@@ -1,4 +1,4 @@
-# LORE Volume 113 — Boundary Model, Domains, Separation, and Controlled Interaction
+# LORE Volume 113 - Boundary Model, Domains, Separation, and Controlled Interaction
 
 ## Version 0.2 Draft
 
@@ -367,6 +367,6 @@ Reviewers should challenge:
 
 ---
 
-LORE Volume 113 — Boundary Model, Domains, Separation, and Controlled Interaction v0.2.md
+LORE Volume 113 - Boundary Model, Domains, Separation, and Controlled Interaction v0.2.md
 
 One-liner: **The network diagram had no boundaries, only arrows. The security engineer called it "a topology map." The incident responder called it "a treasure map for attackers."**

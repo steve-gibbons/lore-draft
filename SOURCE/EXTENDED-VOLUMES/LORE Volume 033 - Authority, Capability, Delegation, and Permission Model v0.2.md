@@ -1,4 +1,4 @@
-# LORE Volume 33 — Authority, Capability, Delegation, and Permission Model
+# LORE Volume 33 - Authority, Capability, Delegation, and Permission Model
 
 ## Version 0.2 Draft
 
@@ -461,4 +461,4 @@ The governing principle:
 
 ---
 
-LORE Volume 33 — Authority, Capability, Delegation, and Permission Model v0.2.md
+LORE Volume 33 - Authority, Capability, Delegation, and Permission Model v0.2.md

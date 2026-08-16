@@ -1,4 +1,4 @@
-# LORE Volume 57 — Deployment Models, Operational Patterns, and Adoption Strategies
+# LORE Volume 57 - Deployment Models, Operational Patterns, and Adoption Strategies
 
 ## Version 0.2 Draft
 
@@ -376,4 +376,4 @@ The governing principle:
 
 ---
 
-LORE Volume 57 — Deployment Models, Operational Patterns, and Adoption Strategies v0.2.md
+LORE Volume 57 - Deployment Models, Operational Patterns, and Adoption Strategies v0.2.md

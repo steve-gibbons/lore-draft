@@ -1,4 +1,4 @@
-# LORE Volume 13 — Agent Integration and Personal Context Model
+# LORE Volume 13 - Agent Integration and Personal Context Model
 
 ## Version 0.2 Draft
 
@@ -496,4 +496,4 @@ The governing principle:
 
 ---
 
-LORE Volume 13 — Agent Integration and Personal Context Model v0.2.md
+LORE Volume 13 - Agent Integration and Personal Context Model v0.2.md

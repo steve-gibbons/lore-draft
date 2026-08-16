@@ -1,5 +1,5 @@
 <!-- lore_anchor_id: 7q9n2k -->
-# LORE Volume 2 — Trust, Security, and Authorization
+# LORE Volume 2 - Trust, Security, and Authorization
 
 **Filename:** `LORE-Volume-2-Trust-Security-and-Authorization.md`  
 **Status:** Draft  
@@ -757,7 +757,7 @@ Security is preserving the ability to explain why action was allowed.
 
 ---
 
-**End of LORE Volume 2 — Trust, Security, and Authorization**
+**End of LORE Volume 2 - Trust, Security, and Authorization**
 ```
 
 Volume 3 follows.

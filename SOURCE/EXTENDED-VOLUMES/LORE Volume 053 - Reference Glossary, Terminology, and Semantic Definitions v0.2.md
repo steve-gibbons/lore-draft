@@ -1,4 +1,4 @@
-# LORE Volume 53 — Reference Glossary, Terminology, and Semantic Definitions
+# LORE Volume 53 - Reference Glossary, Terminology, and Semantic Definitions
 
 ## Version 0.2 Draft
 
@@ -492,4 +492,4 @@ The governing principle:
 
 ---
 
-LORE Volume 53 — Reference Glossary, Terminology, and Semantic Definitions v0.2.md
+LORE Volume 53 - Reference Glossary, Terminology, and Semantic Definitions v0.2.md

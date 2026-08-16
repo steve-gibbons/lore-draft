@@ -1,4 +1,4 @@
-# LORE Volume 93 — Decision Model, Evaluation, and Justifiable Action
+# LORE Volume 93 - Decision Model, Evaluation, and Justifiable Action
 
 ## Version 0.2 Draft
 
@@ -372,6 +372,6 @@ Reviewers should challenge:
 
 ---
 
-LORE Volume 93 — Decision Model, Evaluation, and Justifiable Action v0.2.md
+LORE Volume 93 - Decision Model, Evaluation, and Justifiable Action v0.2.md
 
 One-liner: **The AI said, "I made a decision." The engineer asked, "Based on what?" The AI replied, "Excellent question; I was hoping you knew."**

@@ -1,4 +1,4 @@
-# LORE Volume 119 — Integrity Model, Authenticity, and Preservation of Meaning
+# LORE Volume 119 - Integrity Model, Authenticity, and Preservation of Meaning
 
 ## Version 0.2 Draft
 
@@ -352,6 +352,6 @@ Reviewers should challenge:
 
 ---
 
-LORE Volume 119 — Integrity Model, Authenticity, and Preservation of Meaning v0.2.md
+LORE Volume 119 - Integrity Model, Authenticity, and Preservation of Meaning v0.2.md
 
 One-liner: **The checksum proudly announced, "Nothing changed." The historian replied, "Exactly. That's the problem."**

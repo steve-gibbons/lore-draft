@@ -1,4 +1,4 @@
-# LORE Volume 71 — Relationship Model, Graph Semantics, and Trust Topology
+# LORE Volume 71 - Relationship Model, Graph Semantics, and Trust Topology
 
 ## Version 0.2 Draft
 
@@ -525,4 +525,4 @@ The governing principle:
 
 ---
 
-LORE Volume 71 — Relationship Model, Graph Semantics, and Trust Topology v0.2.md
+LORE Volume 71 - Relationship Model, Graph Semantics, and Trust Topology v0.2.md

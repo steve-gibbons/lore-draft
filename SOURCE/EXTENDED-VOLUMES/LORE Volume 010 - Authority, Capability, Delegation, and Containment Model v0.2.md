@@ -1,4 +1,4 @@
-# LORE Volume 10 — Authority, Capability, Delegation, and Containment Model
+# LORE Volume 10 - Authority, Capability, Delegation, and Containment Model
 
 ## Version 0.2 Draft
 
@@ -536,4 +536,4 @@ The governing principle:
 
 ---
 
-LORE Volume 10 — Authority, Capability, Delegation, and Containment Model v0.2.md
+LORE Volume 10 - Authority, Capability, Delegation, and Containment Model v0.2.md

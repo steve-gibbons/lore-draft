@@ -4,11 +4,11 @@ Understood. Adjustment recorded:
 - End of each non-summary volume: a one-liner joke/aside instead.
 - Keep the actual volume output uninterrupted.
 
-Proceeding. (And thank you for the clarification — that was a better UX requirement than what I inferred.)
+Proceeding. (And thank you for the clarification - that was a better UX requirement than what I inferred.)
 
 ---
 
-# LORE Volume 89 — Assertion Model, Claims, and Semantic Statements
+# LORE Volume 89 - Assertion Model, Claims, and Semantic Statements
 
 ## Version 0.2 Draft
 
@@ -383,6 +383,6 @@ Reviewers should challenge:
 
 ---
 
-LORE Volume 89 — Assertion Model, Claims, and Semantic Statements v0.2.md
+LORE Volume 89 - Assertion Model, Claims, and Semantic Statements v0.2.md
 
-One-liner: **An assertion without provenance is like a D&D spell scroll with no author — it might be powerful, but nobody knows who to blame when the dragon appears.**
+One-liner: **An assertion without provenance is like a D&D spell scroll with no author - it might be powerful, but nobody knows who to blame when the dragon appears.**

@@ -1,4 +1,4 @@
-# LORE Volume 74 — Authority Model, Delegation Chains, and Power Boundaries
+# LORE Volume 74 - Authority Model, Delegation Chains, and Power Boundaries
 
 ## Version 0.2 Draft
 
@@ -519,4 +519,4 @@ The governing principle:
 
 ---
 
-LORE Volume 74 — Authority Model, Delegation Chains, and Power Boundaries v0.2.md
+LORE Volume 74 - Authority Model, Delegation Chains, and Power Boundaries v0.2.md

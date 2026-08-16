@@ -1,4 +1,4 @@
-# LORE Volume 103 — Object Model, Identity, and Semantic Representation
+# LORE Volume 103 - Object Model, Identity, and Semantic Representation
 
 ## Version 0.2 Draft
 
@@ -431,6 +431,6 @@ Reviewers should challenge:
 
 ---
 
-LORE Volume 103 — Object Model, Identity, and Semantic Representation v0.2.md
+LORE Volume 103 - Object Model, Identity, and Semantic Representation v0.2.md
 
 One-liner: **The CMDB said, "I have 10,000 assets." The architect asked, "How many things?" The CMDB opened a ticket to investigate the philosophical distinction.**

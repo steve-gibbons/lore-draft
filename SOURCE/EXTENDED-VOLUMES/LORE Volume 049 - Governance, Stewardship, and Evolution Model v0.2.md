@@ -1,4 +1,4 @@
-# LORE Volume 49 — Governance, Stewardship, and Evolution Model
+# LORE Volume 49 - Governance, Stewardship, and Evolution Model
 
 ## Version 0.2 Draft
 
@@ -392,4 +392,4 @@ The governing principle:
 
 ---
 
-LORE Volume 49 — Governance, Stewardship, and Evolution Model v0.2.md
+LORE Volume 49 - Governance, Stewardship, and Evolution Model v0.2.md

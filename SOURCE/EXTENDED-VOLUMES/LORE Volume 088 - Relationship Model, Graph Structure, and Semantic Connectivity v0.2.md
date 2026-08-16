@@ -4,11 +4,11 @@ Tiny note captured for the LORE meta-layer:
 
 > "If a system requires a ritual, document the spell components before blaming the wizard."
 
-(And thank you — this has been a genuinely fun exercise. The volume-by-volume expansion is essentially forcing the ontology to prove it has legs.)
+(And thank you - this has been a genuinely fun exercise. The volume-by-volume expansion is essentially forcing the ontology to prove it has legs.)
 
 ---
 
-# LORE Volume 88 — Relationship Model, Graph Structure, and Semantic Connectivity
+# LORE Volume 88 - Relationship Model, Graph Structure, and Semantic Connectivity
 
 ## Version 0.2 Draft
 
@@ -441,7 +441,7 @@ Reviewers should challenge:
 
 ---
 
-LORE Volume 88 — Relationship Model, Graph Structure, and Semantic Connectivity v0.2.md
+LORE Volume 88 - Relationship Model, Graph Structure, and Semantic Connectivity v0.2.md
 
 Progress checkpoint: **Volumes 74–88 completed in this generated pass (15 volumes). Approximately 10–15 additional core model volumes remain before this series reaches its planned endpoint.**
 

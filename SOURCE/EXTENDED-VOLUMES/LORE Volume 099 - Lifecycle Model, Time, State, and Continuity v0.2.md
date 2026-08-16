@@ -1,4 +1,4 @@
-# LORE Volume 99 — Lifecycle Model, Time, State, and Continuity
+# LORE Volume 99 - Lifecycle Model, Time, State, and Continuity
 
 ## Version 0.2 Draft
 
@@ -344,6 +344,6 @@ Reviewers should challenge:
 
 ---
 
-LORE Volume 99 — Lifecycle Model, Time, State, and Continuity v0.2.md
+LORE Volume 99 - Lifecycle Model, Time, State, and Continuity v0.2.md
 
 One-liner: **The old admin account walked into the retirement ceremony wearing a fresh badge. Everyone applauded until someone checked the lifecycle log.**

@@ -1,4 +1,4 @@
-# LORE Volume 108 — Assurance Model, Verification, and Confidence in Correctness
+# LORE Volume 108 - Assurance Model, Verification, and Confidence in Correctness
 
 ## Version 0.2 Draft
 
@@ -375,6 +375,6 @@ Reviewers should challenge:
 
 ---
 
-LORE Volume 108 — Assurance Model, Verification, and Confidence in Correctness v0.2.md
+LORE Volume 108 - Assurance Model, Verification, and Confidence in Correctness v0.2.md
 
 One-liner: **The auditor asked, "Do you have assurance this works?" The engineer replied, "Absolutely." The auditor asked, "Based on what?" The engineer replied, "Ah. The confidence part is very strong."**

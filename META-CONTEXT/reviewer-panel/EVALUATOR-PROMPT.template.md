@@ -1,4 +1,4 @@
-# LORE Evaluator — prompt template (agent-lens)
+# LORE Evaluator - prompt template (agent-lens)
 
 The canonical, assembler-consumed evaluator prompt is **`profiles/evaluator.txt`**, composed
 with a lens block from `lenses.md` via `TOOLS/lore_prompt.py` (or the conversational

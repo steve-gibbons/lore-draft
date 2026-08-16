@@ -1,4 +1,4 @@
-# LORE Volume 75 — Capability, Permission, and Action Decision Model
+# LORE Volume 75 - Capability, Permission, and Action Decision Model
 
 ## Version 0.2 Draft
 
@@ -496,4 +496,4 @@ The governing principle:
 
 ---
 
-LORE Volume 75 — Capability, Permission, and Action Decision Model v0.2.md
+LORE Volume 75 - Capability, Permission, and Action Decision Model v0.2.md

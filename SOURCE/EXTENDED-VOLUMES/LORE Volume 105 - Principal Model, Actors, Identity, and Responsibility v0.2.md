@@ -1,4 +1,4 @@
-# LORE Volume 105 — Principal Model, Actors, Identity, and Responsibility
+# LORE Volume 105 - Principal Model, Actors, Identity, and Responsibility
 
 ## Version 0.2 Draft
 
@@ -408,7 +408,7 @@ Reviewers should challenge:
 
 ---
 
-LORE Volume 105 — Principal Model, Actors, Identity, and Responsibility v0.2.md
+LORE Volume 105 - Principal Model, Actors, Identity, and Responsibility v0.2.md
 
 **Progress checkpoint: Volumes 101–105 completed in this pass (5 volumes). Approximately 0–5 additional core model volumes remain before this generated series reaches its planned endpoint.**
 

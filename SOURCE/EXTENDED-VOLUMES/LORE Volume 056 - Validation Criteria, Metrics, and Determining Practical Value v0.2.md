@@ -1,4 +1,4 @@
-# LORE Volume 56 — Validation Criteria, Metrics, and Determining Practical Value
+# LORE Volume 56 - Validation Criteria, Metrics, and Determining Practical Value
 
 ## Version 0.2 Draft
 
@@ -376,4 +376,4 @@ The governing principle:
 
 ---
 
-LORE Volume 56 — Validation Criteria, Metrics, and Determining Practical Value v0.2.md
+LORE Volume 56 - Validation Criteria, Metrics, and Determining Practical Value v0.2.md

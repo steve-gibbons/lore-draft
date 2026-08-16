@@ -16,7 +16,7 @@ This document collects the unique foundational decision notes extracted during t
 
 ## 2. LORE Universe Concept
 
-- **Source**: `Draft 2/LORE Volume 7 — Identifier, Namespace, and Federation Model v0.2.md` & `LORE v0.2 Change Log.md`
+- **Source**: `Draft 2/LORE Volume 7 - Identifier, Namespace, and Federation Model v0.2.md` & `LORE v0.2 Change Log.md`
 - **Context**: Autonomous systems and diverse domain boundaries require namespace ownership without assuming global centralized consensus.
 - **Decision**: 
   - A LORE Universe is a bounded identity namespace and root authority boundary.

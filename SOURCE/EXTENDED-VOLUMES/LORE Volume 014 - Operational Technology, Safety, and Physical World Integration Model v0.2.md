@@ -1,4 +1,4 @@
-# LORE Volume 14 — Operational Technology, Safety, and Physical World Integration Model
+# LORE Volume 14 - Operational Technology, Safety, and Physical World Integration Model
 
 ## Version 0.2 Draft
 
@@ -421,4 +421,4 @@ The governing principle:
 
 ---
 
-LORE Volume 14 — Operational Technology, Safety, and Physical World Integration Model v0.2.md
+LORE Volume 14 - Operational Technology, Safety, and Physical World Integration Model v0.2.md

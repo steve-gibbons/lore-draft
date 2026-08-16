@@ -1,4 +1,4 @@
-# LORE Volume 55 — Implementation Strategy, Prototype Roadmap, and Experimental Validation Plan
+# LORE Volume 55 - Implementation Strategy, Prototype Roadmap, and Experimental Validation Plan
 
 ## Version 0.2 Draft
 
@@ -302,7 +302,7 @@ The prototype should be considered unsuccessful if:
 
 # 17. Implementation Phases
 
-## Phase 0 — Concept Validation
+## Phase 0 - Concept Validation
 
 Goals:
 
@@ -312,7 +312,7 @@ Goals:
 
 ---
 
-## Phase 1 — Local Prototype
+## Phase 1 - Local Prototype
 
 Goals:
 
@@ -323,7 +323,7 @@ Goals:
 
 ---
 
-## Phase 2 — Federation Prototype
+## Phase 2 - Federation Prototype
 
 Goals:
 
@@ -333,7 +333,7 @@ Goals:
 
 ---
 
-## Phase 3 — Operational Prototype
+## Phase 3 - Operational Prototype
 
 Goals:
 
@@ -427,4 +427,4 @@ The governing principle:
 
 ---
 
-LORE Volume 55 — Implementation Strategy, Prototype Roadmap, and Experimental Validation Plan v0.2.md
+LORE Volume 55 - Implementation Strategy, Prototype Roadmap, and Experimental Validation Plan v0.2.md

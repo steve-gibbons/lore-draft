@@ -1,4 +1,4 @@
-# LORE Volume 116 — Accountability Model, Responsibility, and Attribution of Consequence
+# LORE Volume 116 - Accountability Model, Responsibility, and Attribution of Consequence
 
 ## Version 0.2 Draft
 
@@ -358,7 +358,7 @@ Reviewers should challenge:
 
 ---
 
-LORE Volume 116 — Accountability Model, Responsibility, and Attribution of Consequence v0.2.md
+LORE Volume 116 - Accountability Model, Responsibility, and Attribution of Consequence v0.2.md
 
 One-liner: **The project manager asked, "Who owns this failure?" The room went silent. The ticketing system helpfully created a new ticket titled `Determine Owner Of Ownership Question`.**
 

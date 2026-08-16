@@ -1,4 +1,4 @@
-# LORE Volume 58 — Integration with Existing Security Architecture and Enterprise Controls
+# LORE Volume 58 - Integration with Existing Security Architecture and Enterprise Controls
 
 ## Version 0.2 Draft
 
@@ -450,4 +450,4 @@ The governing principle:
 
 ---
 
-LORE Volume 58 — Integration with Existing Security Architecture and Enterprise Controls v0.2.md
+LORE Volume 58 - Integration with Existing Security Architecture and Enterprise Controls v0.2.md

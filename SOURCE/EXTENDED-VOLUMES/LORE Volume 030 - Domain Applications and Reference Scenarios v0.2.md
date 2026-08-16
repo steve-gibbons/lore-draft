@@ -1,4 +1,4 @@
-# LORE Volume 30 — Domain Applications and Reference Scenarios
+# LORE Volume 30 - Domain Applications and Reference Scenarios
 
 ## Version 0.2 Draft
 
@@ -537,4 +537,4 @@ The governing principle:
 
 ---
 
-LORE Volume 30 — Domain Applications and Reference Scenarios v0.2.md
+LORE Volume 30 - Domain Applications and Reference Scenarios v0.2.md

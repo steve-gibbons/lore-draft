@@ -1,4 +1,4 @@
-# LORE Volume 91 — Evidence Preservation, Mutation Awareness, and the Integrity of the Design Process
+# LORE Volume 91 - Evidence Preservation, Mutation Awareness, and the Integrity of the Design Process
 
 ## Version 0.2 Draft
 
@@ -321,6 +321,6 @@ Reviewers should challenge:
 
 ---
 
-LORE Volume 91 — Evidence Preservation, Mutation Awareness, and the Integrity of the Design Process v0.2.md
+LORE Volume 91 - Evidence Preservation, Mutation Awareness, and the Integrity of the Design Process v0.2.md
 
 One-liner: **The archaeologist looked at the ancient scroll and said, "Please don't format this Markdown; the indentation is the civilization."**

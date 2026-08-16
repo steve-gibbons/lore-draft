@@ -1,4 +1,4 @@
-# LORE Volume 43 — Performance, Scalability, and Distributed Systems Considerations
+# LORE Volume 43 - Performance, Scalability, and Distributed Systems Considerations
 
 ## Version 0.2 Draft
 
@@ -435,5 +435,5 @@ The governing principle:
 
 ---
 
-LORE Volume 43 — Performance, Scalability, and Distributed Systems Considerations v0.2.md
+LORE Volume 43 - Performance, Scalability, and Distributed Systems Considerations v0.2.md
 

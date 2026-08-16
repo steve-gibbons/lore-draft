@@ -1,4 +1,4 @@
-# OS / editor cruft — keep it out of the reviewer's clone
+# OS / editor cruft - keep it out of the reviewer's clone
 .DS_Store
 ._*
 .Spotlight-V100

@@ -1,4 +1,4 @@
-# LORE Volume 22 — Lifecycle, Change Management, and Recovery Model
+# LORE Volume 22 - Lifecycle, Change Management, and Recovery Model
 
 ## Version 0.2 Draft
 
@@ -470,4 +470,4 @@ The governing principle:
 
 ---
 
-LORE Volume 22 — Lifecycle, Change Management, and Recovery Model v0.2.md
+LORE Volume 22 - Lifecycle, Change Management, and Recovery Model v0.2.md

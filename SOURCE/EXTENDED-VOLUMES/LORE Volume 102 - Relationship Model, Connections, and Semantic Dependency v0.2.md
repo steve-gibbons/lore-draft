@@ -1,4 +1,4 @@
-# LORE Volume 102 — Relationship Model, Connections, and Semantic Dependency
+# LORE Volume 102 - Relationship Model, Connections, and Semantic Dependency
 
 ## Version 0.2 Draft
 
@@ -430,6 +430,6 @@ Reviewers should challenge:
 
 ---
 
-LORE Volume 102 — Relationship Model, Connections, and Semantic Dependency v0.2.md
+LORE Volume 102 - Relationship Model, Connections, and Semantic Dependency v0.2.md
 
 One-liner: **The architect said, "The system is simple." The dependency graph quietly unfolded from a small box into a very judgmental spider.**

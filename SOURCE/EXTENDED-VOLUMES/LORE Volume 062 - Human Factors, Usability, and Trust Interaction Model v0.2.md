@@ -1,4 +1,4 @@
-# LORE Volume 62 — Human Factors, Usability, and Trust Interaction Model
+# LORE Volume 62 - Human Factors, Usability, and Trust Interaction Model
 
 ## Version 0.2 Draft
 
@@ -340,4 +340,4 @@ The governing principle:
 
 ---
 
-LORE Volume 62 — Human Factors, Usability, and Trust Interaction Model v0.2.md
+LORE Volume 62 - Human Factors, Usability, and Trust Interaction Model v0.2.md

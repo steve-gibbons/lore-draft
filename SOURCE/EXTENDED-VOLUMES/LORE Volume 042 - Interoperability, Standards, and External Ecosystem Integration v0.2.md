@@ -1,4 +1,4 @@
-# LORE Volume 42 — Interoperability, Standards, and External Ecosystem Integration
+# LORE Volume 42 - Interoperability, Standards, and External Ecosystem Integration
 
 ## Version 0.2 Draft
 
@@ -440,4 +440,4 @@ The governing principle:
 
 ---
 
-LORE Volume 42 — Interoperability, Standards, and External Ecosystem Integration v0.2.md
+LORE Volume 42 - Interoperability, Standards, and External Ecosystem Integration v0.2.md

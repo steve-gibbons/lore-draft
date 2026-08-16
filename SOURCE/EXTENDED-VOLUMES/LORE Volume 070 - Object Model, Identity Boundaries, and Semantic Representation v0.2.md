@@ -1,4 +1,4 @@
-# LORE Volume 70 — Object Model, Identity Boundaries, and Semantic Representation
+# LORE Volume 70 - Object Model, Identity Boundaries, and Semantic Representation
 
 ## Version 0.2 Draft
 
@@ -452,4 +452,4 @@ The governing principle:
 
 ---
 
-LORE Volume 70 — Object Model, Identity Boundaries, and Semantic Representation v0.2.md
+LORE Volume 70 - Object Model, Identity Boundaries, and Semantic Representation v0.2.md

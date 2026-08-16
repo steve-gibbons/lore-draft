@@ -1,4 +1,4 @@
-# LORE Volume 94 — Policy Model, Constraints, and Governed Behavior
+# LORE Volume 94 - Policy Model, Constraints, and Governed Behavior
 
 ## Version 0.2 Draft
 
@@ -395,6 +395,6 @@ Reviewers should challenge:
 
 ---
 
-LORE Volume 94 — Policy Model, Constraints, and Governed Behavior v0.2.md
+LORE Volume 94 - Policy Model, Constraints, and Governed Behavior v0.2.md
 
 One-liner: **The policy engine said, "I followed the rules." The operator asked, "Which rules?" The engine replied, "The ones you forgot you wrote."**

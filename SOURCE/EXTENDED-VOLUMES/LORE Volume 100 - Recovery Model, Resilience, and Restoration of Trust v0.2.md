@@ -1,4 +1,4 @@
-# LORE Volume 100 — Recovery Model, Resilience, and Restoration of Trust
+# LORE Volume 100 - Recovery Model, Resilience, and Restoration of Trust
 
 ## Version 0.2 Draft
 
@@ -326,7 +326,7 @@ Reviewers should challenge:
 
 ---
 
-LORE Volume 100 — Recovery Model, Resilience, and Restoration of Trust v0.2.md
+LORE Volume 100 - Recovery Model, Resilience, and Restoration of Trust v0.2.md
 
 **Progress checkpoint: Volumes 96–100 completed in this pass (5 volumes). Approximately 3–8 additional core model volumes remain before this generated series reaches its planned endpoint.**
 

@@ -1,4 +1,4 @@
-# LORE Volume 17 — Review Framework, Threat Analysis, and Open Research Questions
+# LORE Volume 17 - Review Framework, Threat Analysis, and Open Research Questions
 
 ## Version 0.2 Draft
 
@@ -391,4 +391,4 @@ Where is the correct abstraction?
 
 ---
 
-LORE Volume 17 — Review Framework, Threat Analysis, and Open Research Questions v0.2.md
+LORE Volume 17 - Review Framework, Threat Analysis, and Open Research Questions v0.2.md

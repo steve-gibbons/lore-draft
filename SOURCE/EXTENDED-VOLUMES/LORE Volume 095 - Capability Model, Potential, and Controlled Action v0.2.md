@@ -1,4 +1,4 @@
-# LORE Volume 95 — Capability Model, Potential, and Controlled Action
+# LORE Volume 95 - Capability Model, Potential, and Controlled Action
 
 ## Version 0.2 Draft
 
@@ -380,7 +380,7 @@ Reviewers should challenge:
 
 ---
 
-LORE Volume 95 — Capability Model, Potential, and Controlled Action v0.2.md
+LORE Volume 95 - Capability Model, Potential, and Controlled Action v0.2.md
 
 **Progress checkpoint: Volumes 91–95 completed in this pass (5 volumes). Approximately 8–13 additional core model volumes remain before this generated series reaches its planned endpoint.**
 

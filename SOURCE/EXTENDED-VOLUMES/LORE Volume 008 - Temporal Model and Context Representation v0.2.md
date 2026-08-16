@@ -1,4 +1,4 @@
-# LORE Volume 8 — Temporal Model and Context Representation
+# LORE Volume 8 - Temporal Model and Context Representation
 
 ## Version 0.2 Draft
 
@@ -468,4 +468,4 @@ The governing principle:
 
 ---
 
-LORE Volume 8 — Temporal Model and Context Representation v0.2.md
+LORE Volume 8 - Temporal Model and Context Representation v0.2.md

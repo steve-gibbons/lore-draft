@@ -1,4 +1,4 @@
-# LORE Volume 60 — Interoperability, Standards, and Ecosystem Architecture Model
+# LORE Volume 60 - Interoperability, Standards, and Ecosystem Architecture Model
 
 ## Version 0.2 Draft
 
@@ -406,4 +406,4 @@ The governing principle:
 
 ---
 
-LORE Volume 60 — Interoperability, Standards, and Ecosystem Architecture Model v0.2.md
+LORE Volume 60 - Interoperability, Standards, and Ecosystem Architecture Model v0.2.md

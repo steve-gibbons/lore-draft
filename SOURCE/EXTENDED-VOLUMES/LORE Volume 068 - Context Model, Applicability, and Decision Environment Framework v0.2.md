@@ -1,4 +1,4 @@
-# LORE Volume 68 — Context Model, Applicability, and Decision Environment Framework
+# LORE Volume 68 - Context Model, Applicability, and Decision Environment Framework
 
 ## Version 0.2 Draft
 
@@ -484,4 +484,4 @@ The governing principle:
 
 ---
 
-LORE Volume 68 — Context Model, Applicability, and Decision Environment Framework v0.2.md
+LORE Volume 68 - Context Model, Applicability, and Decision Environment Framework v0.2.md

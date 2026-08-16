@@ -1,4 +1,4 @@
-# LORE Volume 69 — Lifecycle Model, Temporal Trust, and State Transition Framework
+# LORE Volume 69 - Lifecycle Model, Temporal Trust, and State Transition Framework
 
 ## Version 0.2 Draft
 
@@ -410,4 +410,4 @@ The governing principle:
 
 ---
 
-LORE Volume 69 — Lifecycle Model, Temporal Trust, and State Transition Framework v0.2.md
+LORE Volume 69 - Lifecycle Model, Temporal Trust, and State Transition Framework v0.2.md

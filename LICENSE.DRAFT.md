@@ -1,6 +1,6 @@
-# LORE Provisional Evaluation License — DRAFT (not yet effective)
+# LORE Provisional Evaluation License - DRAFT (not yet effective)
 
-> **This is a DRAFT for polishing — not the effective license, and not legal advice.** It captures
+> **This is a DRAFT for polishing - not the effective license, and not legal advice.** It captures
 > author intent for a provisional, evaluation-only period, and has not been reviewed by counsel.
 > Until it is finalized and renamed to `LICENSE`, treat this repository as **source-available for
 > evaluation** under the terms below, with all other rights reserved.
@@ -11,14 +11,14 @@ Copyright © 2026 Steve Gibbons. All rights reserved except as expressly granted
 LORE is **EXPERIMENTAL and PROVISIONAL**, published as a curated draft for **review, evaluation, and
 demonstration of principles only, by principals only**. This license governs that period.
 
-*A **principal** here is an identifiable, accountable party (per LORE's principal model) — not
+*A **principal** here is an identifiable, accountable party (per LORE's principal model) - not
 anonymous or automated / proxy access. (Draft term; to be tightened in polish.)*
 
 ## 2. Grant
 You are permitted, at no charge, to:
 - access, read, and study this repository;
 - run the tooling and validators for the purpose of evaluation;
-- quote and cite it — with attribution and a link to the source — in reviews, research, and commentary.
+- quote and cite it - with attribution and a link to the source - in reviews, research, and commentary.
 
 ## 3. Restrictions
 Without the author's prior written permission, you may **not**:
@@ -46,5 +46,5 @@ Provided **"AS IS"**, without warranty of any kind. Not production-ready. Use at
 
 ---
 *Draft prepared 2026-08-15 to capture author intent (see `DECISION-LICENSING.accepted.md`).
-To be reviewed and polished — a wave-2 Legal / Records-management task — before it becomes the
+To be reviewed and polished - a wave-2 Legal / Records-management task - before it becomes the
 effective `LICENSE`.*

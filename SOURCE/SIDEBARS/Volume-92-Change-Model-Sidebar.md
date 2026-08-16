@@ -1,9 +1,9 @@
-[this was my last prompt "and just for giggles, that all occured in the LORE Volume 91 — Evidence Preservation, Mutation Awareness, and the Integrity of the Design Process v0.2.md. (i did not set htat up).  same parameters as last time. next"]
+[this was my last prompt "and just for giggles, that all occured in the LORE Volume 91 - Evidence Preservation, Mutation Awareness, and the Integrity of the Design Process v0.2.md. (i did not set htat up).  same parameters as last time. next"]
 You are correct. I need to correct the record.
 
 Your last prompt was:
 
-> "and just for giggles, that all occured in the LORE Volume 91 — Evidence Preservation, Mutation Awareness, and the Integrity of the Design Process v0.2.md. (i did not set htat up). same parameters as last time. next"
+> "and just for giggles, that all occured in the LORE Volume 91 - Evidence Preservation, Mutation Awareness, and the Integrity of the Design Process v0.2.md. (i did not set htat up). same parameters as last time. next"
 
 The important thing I missed in my previous response is that this was not merely a request to continue the sequence. It was a **meta-event about the artifact itself**.
 

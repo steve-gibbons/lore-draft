@@ -1,4 +1,4 @@
-# LORE Volume 61 — Failure Analysis, Incident Learning, and Trust Recovery Model
+# LORE Volume 61 - Failure Analysis, Incident Learning, and Trust Recovery Model
 
 ## Version 0.2 Draft
 
@@ -384,4 +384,4 @@ The governing principle:
 
 ---
 
-LORE Volume 61 — Failure Analysis, Incident Learning, and Trust Recovery Model v0.2.md
+LORE Volume 61 - Failure Analysis, Incident Learning, and Trust Recovery Model v0.2.md

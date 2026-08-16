@@ -1,4 +1,4 @@
-# LORE Volume 24 — Review Packet for External Critical Assessment
+# LORE Volume 24 - Review Packet for External Critical Assessment
 
 ## Version 0.2 Draft
 
@@ -491,4 +491,4 @@ Please try to break it.
 
 ---
 
-LORE Volume 24 — Review Packet for External Critical Assessment v0.2.md
+LORE Volume 24 - Review Packet for External Critical Assessment v0.2.md

@@ -1,4 +1,4 @@
-# LORE Volume 45 — Agent Security, Autonomous Systems, and Delegated Intelligence Model
+# LORE Volume 45 - Agent Security, Autonomous Systems, and Delegated Intelligence Model
 
 ## Version 0.2 Draft
 
@@ -480,4 +480,4 @@ The governing principle:
 
 ---
 
-LORE Volume 45 — Agent Security, Autonomous Systems, and Delegated Intelligence Model v0.2.md
+LORE Volume 45 - Agent Security, Autonomous Systems, and Delegated Intelligence Model v0.2.md

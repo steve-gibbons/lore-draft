@@ -1,4 +1,4 @@
-# LORE Volume 29 — Implementation Strategy, Architecture, and Engineering Approach
+# LORE Volume 29 - Implementation Strategy, Architecture, and Engineering Approach
 
 ## Version 0.2 Draft
 
@@ -455,4 +455,4 @@ The governing principle:
 
 ---
 
-LORE Volume 29 — Implementation Strategy, Architecture, and Engineering Approach v0.2.md
+LORE Volume 29 - Implementation Strategy, Architecture, and Engineering Approach v0.2.md

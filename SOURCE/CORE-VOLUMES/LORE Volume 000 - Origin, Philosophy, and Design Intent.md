@@ -1,5 +1,5 @@
 <!-- lore_anchor_id: v0-origin-philosophy -->
-# LORE Volume 0 — Origin, Philosophy, and Design Intent
+# LORE Volume 0 - Origin, Philosophy, and Design Intent
 
 **Filename:** `LORE-Volume-0-Origin-and-Philosophy.md`  
 **Status:** Draft  
@@ -454,7 +454,7 @@ The objective is to preserve the conditions under which knowledge can be trusted
 
 ---
 
-**End of LORE Volume 0 — Origin, Philosophy, and Design Intent**
+**End of LORE Volume 0 - Origin, Philosophy, and Design Intent**
 ```
 
 Volume 1 follows next.

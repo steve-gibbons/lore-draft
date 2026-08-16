@@ -1,5 +1,5 @@
 <!-- lore_anchor_id: 5v8k3n -->
-# LORE Volume 3 — Resilience, Continuity, and Lifecycle
+# LORE Volume 3 - Resilience, Continuity, and Lifecycle
 
 **Filename:** `LORE-Volume-3-Resilience-and-Lifecycle.md`  
 **Status:** Draft  
@@ -564,7 +564,7 @@ A resilient trust infrastructure must preserve enough context to recover safely.
 
 ---
 
-**End of LORE Volume 3 — Resilience, Continuity, and Lifecycle**
+**End of LORE Volume 3 - Resilience, Continuity, and Lifecycle**
 ```
 
 Volume 4 follows.

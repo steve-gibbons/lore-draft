@@ -1,4 +1,4 @@
-# LORE Volume 34 — Identity, Namespace, and Identifier Model
+# LORE Volume 34 - Identity, Namespace, and Identifier Model
 
 ## Version 0.2 Draft
 
@@ -463,4 +463,4 @@ The governing principle:
 
 ---
 
-LORE Volume 34 — Identity, Namespace, and Identifier Model v0.2.md
+LORE Volume 34 - Identity, Namespace, and Identifier Model v0.2.md

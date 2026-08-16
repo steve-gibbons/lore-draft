@@ -1,4 +1,4 @@
-# LORE Volume 81 — Evidence Model, Provenance, and Supportable Knowledge
+# LORE Volume 81 - Evidence Model, Provenance, and Supportable Knowledge
 
 ## Version 0.2 Draft
 
@@ -468,4 +468,4 @@ Reviewers should challenge:
 
 ---
 
-LORE Volume 81 — Evidence Model, Provenance, and Supportable Knowledge v0.2.md
+LORE Volume 81 - Evidence Model, Provenance, and Supportable Knowledge v0.2.md

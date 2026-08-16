@@ -1,4 +1,4 @@
-# LORE Volume 97 — Trust Model, Confidence, and Conditional Reliance
+# LORE Volume 97 - Trust Model, Confidence, and Conditional Reliance
 
 ## Version 0.2 Draft
 
@@ -377,6 +377,6 @@ Reviewers should challenge:
 
 ---
 
-LORE Volume 97 — Trust Model, Confidence, and Conditional Reliance v0.2.md
+LORE Volume 97 - Trust Model, Confidence, and Conditional Reliance v0.2.md
 
 One-liner: **The security team said, "We trust this server." The auditor asked, "For what?" Everyone stared at the server and waited for it to answer.**

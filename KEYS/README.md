@@ -1,7 +1,7 @@
 # Author key (OpenPGP)
 
 The LORE author-authority root, published here so reviewers can verify signed artifacts
-without trusting a keyserver round-trip. **EXPERIMENTAL / provisional** — part of the
+without trusting a keyserver round-trip. **EXPERIMENTAL / provisional** - part of the
 Track F forensic-signing *test harness*, explicitly intended to be replaced by robust key
 management (hardware token / HSM, rotation, revocation, multi-party custody).
 
@@ -16,10 +16,10 @@ management (hardware token / HSM, rotation, revocation, multi-party custody).
 
 ## What this key is (and is not)
 A fingerprint listed in `REGISTRIES/trusted-signers.txt` **is** the LORE author-authority
-root (finding **KF-01**; **CORE-INVARIANT 11** — *authority has lineage*). Verifying a
+root (finding **KF-01**; **CORE-INVARIANT 11** - *authority has lineage*). Verifying a
 signature against this key proves the signed bytes are what the author signed and that the
 signer is the trusted root. It does **not** by itself prove the key is held by the
-legitimate author — key-custody/binding is the deeper KF-01 track.
+legitimate author - key-custody/binding is the deeper KF-01 track.
 
 ## Verify a signature (example)
 ```bash
@@ -34,5 +34,5 @@ channel that delivered the key.
 ## Delegation (planned)
 An **agent-signing subkey**, certified by the primary above, is under consideration so an
 agent may sign lower-trust artifacts under a delegated key whose authority *lineage* traces
-to the author's primary — without ever wielding the author root. When added, it appears in
+to the author's primary - without ever wielding the author root. When added, it appears in
 the same exported key block and its policy is recorded in `REGISTRIES/trusted-signers.txt`.

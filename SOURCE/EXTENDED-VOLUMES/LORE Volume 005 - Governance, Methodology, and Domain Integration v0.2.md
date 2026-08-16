@@ -1,4 +1,4 @@
-# LORE Volume 5 — Governance, Methodology, and Domain Integration
+# LORE Volume 5 - Governance, Methodology, and Domain Integration
 
 ## Version 0.2 Draft
 
@@ -445,4 +445,4 @@ The governing principle:
 
 ---
 
-LORE Volume 5 — Governance, Methodology, and Domain Integration v0.2.md
+LORE Volume 5 - Governance, Methodology, and Domain Integration v0.2.md

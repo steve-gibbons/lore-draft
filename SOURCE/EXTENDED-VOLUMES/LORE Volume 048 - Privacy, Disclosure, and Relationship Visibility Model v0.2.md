@@ -1,4 +1,4 @@
-# LORE Volume 48 — Privacy, Disclosure, and Relationship Visibility Model
+# LORE Volume 48 - Privacy, Disclosure, and Relationship Visibility Model
 
 ## Version 0.2 Draft
 
@@ -425,4 +425,4 @@ The governing principle:
 
 ---
 
-LORE Volume 48 — Privacy, Disclosure, and Relationship Visibility Model v0.2.md
+LORE Volume 48 - Privacy, Disclosure, and Relationship Visibility Model v0.2.md

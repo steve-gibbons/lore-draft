@@ -1,4 +1,4 @@
-# LORE Volume 39 — Lifecycle, Recovery, Continuity, and Change Management Model
+# LORE Volume 39 - Lifecycle, Recovery, Continuity, and Change Management Model
 
 ## Version 0.2 Draft
 
@@ -418,4 +418,4 @@ The governing principle:
 
 ---
 
-LORE Volume 39 — Lifecycle, Recovery, Continuity, and Change Management Model v0.2.md
+LORE Volume 39 - Lifecycle, Recovery, Continuity, and Change Management Model v0.2.md

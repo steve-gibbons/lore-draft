@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """
-LORE — freeze INTAKE/raw evidence into a git-preservable SHA-256 manifest.
+LORE - freeze INTAKE/raw evidence into a git-preservable SHA-256 manifest.
 
 Closes KF-06 / the "Check 6 can't pass in CI" gap: git does not preserve `chmod a-w`,
 so filesystem immutability cannot survive a fresh checkout. This records the SHA-256 of
 every raw evidence file into `INTAKE/RAW-MANIFEST.sha256`, which the validator (Check 6)
-verifies. Mutation, unrecorded arrivals, and deleted evidence become detectable — and any
+verifies. Mutation, unrecorded arrivals, and deleted evidence become detectable - and any
 manifest change is a visible git commit (tamper-*evident*, not merely advisory).
 
 Also applies `chmod a-w` locally as belt-and-suspenders (advisory only; not relied upon).
@@ -40,7 +40,7 @@ def main():
     entries.sort()
 
     with open(MANIFEST, 'w', encoding='utf-8') as mh:
-        mh.write("# LORE INTAKE/raw evidence manifest — SHA-256 of each raw file.\n")
+        mh.write("# LORE INTAKE/raw evidence manifest - SHA-256 of each raw file.\n")
         mh.write("# Verified by TOOLS/lore_validate.py Check 6 (git-preservable immutability).\n")
         mh.write("# Regenerate with TOOLS/lore_freeze_raw.py; review the diff before committing.\n")
         for rel, sha, _ in entries:

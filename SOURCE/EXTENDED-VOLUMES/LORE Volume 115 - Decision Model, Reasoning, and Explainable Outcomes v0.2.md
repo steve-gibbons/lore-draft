@@ -1,4 +1,4 @@
-# LORE Volume 115 — Decision Model, Reasoning, and Explainable Outcomes
+# LORE Volume 115 - Decision Model, Reasoning, and Explainable Outcomes
 
 ## Version 0.2 Draft
 
@@ -359,6 +359,6 @@ Reviewers should challenge:
 
 ---
 
-LORE Volume 115 — Decision Model, Reasoning, and Explainable Outcomes v0.2.md
+LORE Volume 115 - Decision Model, Reasoning, and Explainable Outcomes v0.2.md
 
 One-liner: **The AI explained, "I reached this conclusion after considering many factors." The reviewer replied, "Excellent. Which factors?" The AI opened the folder named `many_factors_final_final_v7`.**

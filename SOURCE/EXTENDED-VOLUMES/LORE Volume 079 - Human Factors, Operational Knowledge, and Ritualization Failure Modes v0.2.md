@@ -2,7 +2,7 @@ Recorded anecdote for LORE design notes:
 
 ---
 
-## Anecdote — Rituals, Spells, Cargo Cults, and the Defensive Programmer
+## Anecdote - Rituals, Spells, Cargo Cults, and the Defensive Programmer
 
 A recurring human-computer interaction pattern appears when a system has many hidden dependencies and insufficiently visible state.
 
@@ -188,7 +188,7 @@ Continuing.
 
 ---
 
-# LORE Volume 79 — Human Factors, Operational Knowledge, and Ritualization Failure Modes
+# LORE Volume 79 - Human Factors, Operational Knowledge, and Ritualization Failure Modes
 
 ## Version 0.2 Draft
 
@@ -364,5 +364,5 @@ It should expose enough semantics that the user understands:
 
 ---
 
-LORE Volume 79 — Human Factors, Operational Knowledge, and Ritualization Failure Modes v0.2.md
+LORE Volume 79 - Human Factors, Operational Knowledge, and Ritualization Failure Modes v0.2.md
 

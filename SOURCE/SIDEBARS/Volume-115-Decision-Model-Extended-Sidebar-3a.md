@@ -2,10 +2,10 @@ I can prepare this draft. A few constraints before the artifact:
 
 - I **cannot produce a screenshot of filesystem timestamps** from your offsite copies or local machine because I do not have access to them. I can only report timestamps visible in the materials available here.
 - The uploaded LORE corpus timestamps I can verify from this workspace include:
-  - `LORE Volume 0 — Origin, Philosophy, and Design Intent.md` created/modified: `2026-08-08T14:45:08Z` 
-  - `LORE Volume 1 — Core Ontology and Semantic Model.md` created/modified: `2026-08-08T14:45:24Z` 
-  - `LORE Volume 2 — Trust, Security, and Authorization.md` created/modified: `2026-08-08T14:45:37Z` 
-  - `LORE Volume 3 — Resilience, Continuity, and Lifecycle.md` created/modified: `2026-08-08T14:45:57Z` 
+  - `LORE Volume 0 - Origin, Philosophy, and Design Intent.md` created/modified: `2026-08-08T14:45:08Z` 
+  - `LORE Volume 1 - Core Ontology and Semantic Model.md` created/modified: `2026-08-08T14:45:24Z` 
+  - `LORE Volume 2 - Trust, Security, and Authorization.md` created/modified: `2026-08-08T14:45:37Z` 
+  - `LORE Volume 3 - Resilience, Continuity, and Lifecycle.md` created/modified: `2026-08-08T14:45:57Z` 
   - `LORE-Volume-4-Implementation-and-Ecosystem.md` created/modified: `2026-08-08T14:46:29Z` 
 
 - I cannot independently verify the exact filesystem timestamps of Volume 91 or the later generated volumes from this interface. Those should be supplied from your offsite copies or Git history.
@@ -51,7 +51,7 @@ You discovered that the human-in-the-loop was itself part of the system architec
 
 Here is the draft artifact.
 
-# LORE Incident Report Draft — Evidence Preservation, Mutation Awareness, and Human-in-the-Loop Failure Analysis
+# LORE Incident Report Draft - Evidence Preservation, Mutation Awareness, and Human-in-the-Loop Failure Analysis
 
 ## Status
 

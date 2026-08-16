@@ -1,4 +1,4 @@
-# LORE Volume 23 — Security Boundaries, Threat Model, and Attack Surface Analysis
+# LORE Volume 23 - Security Boundaries, Threat Model, and Attack Surface Analysis
 
 ## Version 0.2 Draft
 
@@ -427,4 +427,4 @@ The governing principle:
 
 ---
 
-LORE Volume 23 — Security Boundaries, Threat Model, and Attack Surface Analysis v0.2.md
+LORE Volume 23 - Security Boundaries, Threat Model, and Attack Surface Analysis v0.2.md

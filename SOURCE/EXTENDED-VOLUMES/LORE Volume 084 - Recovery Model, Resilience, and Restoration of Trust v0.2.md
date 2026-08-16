@@ -1,4 +1,4 @@
-# LORE Volume 84 — Recovery Model, Resilience, and Restoration of Trust
+# LORE Volume 84 - Recovery Model, Resilience, and Restoration of Trust
 
 ## Version 0.2 Draft
 
@@ -364,4 +364,4 @@ Reviewers should challenge:
 
 ---
 
-LORE Volume 84 — Recovery Model, Resilience, and Restoration of Trust v0.2.md
+LORE Volume 84 - Recovery Model, Resilience, and Restoration of Trust v0.2.md

@@ -1,4 +1,4 @@
-# LORE Volume 73 — Principal Model, Identity, Agency, and Responsibility Boundaries
+# LORE Volume 73 - Principal Model, Identity, Agency, and Responsibility Boundaries
 
 ## Version 0.2 Draft
 
@@ -408,4 +408,4 @@ The governing principle:
 
 ---
 
-LORE Volume 73 — Principal Model, Identity, Agency, and Responsibility Boundaries v0.2.md
+LORE Volume 73 - Principal Model, Identity, Agency, and Responsibility Boundaries v0.2.md

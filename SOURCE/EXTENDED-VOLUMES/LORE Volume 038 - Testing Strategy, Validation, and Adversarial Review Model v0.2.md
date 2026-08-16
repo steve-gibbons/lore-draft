@@ -1,4 +1,4 @@
-# LORE Volume 38 — Testing Strategy, Validation, and Adversarial Review Model
+# LORE Volume 38 - Testing Strategy, Validation, and Adversarial Review Model
 
 ## Version 0.2 Draft
 
@@ -468,4 +468,4 @@ The governing principle:
 
 ---
 
-LORE Volume 38 — Testing Strategy, Validation, and Adversarial Review Model v0.2.md
+LORE Volume 38 - Testing Strategy, Validation, and Adversarial Review Model v0.2.md

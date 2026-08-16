@@ -1,4 +1,4 @@
-# LORE Volume 98 — Context Model, Meaning, and Situational Awareness
+# LORE Volume 98 - Context Model, Meaning, and Situational Awareness
 
 ## Version 0.2 Draft
 
@@ -412,6 +412,6 @@ Reviewers should challenge:
 
 ---
 
-LORE Volume 98 — Context Model, Meaning, and Situational Awareness v0.2.md
+LORE Volume 98 - Context Model, Meaning, and Situational Awareness v0.2.md
 
 One-liner: **The log file said, "Everything is normal." The operator asked, "Compared to what?" The log file requested a context update.**

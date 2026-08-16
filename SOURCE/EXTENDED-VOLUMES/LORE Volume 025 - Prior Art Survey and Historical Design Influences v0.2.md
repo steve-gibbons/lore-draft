@@ -1,4 +1,4 @@
-# LORE Volume 25 — Prior Art Survey and Historical Design Influences
+# LORE Volume 25 - Prior Art Survey and Historical Design Influences
 
 ## Version 0.2 Draft
 
@@ -423,4 +423,4 @@ The governing principle:
 
 ---
 
-LORE Volume 25 — Prior Art Survey and Historical Design Influences v0.2.md
+LORE Volume 25 - Prior Art Survey and Historical Design Influences v0.2.md

@@ -1,4 +1,4 @@
-# LORE Volume 83 — Lifecycle Model, Temporal Validity, and State Evolution
+# LORE Volume 83 - Lifecycle Model, Temporal Validity, and State Evolution
 
 ## Version 0.2 Draft
 
@@ -424,4 +424,4 @@ Reviewers should challenge:
 
 ---
 
-LORE Volume 83 — Lifecycle Model, Temporal Validity, and State Evolution v0.2.md
+LORE Volume 83 - Lifecycle Model, Temporal Validity, and State Evolution v0.2.md

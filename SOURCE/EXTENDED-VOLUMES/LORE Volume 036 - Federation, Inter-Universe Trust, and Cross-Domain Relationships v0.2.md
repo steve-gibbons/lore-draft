@@ -1,4 +1,4 @@
-# LORE Volume 36 — Federation, Inter-Universe Trust, and Cross-Domain Relationships
+# LORE Volume 36 - Federation, Inter-Universe Trust, and Cross-Domain Relationships
 
 ## Version 0.2 Draft
 
@@ -397,4 +397,4 @@ The governing principle:
 
 ---
 
-LORE Volume 36 — Federation, Inter-Universe Trust, and Cross-Domain Relationships v0.2.md
+LORE Volume 36 - Federation, Inter-Universe Trust, and Cross-Domain Relationships v0.2.md

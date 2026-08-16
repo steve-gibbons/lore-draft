@@ -1,4 +1,4 @@
-# LORE Volume 76 — Decision Model, Reasoning Boundaries, and Trust Evaluation Framework
+# LORE Volume 76 - Decision Model, Reasoning Boundaries, and Trust Evaluation Framework
 
 ## Version 0.2 Draft
 
@@ -480,4 +480,4 @@ The governing principle:
 
 ---
 
-LORE Volume 76 — Decision Model, Reasoning Boundaries, and Trust Evaluation Framework v0.2.md
+LORE Volume 76 - Decision Model, Reasoning Boundaries, and Trust Evaluation Framework v0.2.md

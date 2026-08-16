@@ -1,4 +1,4 @@
-# LORE Volume 112 — Dependency Model, Coupling, and System Interdependence
+# LORE Volume 112 - Dependency Model, Coupling, and System Interdependence
 
 ## Version 0.2 Draft
 
@@ -417,6 +417,6 @@ Reviewers should challenge:
 
 ---
 
-LORE Volume 112 — Dependency Model, Coupling, and System Interdependence v0.2.md
+LORE Volume 112 - Dependency Model, Coupling, and System Interdependence v0.2.md
 
 One-liner: **The engineer said, "It's a standalone service." The outage report replied, "Interesting. It appears to have 73 emotional support dependencies."**

@@ -1,4 +1,4 @@
-# LORE Volume 67 — Provenance, Evidence Chains, and Trust Justification Model
+# LORE Volume 67 - Provenance, Evidence Chains, and Trust Justification Model
 
 ## Version 0.2 Draft
 
@@ -485,4 +485,4 @@ The governing principle:
 
 ---
 
-LORE Volume 67 — Provenance, Evidence Chains, and Trust Justification Model v0.2.md
+LORE Volume 67 - Provenance, Evidence Chains, and Trust Justification Model v0.2.md

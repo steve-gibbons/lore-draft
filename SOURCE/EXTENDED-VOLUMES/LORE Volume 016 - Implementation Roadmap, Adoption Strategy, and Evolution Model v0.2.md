@@ -1,4 +1,4 @@
-# LORE Volume 16 — Implementation Roadmap, Adoption Strategy, and Evolution Model
+# LORE Volume 16 - Implementation Roadmap, Adoption Strategy, and Evolution Model
 
 ## Version 0.2 Draft
 
@@ -136,7 +136,7 @@ Examples:
 
 ---
 
-# 6. Phase 0 — Concept Validation
+# 6. Phase 0 - Concept Validation
 
 Objectives:
 
@@ -157,7 +157,7 @@ The model survives criticism.
 
 ---
 
-# 7. Phase 1 — Minimal Semantic Core
+# 7. Phase 1 - Minimal Semantic Core
 
 Potential implementation:
 
@@ -179,7 +179,7 @@ Avoid initially:
 
 ---
 
-# 8. Phase 2 — Resolver and Query Model
+# 8. Phase 2 - Resolver and Query Model
 
 Implement:
 
@@ -198,7 +198,7 @@ Answer:
 
 ---
 
-# 9. Phase 3 — Agent Integration
+# 9. Phase 3 - Agent Integration
 
 Implement:
 
@@ -227,7 +227,7 @@ with justified, bounded capability
 
 ---
 
-# 10. Phase 4 — Domain Extensions
+# 10. Phase 4 - Domain Extensions
 
 Add specialized models.
 
@@ -243,7 +243,7 @@ Domains should prove value before becoming core concepts.
 
 ---
 
-# 11. Phase 5 — Federation
+# 11. Phase 5 - Federation
 
 Support:
 
@@ -425,4 +425,4 @@ The governing principle:
 
 ---
 
-LORE Volume 16 — Implementation Roadmap, Adoption Strategy, and Evolution Model v0.2.md
+LORE Volume 16 - Implementation Roadmap, Adoption Strategy, and Evolution Model v0.2.md
