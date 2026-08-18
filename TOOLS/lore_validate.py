@@ -122,12 +122,41 @@ def load_trusted_signers(repo_root):
             signers[fpr] = parts[1]
     return signers
 
+def collect_corpus_ids(repo_root):
+    """Scan all .yaml/.yml/.json files in the repo (except TESTS/fixtures) and collect
+    every `id` field value. Used by Check 7 to detect `resolved: true` on object-refs
+    whose target_id is not present in the local corpus (A-08).
+
+    Returns a frozenset of known IDs, or an empty set on failure. This is best-effort:
+    the private corpus may hold IDs not present here, so a miss produces a warning, not
+    an error. Lazily populated on first call via LoreValidator._corpus_ids.
+    """
+    skip_dirs = {'.git', 'TESTS', 'SANDBOX', 'INTEGRATIONS'}
+    ids = set()
+    for root, dirs, files in os.walk(repo_root):
+        dirs[:] = [d for d in dirs if d not in skip_dirs]
+        for f in files:
+            if not f.endswith(('.yaml', '.yml', '.json')):
+                continue
+            path = os.path.join(root, f)
+            try:
+                doc = load_doc(path)
+                if isinstance(doc, dict):
+                    artifact_id = doc.get('id')
+                    if artifact_id and isinstance(artifact_id, str):
+                        ids.add(artifact_id)
+            except Exception:
+                pass
+    return frozenset(ids)
+
+
 class LoreValidator:
     def __init__(self, repo_root):
         self.repo_root = repo_root
         self.agent_writable, self.author_only, self.transitions = get_registry(repo_root)
         self.all_statuses = (self.agent_writable or set()).union(self.author_only or set())
         self.trusted_signers = load_trusted_signers(repo_root)
+        self._corpus_ids = None  # populated lazily on first object-ref check
 
     def validate_file(self, filepath):
         doc = load_doc(filepath)
@@ -222,11 +251,30 @@ class LoreValidator:
                 if actual_hash.lower() != sha256.lower():
                     errors.append(f"Check 5 Fail: SHA256 mismatch for '{rel_path}'. Expected {sha256}, got {actual_hash}.")
 
-        # Check 7: Object Ref Integrity Check
+        # Check 7: Object Ref Integrity Check (A-08 hardening)
+        # Confirms target_id is a non-empty string (existing check), and additionally
+        # warns when `resolved: true` is self-declared but the target_id is not found in
+        # the local corpus. A miss is a WARNING (not an error): the target may legitimately
+        # live in the private canonical corpus or be a future artifact. The warning flags
+        # that `resolved: true` is an unverified assertion so reviewers are not misled.
         if doc_type == 'object-ref':
             target_id = doc.get('target_id')
             if not target_id or not isinstance(target_id, str):
                 errors.append("Check 7 Fail: Invalid or missing target_id in object-ref.")
+            else:
+                resolved = doc.get('resolved')
+                if resolved is True:
+                    # Lazily build corpus ID index on first object-ref encountered.
+                    if self._corpus_ids is None:
+                        self._corpus_ids = collect_corpus_ids(self.repo_root)
+                    if target_id not in self._corpus_ids:
+                        warnings.append(
+                            f"Check 7 (resolved): object-ref declares resolved=true for "
+                            f"target_id '{target_id}', but that id was not found in the "
+                            "local corpus. If the target lives in the private corpus or is "
+                            "a future artifact this is expected — verify manually and "
+                            "consider using resolved=false until the target is local."
+                        )
 
         # Check 8: Explicit Transformation Provenance
         if doc_type == 'transformation-record' or status in ('derived', 'generated'):

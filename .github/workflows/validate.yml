@@ -16,6 +16,53 @@ jobs:
           python-version: '3.x'
       - name: Run LORE governance validator (10 checks)
         run: python3 TOOLS/lore_validate.py
+      - name: Secondary YAML conformance check (A-02 / parser-differential defence)
+        # The core validator uses a zero-dependency hand-rolled parser (SimpleYAMLParser).
+        # This step re-parses every .yaml/.yml file in the repo with PyYAML (stdlib-adjacent,
+        # present in all standard Python installs) in safe mode. A file that passes the core
+        # validator but fails here signals a parser-differential discrepancy that must be
+        # investigated before merge. Skips TESTS/fixtures/ placeholder .asc files (not YAML).
+        shell: bash
+        run: |
+          python3 - <<'EOF'
+          import sys, os, glob
+          try:
+              import yaml
+          except ImportError:
+              print("PyYAML not available — installing...")
+              import subprocess
+              subprocess.check_call([sys.executable, "-m", "pip", "install", "--quiet", "pyyaml"])
+              import yaml
+
+          skip_dirs = {'.git', 'SANDBOX', 'INTEGRATIONS'}
+          errors = []
+          checked = 0
+          for root, dirs, files in os.walk('.'):
+              dirs[:] = [d for d in dirs if d not in skip_dirs]
+              for f in files:
+                  if not f.endswith(('.yaml', '.yml')):
+                      continue
+                  path = os.path.join(root, f)
+                  try:
+                      with open(path, encoding='utf-8') as fh:
+                          yaml.safe_load(fh)
+                      checked += 1
+                  except yaml.YAMLError as e:
+                      errors.append(f"YAML parse error (PyYAML safe_load) in {path}: {e}")
+
+          if errors:
+              for e in errors:
+                  print(e)
+              print(f"\nFAIL: {len(errors)} file(s) failed PyYAML conformance check.")
+              sys.exit(1)
+          else:
+              print(f"OK: {checked} YAML file(s) passed PyYAML conformance check.")
+          EOF
+      - name: Assert gpg is available before signature gate (A-07)
+        shell: bash
+        run: |
+          which gpg || { echo "ERROR: gpg not found on PATH — signature gate cannot run"; exit 1; }
+          gpg --version | head -1
       - name: Import author public key (if published)
         shell: bash
         run: 'if compgen -G "KEYS/*.asc" > /dev/null; then gpg --batch --import KEYS/*.asc; else echo "no KEYS/*.asc to import"; fi'

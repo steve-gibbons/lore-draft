@@ -1,0 +1,481 @@
+
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Aegis Assessment — LORE Corpus Workbench</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, "Segoe UI", system-ui, sans-serif; font-size: 14px; line-height: 1.6; background: #fff; color: #1f2328; }
+.wrap { max-width: 760px; margin: 0 auto; padding: 32px 24px; }
+h1 { font-size: 20px; font-weight: 700; margin-bottom: 4px; }
+h2 { font-size: 16px; font-weight: 700; margin: 32px 0 8px; border-bottom: 1px solid #e5e7eb; padding-bottom: 4px; }
+h3 { font-size: 14px; font-weight: 700; margin: 20px 0 4px; }
+.meta { font-size: 12px; color: #57606a; margin-bottom: 24px; }
+.badge { display: inline-block; font-size: 11px; font-weight: 600; padding: 1px 7px; border-radius: 10px; margin-right: 4px; }
+.b-candidate { background: #f0f6ff; color: #3b82d4; border: 1px solid #bdd7f7; }
+.b-open { background: #fff8e1; color: #b45309; border: 1px solid #fcd34d; }
+.b-high { background: #fef2f2; color: #b91c1c; border: 1px solid #fca5a5; }
+.b-med { background: #fff7ed; color: #c2410c; border: 1px solid #fdba74; }
+.b-low { background: #f0fdf4; color: #166534; border: 1px solid #86efac; }
+.b-info { background: #f7f8fa; color: #57606a; border: 1px solid #d0d7de; }
+.finding { background: #f7f8fa; border: 1px solid #e5e7eb; border-left: 3px solid #3b82d4; border-radius: 4px; padding: 12px 14px; margin: 12px 0; }
+.finding.high { border-left-color: #b91c1c; }
+.finding.med { border-left-color: #c2410c; }
+.finding.low { border-left-color: #166534; }
+.finding.open { border-left-color: #b45309; }
+.finding .fid { font-size: 12px; font-weight: 700; color: #57606a; margin-bottom: 4px; }
+.finding .claim { font-weight: 600; margin-bottom: 6px; }
+table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 13px; }
+th { background: #f7f8fa; text-align: left; padding: 6px 8px; border: 1px solid #e5e7eb; font-weight: 600; }
+td { padding: 5px 8px; border: 1px solid #e5e7eb; vertical-align: top; }
+.row-label { font-weight: 600; width: 140px; color: #57606a; }
+dl { margin: 6px 0; }
+dt { font-weight: 600; font-size: 13px; color: #57606a; margin-top: 6px; }
+dd { margin-left: 14px; font-size: 13px; }
+.affirm { background: #f0fdf4; border: 1px solid #86efac; border-left: 3px solid #166534; border-radius: 4px; padding: 10px 14px; margin: 12px 0; }
+.disclaimer { background: #fff8e1; border: 1px solid #fcd34d; border-radius: 4px; padding: 10px 14px; margin-bottom: 20px; font-size: 13px; }
+.section-intro { color: #57606a; font-size: 13px; margin-bottom: 10px; }
+code { background: #f7f8fa; padding: 1px 5px; border-radius: 3px; font-family: "SFMono-Regular", Consolas, monospace; font-size: 12px; border: 1px solid #e5e7eb; }
+ul, ol { padding-left: 20px; }
+li { margin: 2px 0; font-size: 13px; }
+.footer { margin-top: 40px; padding-top: 12px; border-top: 1px solid #e5e7eb; text-align: center; font-size: 12px; color: #57606a; }
+.toc a { color: #3b82d4; text-decoration: none; font-size: 13px; }
+.toc li { margin: 3px 0; }
+.known { font-size: 12px; color: #57606a; font-style: italic; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>Aegis Assessment — LORE Corpus Workbench</h1>
+<div class="meta">
+  <span class="badge b-candidate">candidate</span>
+  <span class="badge b-info">first-pass</span>
+  <span class="badge b-info">ASTRA + LINDDUN</span>
+   Producer: Aegis (AI evaluation assistant)  |  Scope: lore-public, main, v0.5.0-phase1-scaffold  |  Date: 2026-08-16
+</div>
+
+<div class="disclaimer">
+  <strong>Authority notice.</strong> All findings, threats, and recommendations are <strong>candidate status only</strong>. Nothing here is accepted, approved, closed, mitigated, or compliant unless the human author explicitly ratifies it. This report is decision-support, not a decision. Every material claim is labeled FACT, INFERENCE, or HYPOTHESIS. Human reviewers own disposition, acceptance, and any resulting action.
+</div>
+
+<h2>Table of Contents</h2>
+<ol class="toc">
+  <li><a href="#s1">Scope and Evidence Basis</a></li>
+  <li><a href="#s2">System Model and Trust/Data-Flow Summary</a></li>
+  <li><a href="#s3">ASTRA Candidate Findings</a></li>
+  <li><a href="#s4">LINDDUN Candidate Privacy Threats</a></li>
+  <li><a href="#s5">Cross-Cutting Security–Privacy Interactions</a></li>
+  <li><a href="#s6">Open Questions and Missing Evidence</a></li>
+  <li><a href="#s7">Recommended Human Review/Disposition Actions</a></li>
+  <li><a href="#s8">Machine-Readable Governed Records</a></li>
+</ol>
+
+
+<h2 id="s1">1. Scope and Evidence Basis</h2>
+
+<h3>In Scope</h3>
+<ul>
+  <li>Repository: <code>lore-public</code>, branch <code>main</code>, corpus version <code>v0.5.0-phase1-scaffold</code></li>
+  <li>All governance documents, schemas, registries, tooling, test fixtures, metadata, and the full SOURCE corpus (~130 volumes)</li>
+  <li>The LORE framework itself as both subject of evaluation and the governance model being applied to its own evaluation</li>
+  <li>Deployment surface: local filesystem, git, GitHub CI (Actions)</li>
+</ul>
+
+<h3>Out of Scope (by author direction or phase gate)</h3>
+<ul>
+  <li>Private canonical corpus (not publicly resolvable; referenced via <code>META-CONTEXT/provenance-backref.object-ref.yaml</code>)</li>
+  <li>Phase-2 integrations: SpiceDB, OPA, immudb, OpenLineage, MCP servers (all explicitly stubbed)</li>
+  <li>Legal compliance determinations (jurisdictional, copyright, contractual)</li>
+  <li>Working exploit proof-of-concept development</li>
+  <li>Formal ontology/standards mapping (PROV-O, OAIS/ISO 14721, ISO 15489)</li>
+</ul>
+
+<h3>Evidence Inventory</h3>
+<table>
+  <tr><th>Artifact</th><th>Weight</th><th>Notes</th></tr>
+  <tr><td><code>AGENTS.md</code> v3</td><td>High</td><td>Authoritative governance document; author-ratified</td></tr>
+  <tr><td><code>CORE-INVARIANTS.md</code></td><td>High</td><td>Status: normative, author-ratified 2026-08-15</td></tr>
+  <tr><td><code>KNOWN-FINDINGS.md</code></td><td>High</td><td>Author-acknowledged self-assessment; candid, well-structured</td></tr>
+  <tr><td><code>DECISION-AUTH-IDENTITY.accepted.md</code></td><td>High</td><td>Status: accepted; Option C (layered signing) decided and partially implemented</td></tr>
+  <tr><td><code>DECISION-LICENSING.accepted.md</code></td><td>High</td><td>Status: accepted; licensing intent and timeline decided</td></tr>
+  <tr><td><code>TOOLS/lore_validate.py</code></td><td>High</td><td>Primary enforcement point; hand-rolled YAML parser is explicit TCB risk (KF-03)</td></tr>
+  <tr><td><code>TOOLS/lore_verify_author_sig.py</code></td><td>High</td><td>CI gate for cryptographic signature verification; depends on <code>gpg</code></td></tr>
+  <tr><td><code>REGISTRIES/artifact-statuses.yaml</code></td><td>High</td><td>Closed status enum and transition matrix; normative</td></tr>
+  <tr><td><code>REGISTRIES/trusted-signers.txt</code></td><td>High</td><td>Explicitly labeled "EXPERIMENTAL test harness"; not production key management</td></tr>
+  <tr><td><code>KEYS/README.md</code> + <code>steve-gibbons-D9B04B5C.asc</code></td><td>Medium</td><td>Public key published; custody/binding unproven (T5 in decision record)</td></tr>
+  <tr><td><code>SOURCE/</code> corpus (~130 volumes)</td><td>Medium</td><td>v0.2 draft; exploratory, not settled; valuable as design rationale</td></tr>
+  <tr><td><code>TESTS/fixtures/</code></td><td>High</td><td>6 positive + 6 negative fixtures; test harness is functional</td></tr>
+  <tr><td><code>.github/workflows/validate.yml</code></td><td>High</td><td>CI pipeline: validator + sig gate + gitignore guard; structure sound</td></tr>
+  <tr><td><code>CORPUS-MANIFEST.yaml</code></td><td>Medium</td><td>Status: candidate; functional but minimal</td></tr>
+  <tr><td><code>LICENSE.DRAFT.md</code></td><td>Medium</td><td>Draft only; not yet effective; not reviewed by counsel per document text</td></tr>
+</table>
+
+<h3>Evidence Quality Notes</h3>
+<p class="section-intro">The self-assessment in <code>KNOWN-FINDINGS.md</code> is unusually candid and substantially accurate. It materially shapes this evaluation: many findings below add depth, cross-mapping, or external framing rather than net-new discovery. Where this report reaches the same conclusion, that is cited as corroboration. Where it diverges or adds specificity, that is flagged explicitly.</p>
+
+
+<h2 id="s2">2. System Model and Trust/Data-Flow Summary</h2>
+
+<h3>What LORE Is (System Purpose)</h3>
+<p>LORE is a <em>semantic governance framework</em> — a structured method for making identity, authority, evidence, provenance, and lifecycle explicit in any governed corpus. The public repository is a Phase-1 bootstrap scaffold: schemas, a validator, a status registry, governance documents, test fixtures, and ~130 corpus volumes. It is self-referential: LORE governs its own corpus using LORE's own rules.</p>
+
+<h3>Actors and Roles</h3>
+<table>
+  <tr><th>Actor</th><th>Role / Trust Level</th></tr>
+  <tr><td>Author (Steve Gibbons)</td><td>Sole authority root. May assign author-only statuses. Holds root signing keys. All promotion, publication, and governance decisions.</td></tr>
+  <tr><td>AI Agents (e.g., this assistant, Copilot)</td><td>Agent-writable statuses only. May draft, inspect, hash, classify, report. May NOT promote, modify INTAKE/raw, or emit author-only status.</td></tr>
+  <tr><td>Reviewers (invited)</td><td>Read-only against public draft; full private corpus access by invitation. Evidence-only report deliverable into INTAKE/.</td></tr>
+  <tr><td>GitHub Actions CI</td><td>Runs validator + signature gate on push/PR. No write authority. Trust: platform-level (GitHub).</td></tr>
+  <tr><td>General Public</td><td>Read-only access to public draft. Evaluation and citation permitted under provisional license.</td></tr>
+</table>
+
+<h3>Trust Boundaries</h3>
+<ol>
+  <li><strong>Author ↔ Agent:</strong> Hardest boundary. Agent-writable vs. author-only status split enforced by validator Check 2 and CI signature gate.</li>
+  <li><strong>Public Draft ↔ Private Canonical Corpus:</strong> One-way reference via <code>OBJREF-PUBLIC-PROVENANCE-001</code>. Private corpus not resolvable from public.</li>
+  <li><strong>INTAKE/raw ↔ Normalized/Processed:</strong> Immutability enforced via SHA-256 manifest (Check 6). <code>chmod a-w</code> advisory only.</li>
+  <li><strong>Repository ↔ GitHub CI:</strong> CI has repo read; no write authority beyond what Actions platform provides. Workflow runs on push/PR.</li>
+  <li><strong>Reviewer ↔ Corpus:</strong> Reviewers produce evidence-only reports deposited into INTAKE/; author governs promotion.</li>
+</ol>
+
+<h3>Key Data Flows</h3>
+<ul>
+  <li>Artifact creation (agent) → validator (Check 1–10) → pre-commit hook → git commit → CI (validator + sig gate)</li>
+  <li>Author-only artifact → detached .asc signature (author) → <code>provenance.signature</code> + <code>signer_fpr</code> → Check 2 (representation) → CI sig gate (cryptography)</li>
+  <li>INTAKE/raw arrival → <code>lore_freeze_raw.py</code> → manifest → Check 6 verification</li>
+  <li>Reviewer → evidence-only report → INTAKE/ deposit → author promotion decision</li>
+  <li>Agent hat assembly: <code>lore_prompt.py</code> → profile + lens → composed prompt (no network, no writes)</li>
+</ul>
+
+
+<h2 id="s3">3. ASTRA Candidate Findings</h2>
+
+<p class="section-intro">Findings are presented from highest to lowest concern. Several confirm or deepen existing KF entries; those are noted. Net-new findings are marked <strong>(net-new)</strong>.</p>
+
+
+<div class="finding high">
+  <div class="fid">A-01  <span class="badge b-high">HIGH</span> <span class="badge b-candidate">candidate</span>  Confirms KF-01/KF-02</div>
+  <div class="claim">Authority boundary is representation-only until <code>--strict</code> is enforced in CI and all existing author-only artifacts are signed</div>
+  <dl>
+    <dt>Assessment</dt><dd>FACT (evidenced by <code>DECISION-AUTH-IDENTITY.accepted.md</code>, <code>lore_validate.py</code> Check 2, <code>validate.yml</code>)</dd>
+    <dt>Affected elements</dt><dd>Check 2 (<code>lore_validate.py</code>), <code>lore_verify_author_sig.py</code>, <code>validate.yml</code>, all author-only artifacts</dd>
+    <dt>Affected assets</dt><dd>Author-only status integrity; CORE-INVARIANT 2 and 11; the entire authority model</dd>
+    <dt>Threat scenario</dt><dd>Any writer who can commit to the repository can create a YAML artifact with <code>status: accepted</code> and either <code>author_preseeded: true</code> (migration grace path still accepted) or a reference to any .asc file regardless of content (<code>pos_02_preseeded_accepted_decision.yaml.asc</code> is explicitly a placeholder, not a real signature). Until <code>--strict</code> is enforced and all existing artifacts signed, the migration grace path is a standing bypass.</dd>
+    <dt>Preconditions</dt><dd>Write access to repo; migration grace (<code>author_preseeded: true</code>) still accepted; test fixture .asc files are explicitly not real signatures</dd>
+    <dt>Potential impact</dt><dd>Status forgery: agent or adversary promotes artifact to author-only status without author action. Undermines the core governance invariant.</dd>
+    <dt>Existing evidenced controls</dt><dd>Check 2 rejects unsigned author-only artifacts lacking both preseed and signature reference. CI runs <code>lore_verify_author_sig.py</code>. <code>neg_06_unregistered_signer_forgery.yaml</code> fixture validates rejection of unregistered signer. Sig guard in pre-commit hook checks .gitignore won't swallow .asc files.</dd>
+    <dt>Gaps</dt><dd>(1) Migration grace (<code>author_preseeded: true</code>) is accepted until v1.0.0 — exact count of unsigned author-only artifacts in corpus not verified in this assessment. (2) CI runs <code>--strict</code> per <code>validate.yml</code>, but lore_verify_author_sig skips TESTS/fixtures — placeholder .asc files in fixtures are not real signatures and the tool knows this. (3) Key custody (T5) — that the fingerprint in <code>trusted-signers.txt</code> is actually held by the legitimate author — is explicitly acknowledged as unproven.</dd>
+    <dt>Options</dt><dd>(a) Batch-sign all existing unsigned author-only artifacts before v1.0.0; remove migration grace. (b) Audit and publish the count of currently unsigned author-only artifacts. (c) Document T5 (key custody binding) as an explicit open risk with planned mitigation path (hardware token).</dd>
+  </dl>
+</div>
+
+
+<div class="finding high">
+  <div class="fid">A-02  <span class="badge b-high">HIGH</span> <span class="badge b-candidate">candidate</span>  Confirms KF-03 — (net-new depth)</div>
+  <div class="claim">The hand-rolled YAML parser is the sole enforcement point and has known parser-differential vulnerabilities</div>
+  <dl>
+    <dt>Assessment</dt><dd>FACT (<code>TOOLS/lore_validate.py</code> <code>SimpleYAMLParser</code>; KF-03 acknowledges this)</dd>
+    <dt>Affected elements</dt><dd><code>SimpleYAMLParser</code> in <code>lore_validate.py</code>; all governance checks that depend on parsed field values</dd>
+    <dt>Affected assets</dt><dd>Integrity of every validator check; TCB per <code>CORE-INVARIANTS.md</code></dd>
+    <dt>Threat scenario</dt><dd>A crafted YAML document that <code>SimpleYAMLParser</code> reads as <code>status: candidate</code> but a conforming YAML parser (used by any downstream consumer) reads as <code>status: accepted</code>. Concrete attack vectors: YAML anchors/aliases (not handled), multi-line scalars, Unicode normalization, tab vs space, comment injection at key positions. The parser strips comments by checking <code>#</code> position without fully accounting for quoted strings; a quoted value containing <code>#</code> preceded by a space could be misparsed.</dd>
+    <dt>Preconditions</dt><dd>Ability to submit a crafted YAML artifact; any consumer using a standard YAML library</dd>
+    <dt>Potential impact</dt><dd>Validator passes a file; downstream consumer sees different field values including status escalation. Governance bypassed without triggering any check.</dd>
+    <dt>Existing evidenced controls</dt><dd>The validator is the only consumer of these files in the current phase. No external YAML consumers are present in Phase-1 scope. The validator is zero-dependency by design.</dd>
+    <dt>Gaps</dt><dd>(1) No conformance-mode parser as secondary check. (2) No fuzz testing of the parser. (3) As soon as any external consumer reads these files with a standard library, differential risk becomes exploitable.</dd>
+    <dt>Options</dt><dd>(a) Add a secondary validation pass using Python's stdlib <code>yaml</code> (PyYAML) in safe mode — it is available in standard Python installs and would not break the zero-external-dependency contract of the core validator if kept as a separate CI step. (b) Define a strict YAML subset (no anchors, no multi-line, ASCII-safe) and validate that the input conforms before parsing. (c) Accept as known risk during Phase-1 given no external consumers; re-evaluate before v1.0.0.</dd>
+  </dl>
+</div>
+
+
+<div class="finding high">
+  <div class="fid">A-03  <span class="badge b-high">HIGH</span> <span class="badge b-candidate">candidate</span>  Confirms KF-05/KF-14</div>
+  <div class="claim">Single-maintainer governance is a systemic continuity risk; succession and anti-capture controls are unbuilt</div>
+  <dl>
+    <dt>Assessment</dt><dd>FACT (<code>GOVERNANCE-LOCKIN.action.md</code>, <code>SOURCE/long-horizon-rationale.accepted.md</code>, KF-05/14)</dd>
+    <dt>Affected elements</dt><dd>Author authority root; <code>REGISTRIES/trusted-signers.txt</code>; the v1.0.0 relicense gate; all canonical promotion paths</dd>
+    <dt>Affected assets</dt><dd>Corpus continuity; governance legitimacy; anti-capture objective (LH-R3); succession (LH-R4)</dd>
+    <dt>Threat scenario</dt><dd>Author unavailability (any cause) freezes all promotion, publication, and governance decisions. No delegation path exists for any of these acts. Additionally, the current "sole authority" model is maximally capturable: control of a single human (or their key material) captures all of LORE's governance. This is the opposite of LORE's stated anti-capture objective.</dd>
+    <dt>Preconditions</dt><dd>Author unavailability, key loss, or coercive pressure on a single individual</dd>
+    <dt>Potential impact</dt><dd>Corpus freezes; relicense to Apache-2.0+CC-BY never happens; anti-capture objective self-defeats; community cannot form around a governed corpus</dd>
+    <dt>Existing evidenced controls</dt><dd><code>GOVERNANCE-LOCKIN.action.md</code> is open action, owner-assigned. Long-horizon requirements are now governed records. The licensing pre-commitment is publicly stated. These are accurate representations of the problem, not yet mitigations.</dd>
+    <dt>Gaps</dt><dd>No named successor. No key escrow or recovery mechanism. No stewardship charter draft. No timeline other than "before v1.0.0."</dd>
+    <dt>Options</dt><dd>(a) Identify at least one named successor and document key custody transfer mechanism before any external reviewer commits time. (b) Even a minimal "stewardship charter" draft with one named trustee would materially reduce risk. (c) Consider a dead-man's-switch provision: if author is unreachable for N months, a designated trustee may act.</dd>
+  </dl>
+</div>
+
+
+<div class="finding med">
+  <div class="fid">A-04  <span class="badge b-med">MEDIUM</span> <span class="badge b-candidate">candidate</span>  Confirms KF-06</div>
+  <div class="claim">INTAKE/raw integrity is manifest-verified but manifest itself is unsigned; break-glass records are unenforced</div>
+  <dl>
+    <dt>Assessment</dt><dd>FACT (<code>TOOLS/lore_freeze_raw.py</code>, <code>lore_validate.py</code> Check 6, <code>CORE-INVARIANTS.md</code>)</dd>
+    <dt>Affected elements</dt><dd><code>INTAKE/RAW-MANIFEST.sha256</code>, <code>lore_freeze_raw.py</code>, break-glass schema</dd>
+    <dt>Affected assets</dt><dd>Raw evidence integrity; CORE-INVARIANT 5</dd>
+    <dt>Threat scenario</dt><dd>(1) The manifest itself can be modified to cover evidence mutation — a tamper-evident manifest in git is detectable only if git history is trusted. A force-push or history rewrite that updates both the evidence and the manifest simultaneously is undetectable by Check 6. (2) The <code>break-glass-record</code> schema exists and test fixtures validate it, but there is no enforcement that a break-glass record must be created before exceptional access to raw evidence. The schema is structural, not procedural.</dd>
+    <dt>Preconditions</dt><dd>Git push access + ability to rewrite history (force-push), or: absence of enforcement on break-glass procedure</dd>
+    <dt>Potential impact</dt><dd>Evidence tampering undetectable within the system; break-glass access with no audit trail</dd>
+    <dt>Existing evidenced controls</dt><dd>Manifest is in git history (tamper-evident for normal commits). Check 6 detects mismatches. <code>lore_freeze_raw.py</code> requires explicit regeneration. GitHub branch protection (if set) limits force-push.</dd>
+    <dt>Gaps</dt><dd>Manifest is unsigned (no detached .asc); no branch protection configuration evidenced in repo; break-glass procedure is schema-only, not enforced in validator or CI.</dd>
+    <dt>Options</dt><dd>(a) Sign the manifest itself as a root act. (b) Enable branch protection on main. (c) Add a validator check that any modification to INTAKE/raw is accompanied by a committed break-glass or intake record.</dd>
+  </dl>
+</div>
+
+
+<div class="finding med">
+  <div class="fid">A-05  <span class="badge b-med">MEDIUM</span> <span class="badge b-candidate">candidate</span>  (net-new)</div>
+  <div class="claim">Agent hat/prompt assembly runs arbitrary shell commands (<code>!`...`</code>) in the Bob skill definition</div>
+  <dl>
+    <dt>Assessment</dt><dd>FACT (<code>.bob/skills/lore-hat/SKILL.md</code> line: <code>!`python3 TOOLS/lore_prompt.py $ARGUMENTS`</code>)</dd>
+    <dt>Affected elements</dt><dd><code>.bob/skills/lore-hat/SKILL.md</code>; any AI assistant that executes Bob skills</dd>
+    <dt>Affected assets</dt><dd>Host filesystem; any tool accessible from the assistant's execution context</dd>
+    <dt>Threat scenario</dt><dd>The SKILL.md file injects <code>$ARGUMENTS</code> directly into a shell command: <code>python3 TOOLS/lore_prompt.py $ARGUMENTS</code>. If the AI assistant passes user-supplied lens IDs to this command without sanitization, and the Bob skill runner executes via shell, an attacker who can influence the argument (e.g., through a malicious INTAKE document containing a lens-ID-like string that gets passed through) could achieve command injection. The lens parameter is intended to be a simple ID (e.g., <code>P1-SEC-THREATMODEL</code>) but is not validated before substitution.</dd>
+    <dt>Preconditions</dt><dd>Bob skill runner executes via shell; user or corpus content can influence the argument; no shell quoting on <code>$ARGUMENTS</code></dd>
+    <dt>Potential impact</dt><dd>Arbitrary command execution in the assistant's execution context. Severity depends on the Bob skill runner's sandboxing.</dd>
+    <dt>Existing evidenced controls</dt><dd><code>lore_prompt.py</code> validates the lens ID against known lenses and exits with an error on unknown values — so if the Python script is reached, it enforces the allowlist. The risk is between argument substitution and script invocation.</dd>
+    <dt>Gaps</dt><dd>No shell quoting around <code>$ARGUMENTS</code> in SKILL.md. The trust model of the Bob skill runner is not documented in this repo.</dd>
+    <dt>Options</dt><dd>(a) Quote the argument: <code>python3 TOOLS/lore_prompt.py "$ARGUMENTS"</code>. (b) Validate the argument against an allowlist before passing it to the shell command. (c) Clarify the Bob skill runner's execution model and whether shell injection is in-scope for its threat model.</dd>
+  </dl>
+</div>
+
+
+<div class="finding med">
+  <div class="fid">A-06  <span class="badge b-med">MEDIUM</span> <span class="badge b-candidate">candidate</span>  Confirms KF-08 — (net-new depth)</div>
+  <div class="claim">Status field conflates lifecycle, epistemic, and authority state; transition matrix has structural gaps</div>
+  <dl>
+    <dt>Assessment</dt><dd>FACT/INFERENCE (<code>REGISTRIES/artifact-statuses.yaml</code>; KF-08 acknowledges ontology thinness)</dd>
+    <dt>Affected elements</dt><dd><code>artifact-statuses.yaml</code> transition matrix; Check 3 in validator; all schema <code>status</code> fields</dd>
+    <dt>Threat scenario</dt><dd>(1) <code>evidence-only</code> can transition directly to <code>accepted</code> — a single step from the lowest-trust epistemic state to the highest author-only status. This is structurally permitted by the transition matrix and bypasses <code>candidate</code> and <code>proposed</code> review stages. (2) The transition matrix has no way to express "this transition requires a specific actor type" — any Check 3 validation will pass regardless of who triggered the transition. (3) <code>unknown</code> can transition to <code>evidence-only</code> — promoting uncertainty to a named evidence state without specifying what makes it evidence.</dd>
+    <dt>Potential impact</dt><dd>Evidence laundering: a low-trust artifact moves to accepted status through a technically permitted but governance-questionable path. Validator passes; human review might not catch it.</dd>
+    <dt>Existing evidenced controls</dt><dd>Check 2 still requires author authority for author-only status regardless of transition. Transition matrix is enforced in Check 3. Author is the only one who can actually make the <code>accepted</code> transition in practice.</dd>
+    <dt>Gaps</dt><dd>No actor-type constraint on transitions. <code>evidence-only → accepted</code> is a structural shortcut. No documentation of rationale for these permitted paths.</dd>
+    <dt>Options</dt><dd>(a) Add commentary to the transition matrix explaining the intent of each permitted path. (b) Consider whether <code>evidence-only → accepted</code> should require an intermediate <code>candidate</code> or <code>proposed</code> state. (c) Explicitly document actor-type requirements per transition as a future hardening path.</dd>
+  </dl>
+</div>
+
+
+<div class="finding med">
+  <div class="fid">A-07  <span class="badge b-med">MEDIUM</span> <span class="badge b-candidate">candidate</span>  (net-new)</div>
+  <div class="claim">CI pipeline has an implicit <code>gpg</code> dependency with no version pin, fallback, or availability check</div>
+  <dl>
+    <dt>Assessment</dt><dd>FACT (<code>.github/workflows/validate.yml</code>; <code>lore_verify_author_sig.py</code> line 134: <code>return None, None, None, 'gpg not found on PATH'</code>)</dd>
+    <dt>Affected elements</dt><dd><code>validate.yml</code> step "Verify author-only artifact signatures"; <code>lore_verify_author_sig.py</code></dd>
+    <dt>Threat scenario</dt><dd>If <code>gpg</code> is not present in the CI runner image, <code>lore_verify_author_sig.py</code> returns a "gpg not found" string — but it is unclear whether this causes the CI step to fail or silently pass. The script returns exit code 1 only if <code>failed &gt; 0</code>; if gpg is missing and all artifacts are "UNSIGNED" (migration grace), exit code is 0 and CI passes without any cryptographic verification. Supply-chain risk: gpg version behavior differences between runner images could produce inconsistent verification.</dd>
+    <dt>Preconditions</dt><dd>gpg absent from CI runner; or all artifacts in unsigned/migration-grace state</dd>
+    <dt>Potential impact</dt><dd>Signature gate silently passes without performing cryptography. Gives false confidence in the CI gate.</dd>
+    <dt>Existing evidenced controls</dt><dd>The script explicitly prints "gpg not found" as a diagnostic. CI step "Import author public key" checks for KEYS/*.asc existence before importing.</dd>
+    <dt>Gaps</dt><dd>No explicit <code>which gpg || exit 1</code> guard. No minimum gpg version requirement documented. No fallback behavior documented.</dd>
+    <dt>Options</dt><dd>(a) Add <code>which gpg || { echo "gpg required"; exit 1; }</code> as first step in the CI signature verification stage. (b) Pin the runner to a specific Ubuntu version known to include gpg. (c) Add an explicit test for the "gpg not found" path to the test suite.</dd>
+  </dl>
+</div>
+
+
+<div class="finding low">
+  <div class="fid">A-08  <span class="badge b-low">LOW</span> <span class="badge b-candidate">candidate</span>  (net-new)</div>
+  <div class="claim">Object-ref resolution is not enforced; <code>resolved: true</code> is self-asserted with no verification</div>
+  <dl>
+    <dt>Assessment</dt><dd>FACT (<code>lore_validate.py</code> Check 7: only checks <code>target_id</code> is a non-empty string; <code>resolved</code> field is not validated)</dd>
+    <dt>Affected elements</dt><dd>Check 7; <code>object-ref.schema.json</code>; all object-ref artifacts</dd>
+    <dt>Threat scenario</dt><dd>A producer sets <code>resolved: true</code> on an object-ref pointing to a non-existent or wrong target. The validator accepts it. Any consumer relying on <code>resolved: true</code> as a signal that the reference was verified is misled. This is the ALIAS ≠ IDENTITY problem LORE names but does not yet enforce (KF-08, CORE-INVARIANT 6).</dd>
+    <dt>Existing evidenced controls</dt><dd>Check 7 confirms <code>target_id</code> is a non-empty string. <code>pos_05_valid_object_ref.yaml</code> has <code>resolved: true</code> pointing to <code>DEC-2026-001</code> which exists.</dd>
+    <dt>Gaps</dt><dd>No cross-reference validation between <code>target_id</code> and actual artifact IDs in corpus. No check that <code>resolved: false</code> is the appropriate default for externally unresolvable references.</dd>
+    <dt>Options</dt><dd>(a) Add a Check 7 extension that, for local corpus refs, verifies <code>target_id</code> matches an artifact ID in the corpus. (b) Require <code>resolved: false</code> for any ref targeting the private corpus. (c) Document this as Phase-2 scope.</dd>
+  </dl>
+</div>
+
+
+<div class="affirm">
+  <div class="fid"><strong>A-09  <span class="badge b-info">AFFIRM</span>  Confirms KF-11</strong></div>
+  <div class="claim">Strong foundations worth protecting</div>
+  <p>FACT. The following design choices are independently well-motivated and should be guarded during hardening:</p>
+  <ul>
+    <li><strong>Explicit status ontology:</strong> Closed enum with transition matrix is the right architecture. The separation of agent-writable from author-only is a sound privilege separation model.</li>
+    <li><strong>Zero-dependency core validator:</strong> Removing external dependencies from the TCB is correct minimalist security design. The parser-differential risk (A-02) is a consequence of this choice worth managing, not reversing.</li>
+    <li><strong>Supersede-not-delete:</strong> The lifecycle model that forbids true deletion and requires supersession is correct for a governance/provenance system. It prevents evidence destruction.</li>
+    <li><strong>Preserved rationale and uncertainty:</strong> The corpus explicitly preserves design reasoning, rejected options, and uncertainty. This is forensically valuable and directly implements CORE-INVARIANT 7 (no fabrication) and 8 (conversation states not flattened).</li>
+    <li><strong>Self-referential dogfooding:</strong> Using LORE to govern LORE provides an operational test harness that is more honest than most framework self-assessments. The <code>KNOWN-FINDINGS.md</code> candor is notable.</li>
+    <li><strong>Representation before enforcement (CORE-INVARIANT 10):</strong> The staged migration approach (represent first, enforce later) is architecturally sound and avoids the "big bang" hardening failure mode.</li>
+  </ul>
+</div>
+
+
+<h2 id="s4">4. LINDDUN Candidate Privacy Threats</h2>
+
+<p class="section-intro">LINDDUN is applied to all in-scope personal data flows, identity mechanisms, and telemetry paths. LORE's primary users are described as "tech nerds who interact with AI, many of whom are infosec and privacy practitioners" — a sophisticated audience — but the framework itself handles identity, authority, and evidence in ways that create privacy-relevant surfaces. The corpus also contains personal information embedded in the framework's own design records.</p>
+
+
+<div class="finding med">
+  <div class="fid">L-01  <span class="badge b-med">MEDIUM</span> <span class="badge b-candidate">candidate</span>  LINDDUN: Identifying / Non-repudiation</div>
+  <div class="claim">Author's personal email address (<code>steve_gibbons@icloud.com</code>) is embedded in public key, KEYS/README.md, REVIEWERS.md, and REGISTRIES/trusted-signers.txt in perpetuity</div>
+  <dl>
+    <dt>Assessment</dt><dd>FACT (<code>KEYS/README.md</code>, <code>REVIEWERS.md</code>, <code>REGISTRIES/trusted-signers.txt</code> — all contain the iCloud email address)</dd>
+    <dt>Affected data</dt><dd>Personal email address; OpenPGP key binding; public key published to MIT and Ubuntu keyservers</dd>
+    <dt>Affected people</dt><dd>Author (Steve Gibbons)</dd>
+    <dt>Privacy harm</dt><dd>Email address is permanently linked to the LORE framework and all signed artifacts. Once published to keyservers, revocation of the UID does not remove historical records. Spam, doxxing, targeted phishing against LORE's author are facilitated. Non-repudiation risk: signed artifacts cryptographically bind the author's identity to specific decisions — this is by design, but creates an immutable public record that may have unintended long-horizon consequences.</dd>
+    <dt>Mitigation options</dt><dd>(a) This is an intentional design decision (governance requires a known identity root). Accept as known risk and document it. (b) Consider whether a professional contact mechanism (e.g., a role email or a contact form) would serve the reviewer-access use case without embedding a personal address. (c) The non-repudiation aspect is a feature, not a bug — document it explicitly as such in the privacy model.</dd>
+    <dt>OPEN QUESTION</dt><dd>Has the author considered the long-horizon privacy implications of permanently binding a personal email to cryptographic governance records that may persist for decades?</dd>
+  </dl>
+</div>
+
+
+<div class="finding low">
+  <div class="fid">L-02  <span class="badge b-low">LOW</span> <span class="badge b-candidate">candidate</span>  LINDDUN: Unawareness / Data Disclosure</div>
+  <div class="claim">Reviewer identity and access patterns may be logged by GitHub without explicit disclosure to reviewers</div>
+  <dl>
+    <dt>Assessment</dt><dd>HYPOTHESIS (GitHub platform behavior; not directly evidenced in LORE documents)</dd>
+    <dt>Affected data</dt><dd>Reviewer GitHub usernames; access timestamps; IP addresses (GitHub platform logs)</dd>
+    <dt>Affected people</dt><dd>Invited reviewers; general public browsing the repo</dd>
+    <dt>Privacy harm</dt><dd>Reviewers — many of whom are security/privacy professionals who may wish to evaluate LORE without being identifiable — may not be aware their access is logged at the platform level. The REVIEWERS.md collects reviewer email addresses and requests background information ("a brief note on your background") which constitutes personal data processed by the author.</dd>
+    <dt>Mitigation options</dt><dd>(a) Add a brief privacy notice to REVIEWERS.md noting that contact information is held by the author and used solely for access decisions. (b) Offer an anonymous review path (e.g., a pseudonymous contact channel) for reviewers who prefer it. (c) Note that GitHub platform logging is outside LORE's control and reviewers should consult GitHub's privacy policy.</dd>
+  </dl>
+</div>
+
+
+<div class="finding med">
+  <div class="fid">L-03  <span class="badge b-med">MEDIUM</span> <span class="badge b-candidate">candidate</span>  LINDDUN: Non-compliance / Unawareness</div>
+  <div class="claim">LICENSE.DRAFT.md is not legally effective; copyright status of AI-generated corpus content is unresolved; no DPA/processor terms govern AI tools used to produce the corpus</div>
+  <dl>
+    <dt>Assessment</dt><dd>FACT that license is draft (<code>LICENSE.DRAFT.md</code> text: "not yet effective"); INFERENCE regarding legal exposure; HYPOTHESIS regarding processor terms</dd>
+    <dt>Affected data</dt><dd>AI-generated corpus content; any personal data embedded in design conversations that were fed to AI tools</dd>
+    <dt>Affected people</dt><dd>Author; any person whose information appeared in AI training prompts</dd>
+    <dt>Privacy harm</dt><dd>The corpus was produced using AI tools (documented in <code>THE-MAKING-OF-LORE.md</code>). If design conversations included any personal data (names, emails, organizational details), those were processed by AI tools potentially subject to data processing terms. The licensing decision acknowledges copyright uncertainty over AI-generated content. No evidence of a data processing assessment for the AI tools used.</dd>
+    <dt>Mitigation options</dt><dd>(a) Confirm no personal data of third parties appears in AI design prompts or corpus volumes. (b) Document which AI tools were used in corpus production as part of transformation provenance (supports LH-R6 vendor neutrality and GDPR Art. 30 equivalent). (c) Legal review of provisional license — already identified as a remaining implementation task in <code>DECISION-LICENSING.accepted.md</code>.</dd>
+    <dt>OPEN QUESTION</dt><dd>Which AI platforms were used to produce the corpus, and under what terms? Were any personal data of third parties processed through those platforms?</dd>
+  </dl>
+</div>
+
+
+<div class="finding low">
+  <div class="fid">L-04  <span class="badge b-low">LOW</span> <span class="badge b-candidate">candidate</span>  LINDDUN: Linking / Identifying</div>
+  <div class="claim">The corpus volumes on personal context (Volume 15) and agent access (Volume 13, 45) describe a personal data model with no corresponding privacy implementation in Phase-1</div>
+  <dl>
+    <dt>Assessment</dt><dd>FACT (Volume 15 defines ownership/consent/preference models; no implementation exists in Phase-1 schemas)</dd>
+    <dt>Affected data</dt><dd>Personal preferences, relationships, agent-context packages (described in corpus, not yet implemented)</dd>
+    <dt>Privacy harm</dt><dd>When LORE's agent-context and personal-universe model is eventually implemented, it will handle rich personal data (Volume 15: preferences, relationships, health, location, emotional context). The governance model for this data does not yet exist. Future implementers may not be aware of the privacy design intent documented in Volume 15 if they only read the schemas and validator.</dd>
+    <dt>Mitigation options</dt><dd>(a) Link Volume 15 privacy principles explicitly from the schema documentation and AGENTS.md so implementers encounter them. (b) Ensure any Phase-2 personal-context schema includes privacy-by-design controls (data minimization, purpose binding, consent model) as first-class schema fields, not afterthoughts.</dd>
+  </dl>
+</div>
+
+
+<div class="finding low">
+  <div class="fid">L-05  <span class="badge b-low">LOW</span> <span class="badge b-candidate">candidate</span>  LINDDUN: Non-repudiation</div>
+  <div class="claim">Signed governance artifacts create permanent, cryptographically verifiable attribution records; no right-of-correction or expiry mechanism exists for erroneous decisions</div>
+  <dl>
+    <dt>Assessment</dt><dd>INFERENCE (supersede-not-delete model; signature architecture; no correction/expiry mechanism evidenced)</dd>
+    <dt>Affected data</dt><dd>Signed decision records; author-attributed statements</dd>
+    <dt>Privacy harm</dt><dd>The combination of cryptographic signatures + supersede-not-delete creates a permanent, unretractable public record of every governance decision attributed to the author. If an error is made (factual mistake, premature promotion, incorrect attribution), the signed record persists forever. The supersession mechanism creates a correction record but does not remove the original. In a long-horizon governance model this is a feature; in a privacy model it creates a permanent record of mistakes.</dd>
+    <dt>Mitigation options</dt><dd>(a) Document this as an explicit design tradeoff in the governance model. (b) Ensure reviewers and contributors understand that their interactions with the corpus may be preserved permanently. (c) For future multi-author scenarios, define what "correction" means and what the retention implications are.</dd>
+  </dl>
+</div>
+
+
+<h2 id="s5">5. Cross-Cutting Security–Privacy Interactions</h2>
+
+<div class="finding" style="border-left-color:#7c5cd8">
+  <div class="fid"><strong>XC-01</strong>  <span class="badge b-candidate">candidate</span>  Security enables privacy, but the same mechanisms create surveillance risk</div>
+  <p>The cryptographic signing model (A-01, L-01) that provides governance integrity creates a permanent, unforgeable, public record of every author action. This is LORE's intended design. The cross-cutting tension: as the framework scales to multiple signers or community governance (A-03), the non-repudiation model becomes a surveillance tool over contributors — every governance act is cryptographically attributable and permanently preserved. LORE's long-horizon rationale (LH-R2: sousveillance of the authority) acknowledges this as intentional, but it applies to the authority itself, not necessarily to every contributor. This tension needs explicit design resolution before community governance is built.</p>
+</div>
+
+<div class="finding" style="border-left-color:#7c5cd8">
+  <div class="fid"><strong>XC-02</strong>  <span class="badge b-candidate">candidate</span>  Agent authority model intersects with AI platform privacy terms</div>
+  <p>The agent-signing subkey architecture (DECISION-AUTH-IDENTITY.accepted.md, <code>trusted-signers.txt</code>) delegates signing authority to AI agents. If an AI agent holds a signing subkey and signs artifacts, those artifacts are attributed to that agent under a key whose lineage traces to the author. The privacy question: what data was processed by the AI platform to produce that signed artifact? The signed artifact is permanent; the AI platform's data processing may have involved user data or confidential corpus content. No provenance record currently captures which AI platform version produced a generated artifact (KF-07, agent context not realizable).</p>
+</div>
+
+<div class="finding" style="border-left-color:#7c5cd8">
+  <div class="fid"><strong>XC-03</strong>  <span class="badge b-candidate">candidate</span>  The "no retention/disposition model" finding (KF-12) has direct GDPR/privacy implications</div>
+  <p>LORE's supersede-not-delete model preserves everything by default. This is correct for a governance/provenance corpus. However, if LORE is used in any context involving personal data (which Volume 15 explicitly contemplates), the absence of a retention schedule, disposition authority, and legal-hold model (KF-12) creates direct tension with data minimization and right-to-erasure requirements under GDPR and similar frameworks. The framework design must eventually resolve whether "supersede-not-delete" is compatible with personal data obligations, or whether a separate "personal data corpus" with deletion capability is required.</p>
+</div>
+
+
+<h2 id="s6">6. Open Questions and Missing Evidence</h2>
+
+<table>
+  <tr><th>ID</th><th>Question</th><th>Why it matters</th></tr>
+  <tr><td>OQ-01</td><td>How many author-only artifacts currently exist in the private canonical corpus without detached signatures?</td><td>Determines scope of migration work before <code>--strict</code> can be fully enforced (A-01)</td></tr>
+  <tr><td>OQ-02</td><td>Is branch protection enabled on the <code>main</code> branch in GitHub?</td><td>Without it, force-push can rewrite history including the INTAKE manifest (A-04)</td></tr>
+  <tr><td>OQ-03</td><td>What AI platforms/versions were used to produce the corpus? Are any personal data of third parties embedded in prompts or volumes?</td><td>Transformation provenance (KF-07); GDPR processor terms; copyright analysis (L-03)</td></tr>
+  <tr><td>OQ-04</td><td>Has the provisional license text been reviewed by legal counsel?</td><td>LICENSE.DRAFT.md is explicitly not-yet-effective and not-legal-advice. Until reviewed, legal exposure is unquantified.</td></tr>
+  <tr><td>OQ-05</td><td>What is the key custody mechanism for <code>D9B04B5C</code>? Is the private key on a hardware token?</td><td>T5 in DECISION-AUTH-IDENTITY — the entire signing architecture depends on this key not being compromised (A-01)</td></tr>
+  <tr><td>OQ-06</td><td>Is the agent-signing subkey (<code>F3BA0EDE...</code>) currently active and wired into any agent workflow?</td><td><code>trusted-signers.txt</code> has it uncommented as delegated:agent but DECISION-AUTH-IDENTITY says delegation is deferred. Inconsistency.</td></tr>
+  <tr><td>OQ-07</td><td>Are there plans to add a <code>maintainer</code> profile to the reviewer panel?</td><td>Only <code>evaluator.txt</code> profile exists; copilot-instructions.md references a <code>maintainer</code> profile</td></tr>
+  <tr><td>OQ-08</td><td>What is the intended data-protection regime for reviewer personal data collected via REVIEWERS.md contact?</td><td>L-02 — personal data is being collected with no stated retention or processing terms</td></tr>
+  <tr><td>OQ-09</td><td>How will the "bounded accretion" requirement (LH-R5) be implemented as the corpus scales?</td><td>Currently ~130 volumes as flat files; no projections, indexes, or merge semantics (KF-15)</td></tr>
+  <tr><td>OQ-10</td><td>What is the execution model of the Bob skill runner — does <code>!`...`</code> pass through a shell?</td><td>A-05 — command injection risk in <code>.bob/skills/lore-hat/SKILL.md</code></td></tr>
+</table>
+
+
+<h2 id="s7">7. Recommended Human Review/Disposition Actions</h2>
+
+<p class="section-intro">These are options and suggestions for the author and any invited reviewers to consider. They are not instructions. Priority ordering reflects Aegis's assessment of risk and effort; the author remains sole decision authority.</p>
+
+<ol>
+  <li><strong>Audit and publish unsigned-artifact count (A-01 / OQ-01).</strong> Run <code>lore_verify_author_sig.py --strict</code> against the private corpus. The number of remaining unsigned author-only artifacts is the most important open variable in the authority model. Even a rough count would allow scoping the migration work.</li>
+  <li><strong>Verify key custody (OQ-05).</strong> Confirm whether the <code>D9B04B5C</code> private key is on a hardware token. If not, this is the single highest-impact hardening action available. Document the custody model — even informally — so succession planning has something to start from.</li>
+  <li><strong>Clarify the agent-signing subkey status (OQ-06).</strong> The decision record says delegation is deferred, but <code>trusted-signers.txt</code> has the agent subkey uncommented as an active delegated signer. Either the entry should be commented out or the decision record should be updated.</li>
+  <li><strong>Enable GitHub branch protection on main (OQ-02).</strong> Requires-PR and no-force-push are low-cost, high-value controls that protect the tamper-evident manifest (A-04).</li>
+  <li><strong>Fix shell quoting in SKILL.md (A-05).</strong> <code>"$ARGUMENTS"</code> instead of <code>$ARGUMENTS</code> is a one-character fix that eliminates the injection surface.</li>
+  <li><strong>Legal review of LICENSE.DRAFT.md (OQ-04).</strong> Already identified; flagging as a priority because the provisional license is the only legal barrier between the corpus and unrestricted use.</li>
+  <li><strong>Add a brief privacy notice to REVIEWERS.md (L-02).</strong> Minimal effort; demonstrates the privacy-by-design principles LORE preaches.</li>
+  <li><strong>Disposition the <code>evidence-only → accepted</code> transition path (A-06).</strong> Either document the intent or add an intermediate required state. The structural shortcut undermines governance clarity.</li>
+  <li><strong>Document AI platform provenance (OQ-03 / XC-02).</strong> Even a brief note in PROVENANCE.md naming the platforms used would satisfy transformation provenance requirements and benefit future legal/copyright analysis.</li>
+  <li><strong>Start a governance participant shortlist (A-03).</strong> The governance-lockin action is correctly open. The smallest useful step is identifying one or two potential successors or trustees, even informally.</li>
+</ol>
+
+
+<h2 id="s8">8. Machine-Readable Governed Records</h2>
+
+<p class="section-intro">LORE-structured records for deposit into INTAKE/ at author discretion. All records are <strong>candidate</strong> status, produced by Aegis (AI evaluation assistant). None may be promoted without author action.</p>
+
+<pre style="background:#f7f8fa;border:1px solid #e5e7eb;border-radius:4px;padding:12px;font-size:12px;overflow-x:auto;line-height:1.5">
+# AEGIS-LORE-ASSESSMENT-001
+id: AEGIS-LORE-ASSESSMENT-001
+type: artifact-record
+title: "Aegis First-Pass Assessment — LORE Corpus Workbench"
+status: candidate
+producer: "Aegis (AI evaluation assistant, Anthropic Claude)"
+produced_for: "Author (Steve Gibbons)"
+scope: "lore-public main v0.5.0-phase1-scaffold"
+produced_at: "2026-08-16"
+evaluation_method: "ASTRA + LINDDUN"
+confidence: "medium — comprehensive corpus read; no working exploits; no formal proof"
+findings_summary:
+  astra_high: [A-01, A-02, A-03]
+  astra_medium: [A-04, A-05, A-06, A-07]
+  astra_low: [A-08]
+  astra_affirm: [A-09]
+  linddun_medium: [L-01, L-03]
+  linddun_low: [L-02, L-04, L-05]
+  cross_cutting: [XC-01, XC-02, XC-03]
+  open_questions: [OQ-01, OQ-02, OQ-03, OQ-04, OQ-05, OQ-06, OQ-07, OQ-08, OQ-09, OQ-10]
+corroborates_known_findings:
+  - KF-01: "confirmed and deepened (A-01)"
+  - KF-02: "confirmed (A-01)"
+  - KF-03: "confirmed and deepened with specific attack vectors (A-02)"
+  - KF-05: "confirmed (A-03)"
+  - KF-06: "confirmed and deepened (A-04)"
+  - KF-08: "confirmed and deepened (A-06)"
+  - KF-11: "confirmed (A-09)"
+  - KF-14: "confirmed (A-03)"
+net_new_findings: [A-05, A-07, A-08, L-01, L-02, L-03, L-04, L-05, XC-01, XC-02, XC-03]
+required_reviewer_roles:
+  - Author (Steve Gibbons) — disposition, promotion, acceptance
+  - Legal counsel — OQ-03, OQ-04, L-03
+  - Key custodian — OQ-05
+limitations:
+  - "No working exploits produced"
+  - "Private canonical corpus not reviewed"
+  - "~130 extended volumes sampled, not exhaustively read"
+  - "Bob skill runner execution model not independently verified"
+  - "No formal standards mapping (PROV-O, OAIS, ISO 15489)"
+provenance:
+  created_by: "Aegis (AI evaluation assistant)"
+  inputs:
+    - "lore-public repository, main branch, all .md, .yaml, .json, .py, .sh, .txt files read"
+  transformation: "ASTRA + LINDDUN first-pass sweep against full corpus"
+  note: "agent-produced; candidate only; no author-only status claimed or implied"
+</pre>
+
+<div class="footer">Made with IBM Bob</div>
+</div>
+</body>
+</html>

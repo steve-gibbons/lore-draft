@@ -37,6 +37,8 @@
 678FD0793A31D313E98471EF36BA3FC140BEDA0B  root  author signing subkey [S] 2026-08-01 (lineage: D9B04B5C)
 
 # --- DELEGATED (agent-hand) - author: uncomment ONE and confirm it is the agent key ---
-# Candidates present in the keyring (both ed25519 [S], created 2026-08-16):
+# Delegation is DEFERRED (DECISION-AUTH-IDENTITY.accepted.md). Neither candidate is active.
+# Author-only status remains root-only until a concrete delegation need arises and the
+# decision record is updated. Candidates present in the keyring (ed25519 [S], 2026-08-16):
 # 9952EC3552CBDB2021C06A36DC647A2B43EDBC2F  delegated:agent  agent signing subkey (lineage: D9B04B5C)
-F3BA0EDE2275818A1C2109FDAFFF11415A261321  delegated:agent  agent signing subkey (lineage: D9B04B5C)
+# F3BA0EDE2275818A1C2109FDAFFF11415A261321  delegated:agent  agent signing subkey (lineage: D9B04B5C)
