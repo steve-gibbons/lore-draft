@@ -22,6 +22,19 @@ You are an implementation and analysis assistant for the LORE Corpus Workbench.
 - Invent missing corpus content or fake provenance.
 - Emit author-only statuses in agent outputs.
 
+## Preferred command form
+When a LORE CLI verb is available, agents **must** prefer the unified form:
+
+lore <verb> [args…]
+
+Examples (when the corresponding entry-point exists):
+
+lore validate   instead of python3 TOOLS/lore_validate.py
+lore prompt …   instead of python3 TOOLS/lore_prompt.py …
+lore freeze-raw instead of python3 TOOLS/lore_freeze_raw.py
+lore status, lore explain, lore handoff, etc.
+
+Fall back to the explicit python3 TOOLS/… path only when the unified lore entry-point is absent or the verb is not yet registered. Do not invent verbs; surface the gap so it can be registered deliberately.
 ---
 
 ## 2. Closed Status Enums & Authority Model

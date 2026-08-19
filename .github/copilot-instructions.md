@@ -21,8 +21,9 @@ governance so Copilot behaves as a lore-capable assistant in this repository.
 - **Agent-writable statuses ONLY:** `candidate | proposed | derived | generated |
   evidence-only | quarantined | unknown | unresolved`. Record explicit inputs (path +
   SHA-256) for derived/generated work. Preserve uncertainty.
-- Validate before/after changes: `python3 TOOLS/lore_validate.py` (expect `14 passed, 0 failed`).
-
+- Prefer the unified form `lore <verb>` when available (see AGENTS.md). Fallback:
+  `python3 TOOLS/lore_validate.py` (expect `14 passed, 0 failed`).
+  
 ## Adopting a hat (persona / lens)
 
 **Conversational protocol (works on any surface, incl. github.com - no terminal needed).**
@@ -35,7 +36,8 @@ When the user says **`hat <LENS-ID>`** (optionally `--profile maintainer`; defau
    and reprint the EXPERIMENTAL banner.
 - `hat list` → list the lens IDs from `lenses.md`.  `hat off` → return to the maintainer default.
 
-**Terminal alternative:** `python3 TOOLS/lore_prompt.py <LENS-ID>` prints the same composed prompt.
+**Terminal alternative:** prefer `lore prompt <LENS-ID>` when available; otherwise
+`python3 TOOLS/lore_prompt.py <LENS-ID>` prints the same composed prompt.
 
 **Named-lens rule (mandatory):** a named lens is "grounded in the public work of" that person -
 never their actual opinion or endorsement (ALIAS != IDENTITY; no fabricated provenance). A
