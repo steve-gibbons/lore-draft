@@ -1,0 +1,10 @@
+id: AUTH-SECURITY-TEAM-001
+type: authority
+status: candidate
+issuer: OBJREF-ORG-ROOT-001
+subject: OBJREF-SECURITY-TEAM-001
+scope: access-management
+derives_from: delegation
+constraints: "production only"
+# Valid: authority WITH lineage - derives_from records where it came from (delegation), chaining
+# to an issuer. Possession without lineage is not authority (invariant 11 / Vol 1 §13).

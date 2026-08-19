@@ -1,0 +1,6 @@
+id: POLICY-VAGUE-001
+type: policy
+status: candidate
+statement: "Be careful."
+# Negative: a policy with no applies_to (scope). Check 4 must reject it - a policy must say what
+# it governs, or it cannot drive authorization decisions.

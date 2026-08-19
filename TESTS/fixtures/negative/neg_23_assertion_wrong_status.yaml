@@ -1,0 +1,9 @@
+id: ASSERT-WRONG-STATUS-001
+type: assertion
+status: accepted
+claim: "All logs were reviewed and found clean."
+# Negative: an assertion with author-only status 'accepted' and no signature reference.
+# Check 2 must reject it: author-only status requires either a provenance.signature +
+# signer_fpr reference OR the deprecated author_preseeded boolean.
+# Additionally, Check 4 must warn: ASSERTION != TRUTH — assertions must hold
+# agent-writable status only (Vol 1 §9).

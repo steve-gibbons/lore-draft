@@ -1,0 +1,10 @@
+id: ASSERT-OVERREACH-001
+type: assertion
+status: accepted
+claim: "The payments API is healthy in production."
+provenance:
+  author_preseeded: true
+# Negative: an assertion trying to hold an author-only/authoritative status ('accepted').
+# author_preseeded makes Check 2 only warn (not error), isolating the ontology rule:
+# Check 4 must reject this because ASSERTION != TRUTH - a claim cannot declare itself
+# authoritative truth, even when preseeded (Vol 1 §9).

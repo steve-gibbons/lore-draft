@@ -1,0 +1,9 @@
+id: ALIAS-NAKED-001
+type: object-ref
+subkind: alias
+status: candidate
+target_id: OBJREF-UNKNOWN-001
+alias: admin
+alias_type: role
+# Negative: an alias missing resolves_to / owner / resolution_history. Check 4 must reject it -
+# aliases MUST preserve type/resolution/ownership/history (Vol 2 §19). "admin" alone is the danger.

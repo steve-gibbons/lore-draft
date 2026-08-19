@@ -1,0 +1,10 @@
+id: ACT-EXTERNAL-ACCOUNTED-001
+type: act
+status: candidate
+actor: OBJREF-AGENT-NOTIFY-001
+action: post
+effect: external
+accountable: OBJREF-HUMAN-OPS-LEAD-001
+subject: OBJREF-WEBHOOK-ENDPOINT-001
+# Positive: an external act (crosses trust boundary) with accountable human named.
+# Check 4 must accept it: effect 'external' requires 'accountable', and it is present.

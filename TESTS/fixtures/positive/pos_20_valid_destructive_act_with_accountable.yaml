@@ -1,0 +1,12 @@
+id: ACT-DELETE-ACCOUNTED-001
+type: act
+status: candidate
+actor: OBJREF-AGENT-OPS-001
+action: delete
+effect: destructive
+accountable: OBJREF-HUMAN-OPS-LEAD-001
+subject: EVID-ARCHIVE-001
+# Positive: a destructive act that correctly names an accountable human principal.
+# Check 4 must accept it: effect 'destructive' requires an 'accountable' field naming
+# a principal (invariant 13). The accountable principal must be a human kind at
+# principal-validation time.

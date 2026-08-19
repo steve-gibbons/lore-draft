@@ -1,0 +1,8 @@
+id: REL-UNTYPED-001
+type: relationship
+status: candidate
+subject: OBJREF-ADMIN-001
+object: OBJREF-PAYMENTS-SERVICE-001
+# Negative: a relationship with subject and object but NO predicate - an untyped edge. Check 4
+# must reject it: relationships must be explicit and TYPED, not hidden in undocumented
+# conventions (Vol 1 §19). This is the flat-graph gap the enforcement closes.

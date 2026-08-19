@@ -1,0 +1,9 @@
+id: CAP-MISSING-REQUIRED-001
+type: capability
+status: candidate
+holder: OBJREF-AGENT-SCAN-001
+action: WRITE
+scope: /staging/data/*
+# Negative: a capability with no 'issuer' field. Check 4 must reject it:
+# capabilities require issuer + holder + action + scope (Vol 2 §28 Inv 1).
+# Missing issuer means the grant cannot be traced (no authority lineage).

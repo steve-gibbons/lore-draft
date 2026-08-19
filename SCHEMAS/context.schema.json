@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://lore.corpus.workbench/schemas/context.schema.json",
+  "title": "Context Schema",
+  "description": "Information required to interpret objects, assertions, and actions (Vol 1 §16). Context carries a trust level: CONTEXT_HINT is potentially-useful-but-UNTRUSTED information (e.g. an agent passing prior conversation to another agent) - CONTEXT_HINT != ASSERTION != TRUSTED_CONTEXT (Vol 1 §17). A hint MUST therefore hold an agent-writable status (it cannot be authoritative); promotion to trusted context requires explicit justification (Vol 1 §18). This is the type behind the reduced-trust handoff in DECISION-DEPLOYMENT-UPDATE-MODEL-001. Enforced by TOOLS/lore_validate.py Check 4.",
+  "type": "object",
+  "required": ["id", "type", "status", "trust_level", "purpose"],
+  "properties": {
+    "id": { "type": "string" },
+    "type": { "type": "string", "const": "context" },
+    "status": { "type": "string" },
+    "trust_level": {
+      "type": "string",
+      "description": "hint = untrusted (must be agent-writable); assertion = claimed; trusted = validated with justification.",
+      "enum": ["hint", "assertion", "trusted"]
+    },
+    "purpose": { "type": "string", "description": "why this context exists / how it should be used." },
+    "promotion_justification": { "type": "string", "description": "required to reach trust_level 'trusted' (Vol 1 §18)." },
+    "assumptions": { "type": "string" },
+    "constraints": { "type": "string" }
+  },
+  "additionalProperties": true
+}

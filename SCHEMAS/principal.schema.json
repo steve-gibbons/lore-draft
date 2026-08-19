@@ -1,0 +1,17 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://lore.corpus.workbench/schemas/principal.schema.json",
+  "title": "Principal Schema",
+  "description": "An identity-bearing noun (a person or thing with an assigned identity). The identity is the basis for determining the principal's authorization and capabilities, evaluated against policies. `principal_kind` is required because accountability depends on it: per CORE-INVARIANT 13, only a HUMAN principal can hold the Accountable role; a `thing` principal cannot be accountable and must never make permanent/risky-permanent decisions alone. Enforced by lore_validate.py Check 4.",
+  "type": "object",
+  "required": ["id", "type", "status", "identity", "principal_kind"],
+  "properties": {
+    "id": { "type": "string" },
+    "type": { "type": "string", "const": "principal" },
+    "status": { "type": "string" },
+    "identity": { "type": "string", "description": "the assigned identity (the basis for authz/capability)." },
+    "principal_kind": { "type": "string", "enum": ["human", "thing", "organization", "service"], "description": "only 'human' may be Accountable (invariant 13)." },
+    "policies": { "type": "array", "items": { "type": "string" }, "description": "object-ref id(s) of policies that govern this principal." }
+  },
+  "additionalProperties": true
+}

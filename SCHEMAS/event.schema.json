@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://lore.corpus.workbench/schemas/event.schema.json",
+  "title": "Event Schema",
+  "description": "A meaningful transition (Vol 1 §15: creation, delegation, approval, revocation, recovery, lifecycle change). Events preserve history; without them systems lose causality, accountability, and explanation - so event_type (what), timestamp (when), actor (who), and subject (on what) are required. The ontology calls for events even though the store is currently file-state (cf. KF-15). Enforced by TOOLS/lore_validate.py Check 4.",
+  "type": "object",
+  "required": ["id", "type", "status", "event_type", "timestamp", "actor", "subject"],
+  "properties": {
+    "id": { "type": "string" },
+    "type": { "type": "string", "const": "event" },
+    "status": { "type": "string" },
+    "event_type": { "type": "string", "description": "the kind of transition, e.g. approval, revocation, recovery." },
+    "timestamp": { "type": "string", "description": "when the transition occurred (causality)." },
+    "actor": { "type": "string", "description": "object-ref id of who/what caused it (accountability)." },
+    "subject": { "type": "string", "description": "object-ref id of what transitioned." },
+    "previous_state": { "type": "string" },
+    "new_state": { "type": "string" },
+    "context": { "type": "string" }
+  },
+  "additionalProperties": true
+}

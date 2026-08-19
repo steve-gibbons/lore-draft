@@ -1,0 +1,9 @@
+id: PRIN-AGENT-RECON-001
+type: principal
+status: candidate
+identity: "agent:recon@lore.local"
+principal_kind: thing
+policies:
+  - OBJREF-POLICY-READONLY-001
+# Valid: an identity-bearing principal. principal_kind: thing -> per invariant 13 it can never be
+# Accountable and must not make permanent/risky-permanent decisions on its own.

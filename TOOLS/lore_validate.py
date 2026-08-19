@@ -3,6 +3,9 @@
 LORE Corpus Workbench Validator (TOOLS/lore_validate.py)
 Implements 10 minimum governance, structural, and schema checks per AGENTS v3 specification.
 Standard Python 3 implementation with zero external dependencies.
+
+YAML parsing: delegates to lore_common.load_simple_yaml (single shared fallback parser).
+lore_build_manifest imports load_doc from here as the single source of truth (KF-03).
 """
 
 import sys
@@ -13,75 +16,21 @@ import hashlib
 import stat
 import argparse
 
-class SimpleYAMLParser:
-    """Minimal recursive dependency-free YAML parser for dictionaries, lists, and scalars."""
-    @staticmethod
-    def parse(content):
-        lines = content.splitlines()
-        
-        def parse_node(index, indent):
-            res = None
-            while index < len(lines):
-                line = lines[index]
-                # Strip comments unless in quotes
-                comment_idx = line.find('#')
-                if comment_idx != -1:
-                    if not (line[:comment_idx].count('"') % 2 != 0 or line[:comment_idx].count("'") % 2 != 0):
-                        line = line[:comment_idx]
-                if not line.strip():
-                    index += 1
-                    continue
-                
-                cur_indent = len(line) - len(line.lstrip())
-                if cur_indent < indent:
-                    break
-                
-                stripped = line.strip()
-                if stripped.startswith('- '):
-                    if res is None: res = []
-                    val = stripped[2:].strip().strip('"\'')
-                    if val.lower() == 'true': val = True
-                    elif val.lower() == 'false': val = False
-                    if isinstance(res, list):
-                        res.append(val)
-                    index += 1
-                elif ':' in stripped:
-                    if res is None: res = {}
-                    parts = stripped.split(':', 1)
-                    key = parts[0].strip().strip('"\'')
-                    val_str = parts[1].strip()
-                    if not val_str:
-                        child, next_idx = parse_node(index + 1, cur_indent + 1)
-                        if isinstance(res, dict):
-                            res[key] = child if child is not None else []
-                        index = next_idx
-                    else:
-                        val = val_str.strip('"\'')
-                        if val.lower() == 'true': val = True
-                        elif val.lower() == 'false': val = False
-                        elif val.startswith('[') and val.endswith(']'):
-                            val = [i.strip().strip('"\'') for i in val[1:-1].split(',') if i.strip()]
-                        if isinstance(res, dict):
-                            res[key] = val
-                        index += 1
-                else:
-                    index += 1
-            return res, index
+sys.path.insert(0, os.path.dirname(__file__))
+from lore_common import load_simple_yaml as _load_simple_yaml
 
-        res, _ = parse_node(0, 0)
-        return res if res is not None else {}
 
 def load_doc(filepath):
-    """Load JSON or YAML file."""
+    """Load JSON or YAML file. Single parser source of truth (KF-03, shared with lore_common)."""
     with open(filepath, 'r', encoding='utf-8') as f:
         content = f.read()
     if filepath.endswith('.json'):
         return json.loads(content)
-    else:
-        try:
-            return json.loads(content)
-        except Exception:
-            return SimpleYAMLParser.parse(content)
+    # Try JSON first (some .yaml files are actually JSON), then YAML fallback.
+    try:
+        return json.loads(content)
+    except Exception:
+        return _load_simple_yaml(content)
 
 def get_registry(repo_root):
     reg_path = os.path.join(repo_root, 'REGISTRIES', 'artifact-statuses.yaml')
@@ -122,41 +71,47 @@ def load_trusted_signers(repo_root):
             signers[fpr] = parts[1]
     return signers
 
-def collect_corpus_ids(repo_root):
-    """Scan all .yaml/.yml/.json files in the repo (except TESTS/fixtures) and collect
-    every `id` field value. Used by Check 7 to detect `resolved: true` on object-refs
-    whose target_id is not present in the local corpus (A-08).
-
-    Returns a frozenset of known IDs, or an empty set on failure. This is best-effort:
-    the private corpus may hold IDs not present here, so a miss produces a warning, not
-    an error. Lazily populated on first call via LoreValidator._corpus_ids.
-    """
-    skip_dirs = {'.git', 'TESTS', 'SANDBOX', 'INTEGRATIONS'}
-    ids = set()
-    for root, dirs, files in os.walk(repo_root):
-        dirs[:] = [d for d in dirs if d not in skip_dirs]
-        for f in files:
-            if not f.endswith(('.yaml', '.yml', '.json')):
-                continue
-            path = os.path.join(root, f)
-            try:
-                doc = load_doc(path)
-                if isinstance(doc, dict):
-                    artifact_id = doc.get('id')
-                    if artifact_id and isinstance(artifact_id, str):
-                        ids.add(artifact_id)
-            except Exception:
-                pass
-    return frozenset(ids)
-
-
 class LoreValidator:
     def __init__(self, repo_root):
         self.repo_root = repo_root
         self.agent_writable, self.author_only, self.transitions = get_registry(repo_root)
         self.all_statuses = (self.agent_writable or set()).union(self.author_only or set())
         self.trusted_signers = load_trusted_signers(repo_root)
-        self._corpus_ids = None  # populated lazily on first object-ref check
+        # Per-run cache for Check 7 local object resolution.
+        # None = not yet scanned. dict = {id: True} for every id found in workbench.
+        self._obj_id_cache = None  # type: ignore[assignment]
+
+    def _build_obj_id_cache(self):
+        """Walk ~/.lore/objects once per validator run and index all object ids."""
+        cache = {}
+        lore_home = os.environ.get('LORE_HOME', os.path.expanduser('~/.lore'))
+        objects_base = os.path.join(lore_home, 'objects')
+        if not os.path.isdir(objects_base):
+            return None  # No local workbench present
+        for dirpath, _dirs, files in os.walk(objects_base):
+            for fname in files:
+                if not fname.endswith(('.yaml', '.json')):
+                    continue
+                fpath = os.path.join(dirpath, fname)
+                try:
+                    with open(fpath, encoding='utf-8') as _fh:
+                        txt = _fh.read()
+                    d = json.loads(txt) if fpath.endswith('.json') else _load_simple_yaml(txt)
+                    oid = (d or {}).get('lore', {}).get('id')
+                    if oid:
+                        cache[oid] = True
+                except Exception:
+                    pass
+        return cache
+
+    def _resolve_id_locally(self, target_id: str):
+        """Return True if target_id found locally, False if not, None if no workbench.
+        Builds the cache on first call; subsequent calls are O(1) dict lookups."""
+        if self._obj_id_cache is None:
+            self._obj_id_cache = self._build_obj_id_cache()
+        if self._obj_id_cache is None:
+            return None  # No local workbench — nothing to check
+        return self._obj_id_cache.get(target_id, False)
 
     def validate_file(self, filepath):
         doc = load_doc(filepath)
@@ -221,6 +176,7 @@ class LoreValidator:
 
         # Check 4: Schema Conformance Check
         doc_type = doc.get('type')
+        subkind = doc.get('subkind')
         if doc_type == 'transformation-record':
             if 'inputs' not in doc: errors.append("Check 4 Fail: transformation-record missing required field 'inputs'.")
             if 'transformation' not in doc: errors.append("Check 4 Fail: transformation-record missing required field 'transformation'.")
@@ -237,8 +193,88 @@ class LoreValidator:
             if 'actor' not in doc: errors.append("Check 4 Fail: break-glass-record missing required field 'actor'.")
             if 'reason' not in doc: errors.append("Check 4 Fail: break-glass-record missing required field 'reason'.")
             if 'scope' not in doc: errors.append("Check 4 Fail: break-glass-record missing required field 'scope'.")
+        # --- Canonical ontology (DECISION-ONTOLOGY-CANONICAL-KERNEL-001): abstract `object` base;
+        #     concrete flavors keyed by `type`(=kind) + optional `subkind`. ---
+        elif doc_type == 'object':
+            # Layer-0 ABSTRACT base: describes anything; never stored bare.
+            errors.append("Check 4 Fail: 'object' is the ABSTRACT base kind and must not be stored "
+                          "directly - use a concrete flavor (principal, policy, object-ref, "
+                          "relationship, act, assertion, authority, capability).")
+        elif doc_type == 'principal':
+            # Identity-bearing noun: identity is the basis for authz/capability (via policy).
+            if 'identity' not in doc:
+                errors.append("Check 4 Fail: principal missing required field 'identity'.")
+            if doc.get('principal_kind') not in ('human', 'thing', 'organization', 'service'):
+                errors.append("Check 4 Fail: principal missing/invalid 'principal_kind' "
+                              "(human|thing|organization|service) - accountability depends on it "
+                              "(invariant 13: only a human principal can be Accountable).")
+        elif doc_type == 'policy':
+            # Rule-noun: governs authorization/capability decisions.
+            for rf in ('statement', 'applies_to'):
+                if rf not in doc:
+                    errors.append(f"Check 4 Fail: policy missing required field '{rf}'.")
         elif doc_type == 'object-ref':
-            if 'target_id' not in doc: errors.append("Check 4 Fail: object-ref missing required field 'target_id'.")
+            # Pointer; OBJECT_REF != OBJECT. subkind 'alias' = a named ref; ALIAS != IDENTITY.
+            if 'target_id' not in doc:
+                errors.append("Check 4 Fail: object-ref missing required field 'target_id'.")
+            if subkind == 'alias':
+                for rf in ('alias', 'alias_type', 'resolves_to', 'owner', 'resolution_history'):
+                    if rf not in doc:
+                        errors.append(f"Check 4 Fail: object-ref/alias missing required field '{rf}' "
+                                      "(ALIAS != IDENTITY: preserve type/resolution/ownership/history, Vol 2 §19).")
+        elif doc_type == 'relationship':
+            # Explicit, typed edge (Vol 1 §19): subject -predicate-> object.
+            for rf in ('subject', 'predicate', 'object'):
+                if rf not in doc:
+                    errors.append(f"Check 4 Fail: relationship missing required field '{rf}' "
+                                  "(relationships must be explicit and typed, Vol 1 §19).")
+        elif doc_type == 'act':
+            # Verb. subkind 'event' = an act with a trigger (temporal).
+            for rf in ('actor', 'action'):
+                if rf not in doc:
+                    errors.append(f"Check 4 Fail: act missing required field '{rf}'.")
+            if subkind == 'event' and 'trigger' not in doc:
+                errors.append("Check 4 Fail: act/event missing required 'trigger' "
+                              "(an event is an act with a trigger).")
+            # Accountability (invariant 13): a risky/permanent act must name who is accountable.
+            if doc.get('effect') in ('destructive', 'external') and 'accountable' not in doc:
+                errors.append(f"Check 4 Fail: act with effect '{doc.get('effect')}' must name an "
+                              "'accountable' principal (invariant 13: a thing cannot be accountable).")
+        elif doc_type == 'assertion':
+            # A claim; ASSERTION != TRUTH -> agent-writable status only. Subkinds below.
+            if 'claim' not in doc:
+                errors.append("Check 4 Fail: assertion missing required field 'claim'.")
+            if status and self.agent_writable and status not in self.agent_writable:
+                errors.append(f"Check 4 Fail: ASSERTION != TRUTH - an assertion (and its subkinds) "
+                              f"must hold an agent-writable status, not '{status}' (Vol 1 §9).")
+            if subkind == 'evidence':
+                for rf in ('source', 'method', 'collected'):
+                    if rf not in doc:
+                        errors.append(f"Check 4 Fail: assertion/evidence missing contextual field "
+                                      f"'{rf}' (evidence is contextual, Vol 1 §11).")
+            elif subkind == 'evaluation':
+                for rf in ('criteria', 'verdict'):
+                    if rf not in doc:
+                        errors.append(f"Check 4 Fail: assertion/evaluation missing required field '{rf}'.")
+            elif subkind == 'context-hint':
+                if 'purpose' not in doc:
+                    errors.append("Check 4 Fail: assertion/context-hint missing required 'purpose' "
+                                  "(untrusted handoff; CONTEXT_HINT != TRUSTED_CONTEXT, Vol 1 §17-18).")
+        elif doc_type == 'authority':
+            # Right to grant/decide; MUST have lineage (invariant 11) - enforced separately.
+            for rf in ('issuer', 'subject', 'scope', 'derives_from'):
+                if rf not in doc:
+                    errors.append(f"Check 4 Fail: authority missing required field '{rf}' "
+                                  "(authority has lineage - possession without lineage is not authority, invariant 11).")
+        elif doc_type == 'capability':
+            # Bounded permission; MUST have explicit scope (Vol 2 §28) - enforced separately.
+            for rf in ('issuer', 'holder', 'action', 'scope'):
+                if rf not in doc:
+                    errors.append(f"Check 4 Fail: capability missing required field '{rf}' "
+                                  "(capabilities MUST have explicit scope, Vol 2 §28 Inv 1).")
+            if 'expiration' not in doc:
+                warnings.append("Check 4 (recommended): capability has no 'expiration' - "
+                                "capabilities SHOULD be time-bounded (Vol 2 §6/§13).")
 
         # Check 5: Hash & Provenance Check
         sha256 = doc.get('sha256')
@@ -251,30 +287,26 @@ class LoreValidator:
                 if actual_hash.lower() != sha256.lower():
                     errors.append(f"Check 5 Fail: SHA256 mismatch for '{rel_path}'. Expected {sha256}, got {actual_hash}.")
 
-        # Check 7: Object Ref Integrity Check (A-08 hardening)
-        # Confirms target_id is a non-empty string (existing check), and additionally
-        # warns when `resolved: true` is self-declared but the target_id is not found in
-        # the local corpus. A miss is a WARNING (not an error): the target may legitimately
-        # live in the private canonical corpus or be a future artifact. The warning flags
-        # that `resolved: true` is an unverified assertion so reviewers are not misled.
+        # Check 7: Object Ref Integrity Check
+        # Validates target_id format and, when the local workbench objects dir is present,
+        # warns (ADVISORY — non-blocking) if the referenced object is not found locally.
+        # The warning is clearly labelled [advisory] to prevent operators from treating an
+        # unresolved reference as a validated dependency relationship.
         if doc_type == 'object-ref':
             target_id = doc.get('target_id')
             if not target_id or not isinstance(target_id, str):
                 errors.append("Check 7 Fail: Invalid or missing target_id in object-ref.")
             else:
-                resolved = doc.get('resolved')
-                if resolved is True:
-                    # Lazily build corpus ID index on first object-ref encountered.
-                    if self._corpus_ids is None:
-                        self._corpus_ids = collect_corpus_ids(self.repo_root)
-                    if target_id not in self._corpus_ids:
-                        warnings.append(
-                            f"Check 7 (resolved): object-ref declares resolved=true for "
-                            f"target_id '{target_id}', but that id was not found in the "
-                            "local corpus. If the target lives in the private corpus or is "
-                            "a future artifact this is expected — verify manually and "
-                            "consider using resolved=false until the target is local."
-                        )
+                # Best-effort local resolution using a per-run cache (built lazily).
+                # Uses the per-instance cache self._obj_id_cache so each validator
+                # instantiation pays the scan cost at most once, not once per object-ref.
+                found_locally = self._resolve_id_locally(target_id)
+                if found_locally is False:  # None means "no local workbench to check"
+                    warnings.append(
+                        f"[advisory] Check 7: object-ref target_id '{target_id}' not found "
+                        "in local workbench objects — may be a remote or future reference. "
+                        "This warning is non-blocking; it does not validate the reference exists."
+                    )
 
         # Check 8: Explicit Transformation Provenance
         if doc_type == 'transformation-record' or status in ('derived', 'generated'):
@@ -300,16 +332,29 @@ class LoreValidator:
         """
         intake_raw = os.path.join(self.repo_root, 'INTAKE', 'raw')
         manifest_path = os.path.join(self.repo_root, 'INTAKE', 'RAW-MANIFEST.sha256')
-        skip = {'README.md', '.DS_Store'}
+        skip_names = {'README.md', '.DS_Store'}
+        skip_suffixes = {'.gdoc'}  # live Drive sync pointers — content races sync process
         errors = []
         if not os.path.exists(intake_raw):
+            # No raw directory at all. If a manifest exists its entries would all be
+            # "missing on disk" — that is a real problem, not a vacuous pass.
+            if os.path.exists(manifest_path):
+                return False, [
+                    "Check 6 Fail: INTAKE/RAW-MANIFEST.sha256 exists but INTAKE/raw "
+                    "directory is absent — manifest entries cannot be verified."
+                ]
             return True, []
 
         # Actual raw files on disk -> sha256 (paths relative to INTAKE/raw)
         actual = {}
+        excluded = []
         for root, dirs, files in os.walk(intake_raw):
             for f in files:
-                if f in skip:
+                if f in skip_names:
+                    continue
+                if any(f.endswith(s) for s in skip_suffixes):
+                    rel = os.path.relpath(os.path.join(root, f), intake_raw)
+                    excluded.append(rel)
                     continue
                 full_p = os.path.join(root, f)
                 rel = os.path.relpath(full_p, intake_raw)
@@ -332,6 +377,12 @@ class LoreValidator:
             return False, ["Check 6 Fail: raw evidence present but INTAKE/RAW-MANIFEST.sha256 "
                            "is missing (run TOOLS/lore_freeze_raw.py)."]
 
+        # Warn about excluded files — they exist in INTAKE/raw but are outside the
+        # integrity boundary. This is intentional but must be visible to the author.
+        warnings = []
+        for rel in sorted(excluded):
+            warnings.append(f"Check 6 Warn: '{rel}' excluded from integrity check (live sync artifact — not verifiable).")
+
         for rel, sha in sorted(actual.items()):
             if rel not in expected:
                 errors.append(f"Check 6 Fail: unrecorded raw file (not in manifest): '{rel}'.")
@@ -340,7 +391,9 @@ class LoreValidator:
         for rel in sorted(expected):
             if rel not in actual:
                 errors.append(f"Check 6 Fail: manifest evidence missing on disk: '{rel}'.")
-        return len(errors) == 0, errors
+
+        all_messages = warnings + errors
+        return len(errors) == 0, all_messages
 
     def check_corpus_manifest(self):
         """Check 10: Corpus Manifest Integrity Check."""
@@ -362,26 +415,78 @@ class LoreValidator:
         return len(errors) == 0, errors
 
 def main():
-    parser = argparse.ArgumentParser(description="LORE Corpus Workbench Standalone Validator")
-    parser.add_argument("--path", help="Specific file or directory to validate")
+    parser = argparse.ArgumentParser(
+        description="LORE Corpus Workbench Standalone Validator",
+        epilog=(
+            "Single-artifact mode:  --file path/to/artifact.yaml\n"
+            "                       --stdin  (reads YAML/JSON from stdin)\n"
+            "Full corpus mode (default): runs all 10 checks + fixtures."
+        ),
+        formatter_class=argparse.RawTextHelpFormatter,
+    )
+    parser.add_argument("--path", help="Directory to scan (default: full fixture suite)")
+    parser.add_argument("--file", metavar="FILE",
+                        help="Validate a single artifact file and exit")
+    parser.add_argument("--stdin", action="store_true",
+                        help="Read a single artifact from stdin and validate it")
     args = parser.parse_args()
 
     repo_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
     validator = LoreValidator(repo_root)
 
+    # --- Single-artifact mode (--file or --stdin) ----------------------------
+    if args.file or args.stdin:
+        if args.stdin:
+            import tempfile
+            content = sys.stdin.read()
+            # write to a temp file so validate_file can open it by path
+            suffix = ".yaml"
+            with tempfile.NamedTemporaryFile(mode='w', suffix=suffix,
+                                             delete=False, encoding='utf-8') as tmp:
+                tmp.write(content)
+                tmp_path = tmp.name
+            filepath = tmp_path
+            label = "<stdin>"
+        else:
+            filepath = os.path.abspath(args.file)
+            label = args.file
+            if not os.path.isfile(filepath):
+                print(f"Error: file not found: {filepath}", file=sys.stderr)
+                sys.exit(2)
+
+        ok, errs, warns = validator.validate_file(filepath)
+
+        if args.stdin:
+            try:
+                os.unlink(tmp_path)
+            except OSError:
+                pass
+
+        tag = "[PASS]" if ok else "[FAIL]"
+        print(f"{tag} {label}")
+        for w in warns:
+            print(f"  ~ {w}")
+        for e in errs:
+            print(f"  - {e}")
+        sys.exit(0 if ok else 1)
+
+    # --- Full corpus mode (default) ------------------------------------------
     print("=== LORE Corpus Workbench Validator (10 Core Checks) ===")
-    
+
     total_passed = 0
     total_failed = 0
 
     # 1. Validate INTAKE/raw Immutability (Check 6)
-    c6_ok, c6_errs = validator.check_intake_raw_immutability()
+    c6_ok, c6_msgs = validator.check_intake_raw_immutability()
     if c6_ok:
         print("[PASS] Check 6: INTAKE/raw Integrity (manifest)")
+        for m in c6_msgs: print(f"  ~ {m}")  # warnings only on pass
         total_passed += 1
     else:
         print("[FAIL] Check 6: INTAKE/raw Integrity (manifest)")
-        for e in c6_errs: print(f"  - {e}")
+        for m in c6_msgs:
+            prefix = "  ~ " if "Warn:" in m else "  - "
+            print(f"{prefix}{m}")
         total_failed += 1
 
     # 2. Validate Corpus Manifest Integrity (Check 10)
@@ -394,42 +499,65 @@ def main():
         for e in c10_errs: print(f"  - {e}")
         total_failed += 1
 
-    # 3. Test Fixtures
-    pos_dir = os.path.join(repo_root, 'TESTS', 'fixtures', 'positive')
-    neg_dir = os.path.join(repo_root, 'TESTS', 'fixtures', 'negative')
-
-    pos_fixtures = [os.path.join(pos_dir, f) for f in os.listdir(pos_dir) if f.endswith(('.yaml', '.yml'))] if os.path.exists(pos_dir) else []
-    neg_fixtures = [os.path.join(neg_dir, f) for f in os.listdir(neg_dir) if f.endswith(('.yaml', '.yml'))] if os.path.exists(neg_dir) else []
-
-    print(f"\n--- Validating Positive Fixtures ({len(pos_fixtures)}) ---")
-    for pf in sorted(pos_fixtures):
-        fname = os.path.basename(pf)
-        ok, errs, warns = validator.validate_file(pf)
-        if ok:
-            print(f"[PASS] Positive Fixture: {fname}")
+    # 3. Test Fixtures (or --path override)
+    if args.path:
+        # validate all YAML/JSON files under a given directory
+        target_dir = os.path.abspath(args.path)
+        target_files = []
+        for dirpath, _, files in os.walk(target_dir):
+            for f in sorted(files):
+                if f.endswith(('.yaml', '.yml', '.json')):
+                    target_files.append(os.path.join(dirpath, f))
+        print(f"\n--- Validating files under {target_dir} ({len(target_files)}) ---")
+        for fp in target_files:
+            fname = os.path.relpath(fp, target_dir)
+            ok, errs, warns = validator.validate_file(fp)
+            tag = "[PASS]" if ok else "[FAIL]"
+            print(f"{tag} {fname}")
             for w in warns: print(f"  ~ {w}")
-            total_passed += 1
-        else:
-            print(f"[FAIL] Positive Fixture: {fname}")
             for e in errs: print(f"  - {e}")
-            total_failed += 1
+            total_passed, total_failed = (
+                (total_passed + 1, total_failed) if ok else (total_passed, total_failed + 1)
+            )
+    else:
+        pos_dir = os.path.join(repo_root, 'TESTS', 'fixtures', 'positive')
+        neg_dir = os.path.join(repo_root, 'TESTS', 'fixtures', 'negative')
 
-    print(f"\n--- Validating Negative Fixtures ({len(neg_fixtures)}) ---")
-    for nf in sorted(neg_fixtures):
-        fname = os.path.basename(nf)
-        ok, errs, warns = validator.validate_file(nf)
-        if not ok:
-            print(f"[PASS] Negative Fixture Correctly Rejected: {fname}")
-            total_passed += 1
-        else:
-            print(f"[FAIL] Negative Fixture Unexpectedly Passed: {fname}")
-            total_failed += 1
+        pos_fixtures = sorted(
+            [os.path.join(pos_dir, f) for f in os.listdir(pos_dir)
+             if f.endswith(('.yaml', '.yml'))]
+        ) if os.path.exists(pos_dir) else []
+        neg_fixtures = sorted(
+            [os.path.join(neg_dir, f) for f in os.listdir(neg_dir)
+             if f.endswith(('.yaml', '.yml'))]
+        ) if os.path.exists(neg_dir) else []
+
+        print(f"\n--- Validating Positive Fixtures ({len(pos_fixtures)}) ---")
+        for pf in pos_fixtures:
+            fname = os.path.basename(pf)
+            ok, errs, warns = validator.validate_file(pf)
+            if ok:
+                print(f"[PASS] Positive Fixture: {fname}")
+                for w in warns: print(f"  ~ {w}")
+                total_passed += 1
+            else:
+                print(f"[FAIL] Positive Fixture: {fname}")
+                for e in errs: print(f"  - {e}")
+                total_failed += 1
+
+        print(f"\n--- Validating Negative Fixtures ({len(neg_fixtures)}) ---")
+        for nf in neg_fixtures:
+            fname = os.path.basename(nf)
+            ok, errs, warns = validator.validate_file(nf)
+            if not ok:
+                print(f"[PASS] Negative Fixture Correctly Rejected: {fname}")
+                total_passed += 1
+            else:
+                print(f"[FAIL] Negative Fixture Unexpectedly Passed: {fname}")
+                total_failed += 1
 
     print(f"\nSummary: {total_passed} passed, {total_failed} failed.")
-    if total_failed > 0:
-        sys.exit(1)
-    else:
-        sys.exit(0)
+    sys.exit(1 if total_failed > 0 else 0)
 
 if __name__ == '__main__':
     main()

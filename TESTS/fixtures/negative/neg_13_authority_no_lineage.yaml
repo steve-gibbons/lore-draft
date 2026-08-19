@@ -1,0 +1,8 @@
+id: AUTH-SELF-ASSERTED-001
+type: authority
+status: candidate
+issuer: OBJREF-UNKNOWN-001
+subject: OBJREF-SOMEONE-001
+scope: everything
+# Negative: authority with no derives_from - it claims scope but shows no lineage. Check 4 must
+# reject it: possession without lineage is not authority (CORE-INVARIANT 11 / Vol 1 §13).

@@ -1,0 +1,17 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://lore.corpus.workbench/schemas/policy.schema.json",
+  "title": "Policy Schema",
+  "description": "A rule-noun: a kind of thing that governs authorization and capability decisions. A principal's authorization and capabilities are determined from its identity by evaluating the applicable policies. Enforced by lore_validate.py Check 4.",
+  "type": "object",
+  "required": ["id", "type", "status", "statement", "applies_to"],
+  "properties": {
+    "id": { "type": "string" },
+    "type": { "type": "string", "const": "policy" },
+    "status": { "type": "string" },
+    "statement": { "type": "string", "description": "the rule, in human- and machine-readable form." },
+    "applies_to": { "type": "string", "description": "the scope/subjects the policy governs." },
+    "effect": { "type": "string", "description": "optional: permit | deny | require-gate, etc." }
+  },
+  "additionalProperties": true
+}

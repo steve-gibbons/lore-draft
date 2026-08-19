@@ -1,0 +1,16 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://lore.corpus.workbench/schemas/object.schema.json",
+  "title": "Object Schema (ABSTRACT base)",
+  "description": "Layer 0 of the canonical ontology (DECISION-ONTOLOGY-CANONICAL-KERNEL-001): `object` describes ANYTHING and is the abstract base every concrete kind inherits - the envelope only (id, type=kind, subkind?, status, provenance, content-sha). It is NEVER stored bare; store a concrete flavor instead (principal, policy, object-ref, relationship, act, assertion, authority, capability). `thing` and `state` are derived projections, not stored kinds. Enforced by lore_validate.py Check 4 (a bare `type: object` is rejected).",
+  "type": "object",
+  "required": ["id", "type", "status"],
+  "properties": {
+    "id": { "type": "string" },
+    "type": { "type": "string", "description": "the concrete kind (never the literal 'object', which is abstract)." },
+    "subkind": { "type": "string", "description": "optional refinement of the kind (e.g. alias, event, evidence, evaluation, context-hint)." },
+    "status": { "type": "string" },
+    "provenance": { "type": "object" }
+  },
+  "additionalProperties": true
+}

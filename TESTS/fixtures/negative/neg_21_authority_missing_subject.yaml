@@ -1,0 +1,9 @@
+id: AUTH-NO-SUBJECT-001
+type: authority
+status: candidate
+issuer: OBJREF-ORG-ROOT-001
+scope: audit-log-read
+derives_from: delegation
+# Negative: an authority record missing 'subject'. Check 4 must reject it:
+# authority requires issuer + subject + scope + derives_from (invariant 11 -
+# authority has lineage; possession without subject is unbound authority).

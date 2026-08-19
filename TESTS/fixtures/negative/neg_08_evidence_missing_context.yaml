@@ -1,0 +1,7 @@
+id: EVID-NAKED-001
+type: assertion
+subkind: evidence
+status: evidence-only
+claim: "healthy"
+# Negative: an evidence assertion with no source/method/collected. Check 4 must reject it -
+# evidence is contextual (Vol 1 §11); "healthy" alone is the anti-pattern.

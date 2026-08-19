@@ -1,0 +1,11 @@
+id: CAP-NO-EXPIRY-WARN-001
+type: capability
+status: proposed
+issuer: OBJREF-AUTH-SECURITY-TEAM-001
+holder: OBJREF-AGENT-RECON-001
+action: READ
+scope: /internal/metrics/*
+# Positive: a capability with all required fields (issuer, holder, action, scope) but no
+# 'expiration'. Check 4 must ACCEPT it but emit a warning: capabilities SHOULD be
+# time-bounded (Vol 2 §6/§13). This fixture validates that a missing expiration is a
+# warning, not an error.

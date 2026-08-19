@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://lore.corpus.workbench/schemas/relationship.schema.json",
+  "title": "Relationship Schema",
+  "description": "A first-class, typed connection between objects (Vol 1 §19: USER owns DEVICE, ADMIN manages SERVICE, CERTIFICATE supports ASSERTION). Relationships must be EXPLICIT and TYPED - not hidden in undocumented conventions - so subject + predicate + object are required, with subject/object as references (OBJECT_REF != OBJECT, ALIAS != IDENTITY). Enforced by TOOLS/lore_validate.py Check 4. Closes the typed-relationship gap (P5 / external review).",
+  "type": "object",
+  "required": ["id", "type", "status", "subject", "predicate", "object"],
+  "properties": {
+    "id": { "type": "string" },
+    "type": { "type": "string", "const": "relationship" },
+    "status": { "type": "string" },
+    "subject": { "type": "string", "description": "object-ref id of the subject (a reference, not the object)." },
+    "predicate": { "type": "string", "description": "the relation type/verb, e.g. owns, manages, supports. This is what makes the relationship TYPED." },
+    "object": { "type": "string", "description": "object-ref id of the object (a reference, not the object)." },
+    "context": { "type": "string" },
+    "confidence": { "type": "string" },
+    "source": { "type": "string" },
+    "timestamp": { "type": "string" }
+  },
+  "additionalProperties": true
+}

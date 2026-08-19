@@ -1,0 +1,10 @@
+id: EVAL-INTAKE-001
+type: assertion
+subkind: evaluation
+status: candidate
+claim: "The intake bundle meets the completeness bar."
+criteria: "all five source artifacts present and hash-verified"
+verdict: pass
+confidence: high
+of_ref: ASSERT-SERVICE-HEALTHY-001
+# Valid: an evaluation = an assertion that judges against criteria and returns a verdict.

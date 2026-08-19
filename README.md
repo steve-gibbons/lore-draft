@@ -1,81 +1,73 @@
 # LORE - a governed-memory experiment
 
-> **EXPERIMENTAL / PROVISIONAL public draft.** For evaluation and demonstration of principles
-> only - not production-ready. Provisionally licensed for evaluation *by principals* (see [`LICENSE.DRAFT.md`](LICENSE.DRAFT.md)); relicenses to Apache-2.0 + CC BY 4.0 at the **v1.0.0** milestone.
+> **EXPERIMENTAL / PROVISIONAL.** For evaluation and demonstration of principles only - not
+> production-ready. The licensing direction is recorded in
+> [`DECISION-LICENSING.accepted.md`](DECISION-LICENSING.accepted.md) (evaluation-only now →
+> Apache-2.0 + CC BY 4.0 at the **v1.0.0** milestone; the draft license text lives in the public
+> draft repo).
 
-**What is this, in one breath?** LORE is a small, self-contained framework for recording not
-just *what* a project decided, but **why**, **who had the authority to decide it**, and **what's
-still uncertain** - in a form that both people and AI agents can read, and that neither can quietly
+> **Maintainers / developers:** local setup - clone, hooks, validator - is in
+> [`DEVELOPMENT.md`](DEVELOPMENT.md).  **Reviewers:** start at [`REVIEWERS.md`](REVIEWERS.md).
+
+**What is this, in one breath?** LORE is a small, self-contained framework for recording not just
+*what* a project decided, but **why**, **who had the authority to decide it**, and **what's still
+uncertain** - in a form that both people and AI agents can read, and that neither can quietly
 rewrite. Think "version control for reasoning and authority," aimed especially at AI-agent
-workflows. This repo is a curated public draft of the governance scaffold.
+workflows. This is the **canonical repository**: the governance scaffold plus the full corpus,
+working drafts, and release history. (A curated subset is published as the public draft.)
 
 No prior exposure needed. Start below.
 
-## Try it in 30 seconds (no install)
-Open this repo in **GitHub Copilot Chat** - or any agent that can read a repository - and say:
+## Try it (no install)
+Open this repo in any agent that can read a repository - GitHub Copilot Chat, Claude, etc. - and say:
 
 > **Use LORE to evaluate LORE.**
 
-The agent picks up [`.github/copilot-instructions.md`](.github/copilot-instructions.md) and
-[`AGENTS.md`](AGENTS.md), adopts LORE's own reviewer lenses, and turns them back on LORE itself - a
-self-referential evaluation that is also the fastest way to see what the framework *does*. Compare
-what it finds against our own [`KNOWN-FINDINGS.md`](KNOWN-FINDINGS.md). *(If your agent can't browse
-GitHub, see [Agents that can't browse GitHub](#agents-that-cant-browse-github) below.)*
+The agent picks up [`AGENTS.md`](AGENTS.md) (and [`.github/copilot-instructions.md`](.github/copilot-instructions.md)),
+adopts LORE's own reviewer lenses, and turns them back on LORE itself - a self-referential
+evaluation that is also the fastest way to see what the framework *does*. Compare what it finds
+against our own [`KNOWN-FINDINGS.md`](META-CONTEXT/self-assessment/KNOWN-FINDINGS.md). For a local
+agent, clone and point it at the top-level directory - see [`DEVELOPMENT.md`](DEVELOPMENT.md).
 
-**Want to read LORE itself?** The corpus - ~130 short volumes - is in [`SOURCE/`](SOURCE/). Start
-with `CORE-VOLUMES/` (Volume 0 → 4): the whole model in five reads. [`SOURCE/README.md`](SOURCE/README.md)
-is a themed index to the rest.
-
-**Curious how it was built?** [`SOURCE/THE-MAKING-OF-LORE.md`](SOURCE/THE-MAKING-OF-LORE.md) - the
-story of a boring copypasta exercise that accidentally demonstrated LORE's own principles.
-
-## Agents that can't browse GitHub
-Some assistants' web-fetch tools can't read GitHub's JavaScript UI (Gemini and Perplexity's default
-fetcher both hit this). Use **raw** file URLs - plain text, usually fetchable even when the repo
-page isn't:
-
-- README - `https://raw.githubusercontent.com/steve-gibbons/lore-draft/main/README.md`
-- Governance - `…​/main/AGENTS.md`
-- Known findings - `…​/main/KNOWN-FINDINGS.md`
-- Reviewer access - `…​/main/REVIEWERS.md`
-- Core invariants - `…​/main/CORE-INVARIANTS.md`
-- Corpus index - `…​/main/SOURCE/README.md`
-
-If raw fetch still fails: paste the files, connect a GitHub tool, or upload an archive.
+**Want to read LORE itself?** The corpus - ~120 short volumes (0-120) - lives in the `Draft 1/` and
+`Draft 2/` working directories (being consolidated under [`SOURCE/`](SOURCE/), the normative home).
+Start with the core volumes (*Origin & Design Intent* → *Implementation*).
 
 ## Find your part (pick the one that sounds like you)
 | You are… | Open these, in order |
 |---|---|
-| **Just curious / no background** | this page → [`KNOWN-FINDINGS.md`](KNOWN-FINDINGS.md) (we list our own weaknesses) → [`AGENTS.md`](AGENTS.md) |
+| **Just curious / no background** | this page → [`KNOWN-FINDINGS.md`](META-CONTEXT/self-assessment/KNOWN-FINDINGS.md) (we list our own weaknesses) → [`AGENTS.md`](AGENTS.md) |
 | **Building AI agents** | [`AGENTS.md`](AGENTS.md) (the rules agents follow) → [`META-CONTEXT/reviewer-panel/`](META-CONTEXT/reviewer-panel/) (the "hat/lens" system) → [`.github/copilot-instructions.md`](.github/copilot-instructions.md) |
-| **Security / threat-modeling** | [`KNOWN-FINDINGS.md`](KNOWN-FINDINGS.md) (KF-01…) → [`CORE-INVARIANTS.md`](CORE-INVARIANTS.md) (the TCB) → [`TOOLS/lore_validate.py`](TOOLS/lore_validate.py) |
+| **Security / threat-modeling** | [`KNOWN-FINDINGS.md`](META-CONTEXT/self-assessment/KNOWN-FINDINGS.md) (KF-01…) → [`CORE-INVARIANTS.md`](CORE-INVARIANTS.md) (the TCB) → [`TOOLS/lore_validate.py`](TOOLS/lore_validate.py) |
 | **Ontology / knowledge representation** | [`SCHEMAS/`](SCHEMAS/) → [`REGISTRIES/artifact-statuses.yaml`](REGISTRIES/artifact-statuses.yaml) → `object-ref` (ALIAS ≠ IDENTITY) |
 | **Governance / records / legal** | [`AGENTS.md`](AGENTS.md) → [`DECISION-LICENSING.accepted.md`](DECISION-LICENSING.accepted.md) → [`SOURCE/long-horizon-rationale.accepted.md`](SOURCE/long-horizon-rationale.accepted.md) |
-| **A skeptic ("does it even work?")** | run the validator (below), then read [`KNOWN-FINDINGS.md`](KNOWN-FINDINGS.md) - we pre-published our own flaws |
-| **A formal reviewer** | [`REVIEWERS.md`](REVIEWERS.md) - how to request access to the private review repo |
+| **Setting up locally / maintaining** | [`DEVELOPMENT.md`](DEVELOPMENT.md) - clone, hooks, validator |
+| **A formal reviewer** | [`REVIEWERS.md`](REVIEWERS.md) |
 
 ## Directory map / legend
 **Top-level docs**
 | Path | What it is |
 |---|---|
 | `README.md` | You are here - orientation |
-| `REVIEWERS.md` | How to request reviewer access to the full private repo |
+| `DEVELOPMENT.md` | Local developer / maintainer guide (clone, hooks, validator) |
+| `REVIEWERS.md` | The review guide |
 | `AGENTS.md` | **The heart** - authority model, what agents may/may not do, the closed status set |
 | `CORE-INVARIANTS.md` | The minimal "what must be true" (the trusted core / TCB), honestly marking enforced vs. asserted |
-| `KNOWN-FINDINGS.md` | Our own pre-review self-assessment - known weaknesses, so reviewers skip the obvious |
-| `DECISION-LICENSING.accepted.md` | The licensing decision - tension, options, and the committed direction (eval-only → Apache-2.0 + CC BY 4.0 at v1.0.0) |
+| `META-CONTEXT/self-assessment/KNOWN-FINDINGS.md` | Our own pre-review self-assessment - known weaknesses |
+| `DECISION-LICENSING.accepted.md` | The licensing decision (eval-only → Apache-2.0 + CC BY 4.0 at v1.0.0) |
+| `DECISION-AUTH-IDENTITY.accepted.md` | The KF-01 decision - binding author authority to a signature, not a self-set flag |
+| `GOVERNANCE-LOCKIN.action.md` | Open owner action - the governance-formation gate for v1.0.0 |
 | `CORPUS-MANIFEST.yaml` | Machine-readable index of the corpus |
-| `PROVENANCE.md` | How this public draft relates to its private origin - verifiable, without exposing it |
 
-**Directories**
+**Directories** (the core governance scaffold; the repo also holds working drafts, evidence, and release bundles)
 | Path | What it holds | Who cares |
 |---|---|---|
-| `SCHEMAS/` | The record types (JSON Schema): artifact, decision, transformation, object-ref, break-glass… | ontology, KR |
-| `REGISTRIES/` | The closed status enum + who may set what (transition rules) | governance, security |
-| `TOOLS/` | The validator (10 checks), the hat/prompt assembler, the git hook | everyone |
+| `SCHEMAS/` | The record types (JSON Schema): artifact, decision, transformation, object-ref, break-glass…; plus the enforced core ontology - object, assertion, evidence, authority, capability, event, context, relationship, alias | ontology, KR |
+| `REGISTRIES/` | The closed status enum + who may set what (transitions) + trusted signers | governance, security |
+| `TOOLS/` | The validator (10 checks), the hat/prompt assembler, the author-signature gate, the git hook | everyone |
 | `TESTS/` | Positive/negative fixtures proving the validator actually enforces the rules | skeptics |
-| `META-CONTEXT/reviewer-panel/` | The reviewer "hats" (lenses), profiles, and the assembler's inputs | reviewers, AI |
-| `SOURCE/` | **The LORE corpus** - ~130 human-readable volumes (core + extended), sidebars, decision history | anyone reading LORE |
+| `META-CONTEXT/` | Reviewer "hats" (lenses), the self-assessment, and process records | reviewers, AI |
+| `SOURCE/` | Normative sources (corpus consolidation target); working volumes are in the `Draft *` dirs | anyone reading LORE |
 | `INTAKE/` | The landing zone for incoming evidence (raw → normalized), with immutability rules | contributors |
 | `INTEGRATIONS/`, `SANDBOX/` | Phase-2 stubs | - |
 | `.github/`, `.claude/` | Copilot instructions + CI; the `/lore-hat` command | AI-tool users |
@@ -85,37 +77,27 @@ If raw fetch still fails: paste the files, connect a GitHub tool, or upload an a
    ```bash
    python3 TOOLS/lore_validate.py
    ```
-   Expect `14 passed, 0 failed`. That's the 10 governance rules enforcing on the test fixtures.
+   The 10 governance rules enforce on the test fixtures (`N passed, 0 failed`).
 
-2. **Put on a reviewer "hat"** - adopt a domain lens and evaluate LORE. In GitHub Copilot or Claude
-   with this repo open, just type:
-   ```
-   hat P1
-   ```
-   (or run `python3 TOOLS/lore_prompt.py P1-SEC-THREATMODEL`). Try `hat list` to see all six lenses.
+2. **Put on a reviewer "hat"** - adopt a domain lens and evaluate LORE. In an agent with this repo
+   open, type `hat P1` (or run `python3 TOOLS/lore_prompt.py P1-SEC-THREATMODEL`). `hat list` shows
+   all six lenses.
 
-3. **Read the model in five volumes** - [`SOURCE/CORE-VOLUMES/`](SOURCE/CORE-VOLUMES/), starting
-   with *Volume 0 - Origin, Philosophy, and Design Intent*. The [`SOURCE/`](SOURCE/) index maps the
-   ~120 extended volumes by theme.
+3. **Read the honest self-critique** - [`KNOWN-FINDINGS.md`](META-CONTEXT/self-assessment/KNOWN-FINDINGS.md).
+   A governance system that publishes its own weaknesses before you find them is either confident or
+   foolish; you decide.
 
-4. **Read the honest self-critique** - [`KNOWN-FINDINGS.md`](KNOWN-FINDINGS.md). A governance system
-   that publishes its own weaknesses before you find them is either confident or foolish; you decide.
+4. **See reasoning preserved, not just outcomes** - [`DECISION-LICENSING.accepted.md`](DECISION-LICENSING.accepted.md)
+   records a decision with its tension, options, and the direction chosen.
 
-5. **See the core idea in one file** - [`PROVENANCE.md`](PROVENANCE.md). This public repo proves
-   where it came from *without* being able to reconstruct the private source. That's ALIAS ≠ IDENTITY,
-   made literal.
-
-6. **See reasoning preserved, not just outcomes** - [`DECISION-LICENSING.accepted.md`](DECISION-LICENSING.accepted.md)
-   records a decision *before it's made*: the tension, the options, and the direction chosen.
-
-## For maintainers
-Run the validator as above. To install the pre-commit integrity hook (write-protects `INTAKE/raw/`
-and runs the validator before each commit):
-```bash
-cp TOOLS/hooks/pre-commit-hash-check.sh .git/hooks/pre-commit && chmod +x .git/hooks/pre-commit
-```
-CI runs the same validator on every push/PR (`.github/workflows/validate.yml`).
+## Deployment & updates (not realtime)
+LORE is consumed as a point-in-time **snapshot** (what you clone is what you run) and updated by
+**periodic, rarely-interrupting conversation handoffs** - an *edition* cadence, not a live feed.
+Handoffs arrive at reduced trust and are promoted on your schedule. Bounded staleness is normal and
+by design; ask "which edition am I on, and when was it cut?" See
+[`DECISION-DEPLOYMENT-UPDATE-MODEL.accepted.md`](DECISION-DEPLOYMENT-UPDATE-MODEL.accepted.md).
 
 ## Governance
 [`AGENTS.md`](AGENTS.md) is authoritative - role definitions, authority boundaries, the closed status
-set, and transition rules. Everything else is downstream of it.
+set, and transition rules. Everything else is downstream of it. Local setup and maintenance live in
+[`DEVELOPMENT.md`](DEVELOPMENT.md).

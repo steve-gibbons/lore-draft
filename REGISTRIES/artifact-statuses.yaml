@@ -53,12 +53,6 @@ transitions:
       - superseded
       - deleted
   evidence-only:
-    # evidence-only → accepted is intentionally permitted: raw evidence may itself be
-    # the authoritative record (e.g. a signed external instrument), requiring no
-    # intermediate candidate/proposed review stage. This path requires the same author
-    # authority as any other accepted transition (Check 2); it is NOT an authority bypass.
-    # Actor constraint (not yet enforced by validator): only an author act may trigger
-    # evidence-only → accepted. See A-06 in the Aegis assessment for rationale.
     allowed_next:
       - candidate
       - quarantined

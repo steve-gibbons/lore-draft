@@ -1,0 +1,7 @@
+id: POLICY-READONLY-001
+type: policy
+status: candidate
+statement: "Agents (principal_kind:thing) may read production but may not write, promote, or destroy."
+applies_to: "principal_kind:thing in /production/*"
+effect: require-gate
+# Valid: a policy = a rule-noun governing authz/capability decisions for principals.

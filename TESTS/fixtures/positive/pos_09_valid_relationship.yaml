@@ -1,0 +1,11 @@
+id: REL-ADMIN-MANAGES-SERVICE-001
+type: relationship
+status: candidate
+subject: OBJREF-ADMIN-001
+predicate: manages
+object: OBJREF-PAYMENTS-SERVICE-001
+context: "production access-management scope"
+source: iam_system
+timestamp: "2026-08-16T00:00:00Z"
+# Valid: explicit, TYPED relationship (subject --predicate--> object), with subject/object as
+# references (OBJECT_REF != OBJECT). Not hidden in an undocumented convention (Vol 1 §19).

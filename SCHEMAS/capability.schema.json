@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://lore.corpus.workbench/schemas/capability.schema.json",
+  "title": "Capability Schema",
+  "description": "A bounded operational permission: 'what may this subject do?' (Vol 1 §14; Vol 2 §11-14; Vol 10). A capability is NOT identity, ownership, or trustworthiness. Capabilities MUST have explicit scope (Vol 2 §28 Invariant 1) - so issuer, holder, action, and scope are required; time-bounding (expiration) is strongly recommended (a missing expiration warns, Vol 2 §6/§13). Enforced by TOOLS/lore_validate.py Check 4.",
+  "type": "object",
+  "required": ["id", "type", "status", "issuer", "holder", "action", "scope"],
+  "properties": {
+    "id": { "type": "string" },
+    "type": { "type": "string", "const": "capability" },
+    "status": { "type": "string" },
+    "issuer": { "type": "string", "description": "object-ref/authority id that granted the capability." },
+    "holder": { "type": "string", "description": "object-ref id of the subject that holds it." },
+    "action": { "type": "string", "description": "the permitted action, e.g. READ." },
+    "scope": { "type": "string", "description": "the bounded target/scope, e.g. /production/api/users (globbing, not SQL-wildcards; Vol 2 §16-17)." },
+    "constraints": { "type": "string" },
+    "expiration": { "type": "string", "description": "capability lifecycle end; strongly recommended (least privilege / time-bounded)." },
+    "delegated_from": { "type": "string", "description": "object-ref id of the parent capability, if delegated. A delegated capability MUST NOT exceed its parent (Vol 2 §21) - lineage made explicit (invariant 11)." }
+  },
+  "additionalProperties": true
+}

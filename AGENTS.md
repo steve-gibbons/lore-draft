@@ -1,7 +1,7 @@
 # AGENTS.md - LORE Corpus Workbench Agent Operating Rules (v3)
 
 **Version**: 3.0.0  
-**Authority**: Author remains sole authority for acceptance, promotion, publication, and interpretation of ambiguity. Agents do not acquire promotion rights by receiving handoffs.
+**Authority**: Author remains sole authority for acceptance, promotion, publication, and interpretation of ambiguity. Agent does not acquire promotion rights by receiving handoffs.
 
 ---
 
@@ -50,11 +50,25 @@ Only human authors (or preseeded author fixtures) may assign:
 ---
 
 ## 3. Core Hard Constraints
+### Preferred command form
+When a LORE CLI verb is available, agents **must** prefer the unified form:
+
+lore <verb> [args…]
+
+Examples (when the corresponding entry-point exists):
+- lore validate   instead of python3 TOOLS/lore_validate.py
+- lore prompt …   instead of python3 TOOLS/lore_prompt.py …
+- lore freeze-raw instead of python3 TOOLS/lore_freeze_raw.py
+- lore status, lore explain, lore handoff, etc.
+
+Fall back to the explicit python3 TOOLS/… path only when the unified lore
+entry-point is absent or the verb is not yet registered. Do not invent verbs;
+surface the gap so it can be registered deliberately.
 
 1. **INTAKE/raw Immutability**: All artifacts in `INTAKE/raw/` must remain read-only (`chmod a-w`). Pre-commit hooks and validators must fail if any raw file is modified or writable.
 2. **No Agent Status Escalation**: Unknown or unapproved status values fail validation. Any agent attempt to emit an author-only status without preseed provenance fails validation.
 3. **No Unilateral Promotion**: Promotion across governance boundaries requires human author action.
-4. **Scope Control**: No external network services, MCP/OPA/immudb infrastructure, federation layers, or autonomous execution agents may be added.
+4. **Scope Control**: No external network services, MCP/OPA/immudb infrastructure, federation layers, or autonomous execution agents may be **activated or added as running infrastructure** in phase-1. Phase-2 *designs* (e.g. the domain-contract and federation models) MAY be drafted as `candidate`/`proposed` artifacts under governance; they confer no authorization and add nothing to the enforced core until the author accepts (and signs) them. *(Wording ratified 2026-08-16, DECISION-PROSE-RECONCILIATION-001 T3.2.)*
 5. **Preservation of Uncertainty**: Disputed, incomplete, or unverified claims must remain marked as `candidate`, `unknown`, `unresolved`, `quarantined`, or `evidence-only`.
 6. **Explicit Transformation Provenance**: All `derived` and `generated` artifacts must explicitly record `inputs` (hashes/URIs) and transformation details.
 

@@ -1,0 +1,6 @@
+# GUIDELINES/candidates
+
+Candidate guidelines are not published in the public export until accepted.
+
+This directory exists to make the structure visible. Candidates are under author review
+and have not yet been ratified. See `accepted/` for published guidelines.

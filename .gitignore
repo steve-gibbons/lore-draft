@@ -1,4 +1,4 @@
-# OS / editor cruft - keep it out of the reviewer's clone
+# OS / editor cruft
 .DS_Store
 ._*
 .Spotlight-V100
@@ -6,3 +6,25 @@
 Thumbs.db
 *.swp
 *~
+
+# iCloud Drive sync-conflict copies. This repo lives under ~/Documents (iCloud-synced);
+# iCloud mints "<name> 2.<ext>" copies on conflicts (e.g. GitHub Desktop branch switches
+# racing the sync), and `git add -A` will silently ingest them. This pattern keeps the
+# file-level copies out. If you ever need a legitimately-named "... 2.md" file, add it
+# with `git add -f`. (We deliberately do NOT guard extensionless "<name> 2" — that would
+# also swallow legitimately-named directories like "Draft 2/".)
+* [0-9].*
+
+# Python bytecode cache (e.g. TOOLS/__pycache__ from importing lore_validate in lore_build_manifest).
+__pycache__/
+*.pyc
+
+# LORE workbench — runtime state lives in ~/.lore (or $LORE_HOME), not the repo.
+# Guard only against a stray repo-local .lore/. Do NOT ignore *.asc: detached
+# signatures (KEYS/*.asc, INTAKE/RAW-MANIFEST.sha256.asc, author-only artifact
+# signatures) are tracked and central to the signing workflow.
+/.lore/
+
+# Python bytecode (workbench tools)
+__pycache__/
+*.pyc

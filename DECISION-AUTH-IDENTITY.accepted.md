@@ -35,7 +35,7 @@ asserted, not represented-then-enforced. Authenticating this core is LORE's prim
 - **T6 Agent over-reach** - an agent wielding the author root instead of a delegated lower-trust key.
 
 ## Existing substrate (what we already have)
-- **Published author key** - `KEYS/steve-gibbons-D9B04B5C.asc` (ed25519, fp `…D9B04B5C`).
+- **Published author key** - `KEYS/author-D9B04B5C.asc` (ed25519, fp `…D9B04B5C`).
 - **Content-signature verifier** - `lore_verify_manifest_sig.py`, but **private-repo only**; not yet
   in the public `TOOLS/` and not wired into the author-only gate.
 - **Referenced-but-missing root list** - `KEYS/README.md` and CORE-INVARIANT 11 both cite

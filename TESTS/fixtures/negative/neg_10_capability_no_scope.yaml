@@ -1,0 +1,9 @@
+id: CAP-UNBOUNDED-001
+type: capability
+status: proposed
+issuer: OBJREF-AUTH-SECURITY-TEAM-001
+holder: OBJREF-AGENT-RECON-001
+action: ADMIN
+# Negative: a capability with no 'scope' (and effectively "ADMIN everything"). Check 4 must
+# reject it: capabilities MUST have explicit scope (Vol 2 §28 Invariant 1). The absence of a
+# bound is exactly the ambient-authority anti-pattern (Vol 2 §27).

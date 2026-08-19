@@ -1,0 +1,5 @@
+id: OBJ-BARE-001
+type: object
+status: candidate
+# Negative: 'object' is the ABSTRACT base and must never be stored bare. Check 4 must reject it -
+# store a concrete flavor (principal, policy, object-ref, relationship, act, assertion, ...).

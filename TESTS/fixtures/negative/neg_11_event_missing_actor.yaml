@@ -1,0 +1,9 @@
+id: ACT-ORPHAN-001
+type: act
+subkind: event
+status: candidate
+action: revoke
+subject: CAP-READ-PAYMENTS-001
+trigger: "timer expired"
+# Negative: an act/event with no actor. Check 4 must reject it - an act needs its actor
+# (causality/accountability).

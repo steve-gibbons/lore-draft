@@ -1,0 +1,10 @@
+id: ACT-CAP-APPROVED-001
+type: act
+subkind: event
+status: candidate
+actor: OBJREF-AUTH-SECURITY-TEAM-001
+action: approve
+subject: CAP-READ-PAYMENTS-001
+trigger: "change-window opened 2026-08-16T00:00:00Z"
+timestamp: "2026-08-16T00:00:00Z"
+# Valid: an event = an act (actor+action) carrying a trigger describing the temporal occurrence.

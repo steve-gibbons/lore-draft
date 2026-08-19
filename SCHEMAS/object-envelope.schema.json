@@ -1,0 +1,110 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "lore:object-envelope:v1",
+  "title": "LORE Object Envelope",
+  "description": "The three-part wrapper around every stored LORE kernel object. All objects share this structure regardless of kind. The 'content' body is kind-specific and validated by the per-kind schemas in SCHEMAS/<kind>.schema.json.",
+  "type": "object",
+  "required": ["lore", "content", "provenance"],
+  "additionalProperties": false,
+  "properties": {
+    "lore": {
+      "type": "object",
+      "description": "Internal metadata written and managed by the workbench harness.",
+      "required": ["format_version", "kind", "id", "status", "created_at", "created_by"],
+      "additionalProperties": true,
+      "properties": {
+        "format_version": {
+          "type": "integer",
+          "const": 1,
+          "description": "Envelope schema version. Always 1 for this generation."
+        },
+        "kind": {
+          "type": "string",
+          "enum": ["principal", "policy", "object-ref", "relationship", "act", "assertion", "authority", "capability", "handoff"],
+          "description": "Concrete ontology kind. 'object' (abstract base) and 'thing'/'state' (projections) are never stored."
+        },
+        "subkind": {
+          "type": "string",
+          "enum": ["alias", "event", "evidence", "evaluation", "context-hint"],
+          "description": "Optional refinement of kind: object-ref/alias, act/event, assertion/{evidence,evaluation,context-hint}."
+        },
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9-]+:[a-z0-9-]+:[a-f0-9]+$",
+          "description": "Stable object identifier: kind:namespace:hex. Assigned at creation; never changes."
+        },
+        "status": {
+          "type": "string",
+          "description": "Lifecycle status from the closed enum in REGISTRIES/artifact-statuses.yaml."
+        },
+        "previous_status": {
+          "type": "string",
+          "description": "Status before the most recent transition (set by lore promote)."
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO 8601 UTC timestamp of object creation."
+        },
+        "created_by": {
+          "type": "string",
+          "description": "Actor id that created this object (e.g. 'agent:local', 'author:local')."
+        }
+      }
+    },
+    "content": {
+      "type": "object",
+      "description": "Kind-specific payload. Validated by SCHEMAS/<kind>.schema.json. Populated by the creator; never altered by transport or promotion.",
+      "additionalProperties": true
+    },
+    "provenance": {
+      "type": "object",
+      "description": "Lineage, integrity, and authorship evidence.",
+      "required": ["source_refs", "derived_from", "content_sha256"],
+      "additionalProperties": true,
+      "properties": {
+        "source_refs": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Object ids or external URIs that this object was derived from or directly references."
+        },
+        "derived_from": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Transformation inputs (subset of source_refs) that produced this object's content."
+        },
+        "content_sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$",
+          "description": "SHA-256 hex digest of the canonical JSON serialisation of 'content' at creation time."
+        },
+        "signature": {
+          "type": "string",
+          "description": "Relative path to detached OpenPGP .asc signature (required for author-only statuses, see DECISION-AUTH-IDENTITY)."
+        },
+        "signer_fpr": {
+          "type": "string",
+          "pattern": "^[0-9A-Fa-f ]{40,}$",
+          "description": "OpenPGP fingerprint of the signing key; must match an entry in REGISTRIES/trusted-signers.txt."
+        },
+        "author_preseeded": {
+          "type": "boolean",
+          "description": "DEPRECATED migration flag. Replace with signature + signer_fpr before v1.0.0."
+        },
+        "promoted_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp of the most recent promotion (set by lore promote)."
+        },
+        "promoted_by": {
+          "type": "string",
+          "description": "Actor id that performed the most recent promotion."
+        },
+        "promotion_reason": {
+          "type": "string",
+          "description": "Human-readable rationale for the most recent promotion."
+        }
+      }
+    }
+  }
+}

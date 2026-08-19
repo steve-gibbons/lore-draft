@@ -1,0 +1,10 @@
+id: EVID-MONITORING-001
+type: assertion
+subkind: evidence
+status: evidence-only
+claim: "The payments API returned healthy on the automated check."
+source: monitoring_system
+method: automated_check
+collected: "2026-08-16T00:00:00Z"
+scope: production_payments_api
+# Valid: evidence = an assertion backed by observation (source/method/collected). ASSERTION != TRUTH.

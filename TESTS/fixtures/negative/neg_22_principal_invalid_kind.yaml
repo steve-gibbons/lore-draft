@@ -1,0 +1,8 @@
+id: PRIN-BAD-KIND-001
+type: principal
+status: candidate
+identity: "user:alice@example.com"
+principal_kind: robot
+# Negative: principal_kind 'robot' is not in the allowed set (human|thing|organization|service).
+# Check 4 must reject it: accountability depends on knowing the kind, and only a human
+# principal can be Accountable (invariant 13). An unknown kind breaks that chain.

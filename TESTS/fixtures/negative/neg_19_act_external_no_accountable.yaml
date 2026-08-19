@@ -1,0 +1,10 @@
+id: ACT-WEBHOOK-NO-ACCOUNT-001
+type: act
+status: candidate
+actor: OBJREF-AGENT-NOTIFY-001
+action: post
+effect: external
+subject: OBJREF-WEBHOOK-ENDPOINT-001
+# Negative: an external act with no 'accountable' field. Check 4 must reject it:
+# effect 'external' (an act that crosses a trust boundary) must name an accountable
+# human principal (invariant 13). Absent field = no declared accountability.

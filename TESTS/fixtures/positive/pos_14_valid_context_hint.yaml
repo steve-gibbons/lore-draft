@@ -1,0 +1,7 @@
+id: CTX-HANDOFF-HINT-001
+type: assertion
+subkind: context-hint
+status: quarantined
+claim: "prior-conversation context from another agent (unverified)"
+purpose: "carry handoff context; use only after local review"
+# Valid: a context-hint = an UNTRUSTED assertion (agent-writable). CONTEXT_HINT != TRUSTED_CONTEXT.

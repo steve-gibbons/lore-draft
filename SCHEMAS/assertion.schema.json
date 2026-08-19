@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://lore.corpus.workbench/schemas/assertion.schema.json",
+  "title": "Assertion Schema",
+  "description": "A claim. ASSERTION != TRUTH (Vol 1 §8-9): an assertion records that someone claims something is true, not that it is - so it may hold ONLY an agent-writable (uncertain) status, never an author-only/authoritative one. The status enum below mirrors REGISTRIES/artifact-statuses.yaml:agent_writable (the registry is the single source of truth; enforced by TOOLS/lore_validate.py Check 4). First core-ontology primitive made enforceable (DECISION-ONTOLOGY-ENFORCEABILITY-001, closes P5-1 for this primitive).",
+  "type": "object",
+  "required": ["id", "type", "status", "claim"],
+  "properties": {
+    "id": { "type": "string" },
+    "type": { "type": "string", "const": "assertion" },
+    "status": {
+      "type": "string",
+      "description": "MUST be agent-writable (ASSERTION != TRUTH). Mirrors registry agent_writable.",
+      "enum": ["candidate", "proposed", "derived", "generated", "evidence-only", "quarantined", "unknown", "unresolved"]
+    },
+    "claim": { "type": "string" },
+    "evidence": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "object-ref id(s) of supporting evidence. References, not inlined objects (ALIAS != IDENTITY, OBJECT_REF != OBJECT)."
+    },
+    "authority": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "object-ref id(s) of the authority relied upon. Referencing authority does NOT make the assertion authoritative (EVIDENCE/AUTHORITY are separate from the claim)."
+    },
+    "context": { "type": "string" },
+    "source": { "type": "string" },
+    "timestamp": { "type": "string" }
+  },
+  "additionalProperties": true
+}

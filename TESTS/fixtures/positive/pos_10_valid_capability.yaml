@@ -1,0 +1,12 @@
+id: CAP-READ-PAYMENTS-001
+type: capability
+status: proposed
+issuer: OBJREF-AUTH-SECURITY-TEAM-001
+holder: OBJREF-AGENT-RECON-001
+action: READ
+scope: /production/payments/api/*
+constraints: "read-only; no PII fields"
+expiration: "2026-09-16T00:00:00Z"
+# Valid: explicit scope (issuer + holder + action + scope) and time-bounded (expiration present).
+# Globbing scope, not SQL-wildcards (Vol 2 §16-17). Capabilities MUST have explicit scope
+# (Vol 2 §28 Inv 1).

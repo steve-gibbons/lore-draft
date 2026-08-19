@@ -1,0 +1,22 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://lore.corpus.workbench/schemas/act.schema.json",
+  "title": "Act Schema",
+  "description": "A verb - an action LORE cares about (the dynamic primitive; the reaction that changes state). Subkind `event` = an act that carries a `trigger` describing a temporal occurrence. Accountability (CORE-INVARIANT 13): an act whose `effect` is `destructive` or `external` (risky/permanent) MUST name an `accountable` principal - and per invariant 13 that accountable party must ultimately be a human. Enforced by lore_validate.py Check 4.",
+  "type": "object",
+  "required": ["id", "type", "status", "actor", "action"],
+  "properties": {
+    "id": { "type": "string" },
+    "type": { "type": "string", "const": "act" },
+    "subkind": { "type": "string", "enum": ["event"], "description": "'event' = an act with a trigger." },
+    "status": { "type": "string" },
+    "actor": { "type": "string", "description": "object-ref id of the principal performing the act." },
+    "action": { "type": "string", "description": "the verb, e.g. approve, revoke, import, create." },
+    "subject": { "type": "string", "description": "object-ref id of what the act is upon." },
+    "effect": { "type": "string", "enum": ["none", "destructive", "external"], "description": "risk class; destructive/external require an accountable principal (invariant 13)." },
+    "accountable": { "type": "string", "description": "object-ref id of the accountable (human) principal; required for destructive/external effects." },
+    "trigger": { "type": "string", "description": "required when subkind=event: what temporal occurrence triggered the act." },
+    "timestamp": { "type": "string" }
+  },
+  "additionalProperties": true
+}

@@ -6,10 +6,10 @@
 > Relates to **KF-14** (add LICENSE) and **KF-05** (governance / succession).
 >
 > **Decision-maker:** Author.  **Decision (2026-08-15):** near-term = the Provisional Evaluation
-> license (drafted at `LICENSE.DRAFT.md`, *by principals only*); long-haul = Apache-2.0 (code/tooling)
-> + CC BY 4.0 (spec/docs); **trigger = the v1.0.0 milestone, gated on governance lock-in** (v1.0.0 does not ship until the succession / anti-capture governance model is locked). Remaining is implementation only:
-> legal review of the provisional text, rename `LICENSE.DRAFT.md → LICENSE`, and the non-license
-> anti-capture controls noted below.
+> license (drafted in the public repo at `LICENSE.DRAFT.md`, *by principals only*); long-haul =
+> Apache-2.0 (code/tooling) + CC BY 4.0 (spec/docs); **trigger = the v1.0.0 milestone, gated on governance lock-in** (v1.0.0 does not ship until the succession / anti-capture governance model is locked). Remaining is
+> implementation only: legal review of the provisional text, rename `LICENSE.DRAFT.md → LICENSE`, and
+> the non-license anti-capture controls noted below.
 
 ## The tension (stated plainly)
 LORE holds two objectives that pull against each other, and the license is where they collide:

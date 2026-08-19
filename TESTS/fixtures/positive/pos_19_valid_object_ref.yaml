@@ -1,0 +1,5 @@
+id: OBJREF-PLAIN-001
+type: object-ref
+status: candidate
+target_id: PRIN-AGENT-RECON-001
+# Valid: a plain object-ref (pointer) with no subkind. OBJECT_REF != OBJECT.

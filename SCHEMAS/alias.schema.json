@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://lore.corpus.workbench/schemas/alias.schema.json",
+  "title": "Alias Schema",
+  "description": "A human-friendly name for an object (Vol 1 §7; Vol 2 §19). Aliases are useful AND dangerous: an alias may change meaning over time. ALIAS != IDENTITY - so an alias MUST preserve its type, its resolution (as a reference, not an inlined identity), its ownership, and its resolution history. So alias, alias_type, resolves_to, owner, and resolution_history are required. Enforced by TOOLS/lore_validate.py Check 4.",
+  "type": "object",
+  "required": ["id", "type", "status", "alias", "alias_type", "resolves_to", "owner", "resolution_history"],
+  "properties": {
+    "id": { "type": "string" },
+    "type": { "type": "string", "const": "alias" },
+    "status": { "type": "string" },
+    "alias": { "type": "string", "description": "the human-friendly name, e.g. 'production', 'admin'." },
+    "alias_type": { "type": "string", "description": "what kind of alias, e.g. role, environment, service-name." },
+    "resolves_to": { "type": "string", "description": "object-ref id the alias currently resolves to (a reference; ALIAS != IDENTITY)." },
+    "owner": { "type": "string", "description": "object-ref id of who owns/controls the alias." },
+    "resolution_history": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "prior resolutions - because an alias may change meaning over time."
+    }
+  },
+  "additionalProperties": true
+}

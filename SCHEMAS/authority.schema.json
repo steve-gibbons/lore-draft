@@ -1,0 +1,20 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://lore.corpus.workbench/schemas/authority.schema.json",
+  "title": "Authority Schema",
+  "description": "The ability to make valid decisions, assertions, or grants (Vol 1 §13; Vol 2 §3). Authority MUST have provenance: it is a traceable chain of origin/delegation, not mere possession - possession without lineage is not authority (CORE-INVARIANT 11). So issuer, subject, scope, and derives_from (the lineage) are required. Enforced by TOOLS/lore_validate.py Check 4.",
+  "type": "object",
+  "required": ["id", "type", "status", "issuer", "subject", "scope", "derives_from"],
+  "properties": {
+    "id": { "type": "string" },
+    "type": { "type": "string", "const": "authority" },
+    "status": { "type": "string" },
+    "issuer": { "type": "string", "description": "object-ref id of who conferred this authority." },
+    "subject": { "type": "string", "description": "object-ref id of who holds it." },
+    "scope": { "type": "string", "description": "the bounded domain the authority applies to (authority is not universal, Vol 2 §4)." },
+    "derives_from": { "type": "string", "description": "the lineage: ownership | delegation | role | policy | external-trust, or an object-ref to the parent authority (invariant 11)." },
+    "constraints": { "type": "string" },
+    "lifecycle": { "type": "string" }
+  },
+  "additionalProperties": true
+}

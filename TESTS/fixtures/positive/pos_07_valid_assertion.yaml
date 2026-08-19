@@ -1,0 +1,13 @@
+id: ASSERT-SERVICE-HEALTHY-001
+type: assertion
+status: candidate
+claim: "The payments API is healthy in production."
+evidence:
+  - OBJREF-EVID-MONITORING-001
+authority:
+  - OBJREF-AUTH-OPERATIONS-001
+context: "production environment; on-call review window"
+source: monitoring_system
+timestamp: "2026-08-16T00:00:00Z"
+# Valid: a claim held at an agent-writable (uncertain) status, with references (not inlined
+# objects) to its supporting evidence and the authority relied on. ASSERTION != TRUTH holds.

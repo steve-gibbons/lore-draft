@@ -1,0 +1,176 @@
+# LORE Object Envelope Schema  (JSON Schema draft/2020-12, YAML representation)
+# Canonical machine-readable form: SCHEMAS/object-envelope.schema.json
+# This file is the human-readable twin — keep both in sync.
+#
+# Every stored LORE kernel object is wrapped in this three-part envelope.
+# The `content` body is kind-specific; see SCHEMAS/<kind>.schema.json.
+# The `lore` block is written and managed exclusively by the workbench harness.
+# The `provenance` block records lineage, integrity hashes, and signing evidence.
+
+$schema: "https://json-schema.org/draft/2020-12/schema"
+$id: "lore:object-envelope:v1"
+title: LORE Object Envelope
+type: object
+required: [lore, content, provenance]
+additionalProperties: false
+
+properties:
+
+  # -------------------------------------------------------------------------
+  # lore  — internal harness metadata
+  # -------------------------------------------------------------------------
+  lore:
+    type: object
+    description: >
+      Internal metadata written and managed by the workbench harness.
+      Never edited by hand; set at object creation and updated by lore promote.
+    required: [format_version, kind, id, status, created_at, created_by]
+    additionalProperties: true
+    properties:
+
+      format_version:
+        type: integer
+        const: 1
+        description: Envelope schema version. Always 1 for this generation.
+
+      kind:
+        type: string
+        enum:
+          - principal
+          - policy
+          - object-ref
+          - relationship
+          - act
+          - assertion
+          - authority
+          - capability
+          - handoff
+        description: >
+          Concrete ontology kind (DECISION-ONTOLOGY-CANONICAL-KERNEL-001).
+          'object' (abstract base) and 'thing'/'state' (projections) are never stored.
+
+      subkind:
+        type: string
+        enum:
+          - alias          # object-ref/alias
+          - event          # act/event
+          - evidence       # assertion/evidence
+          - evaluation     # assertion/evaluation
+          - context-hint   # assertion/context-hint
+        description: Optional refinement of kind. Only valid for the kinds shown above.
+
+      id:
+        type: string
+        pattern: "^[a-z0-9-]+:[a-z0-9-]+:[a-f0-9]+$"
+        description: >
+          Stable object identifier: kind:namespace:hex.
+          Assigned at creation by new_object_id(); never changes.
+
+      status:
+        type: string
+        description: >
+          Lifecycle status drawn from the closed enum in
+          REGISTRIES/artifact-statuses.yaml. Agent-writable statuses only from
+          the harness; author-only statuses require a signature (see provenance).
+
+      previous_status:
+        type: string
+        description: Status before the most recent transition. Set by lore promote.
+
+      created_at:
+        type: string
+        format: date-time
+        description: ISO 8601 UTC timestamp of object creation (YYYY-MM-DDTHH:MM:SSZ).
+
+      created_by:
+        type: string
+        description: >
+          Actor id that created this object.
+          Conventional values: 'agent:local', 'author:local', 'import'.
+
+  # -------------------------------------------------------------------------
+  # content  — kind-specific payload
+  # -------------------------------------------------------------------------
+  content:
+    type: object
+    description: >
+      Kind-specific payload. Validated by SCHEMAS/<kind>.schema.json.
+      Populated by the creator; never altered by transport or promotion.
+      OBJECT_REF != OBJECT: a reference to another object belongs here as
+      a target_id string, not as an embedded envelope.
+    additionalProperties: true
+
+  # -------------------------------------------------------------------------
+  # provenance  — lineage, integrity, and signing evidence
+  # -------------------------------------------------------------------------
+  provenance:
+    type: object
+    description: Lineage, content-integrity hash, and optional signing evidence.
+    required: [source_refs, derived_from, content_sha256]
+    additionalProperties: true
+    properties:
+
+      source_refs:
+        type: array
+        items:
+          type: string
+        description: >
+          Object ids or external URIs this object was derived from or
+          directly references. Used for traceability (Vol 1 §11).
+
+      derived_from:
+        type: array
+        items:
+          type: string
+        description: >
+          Transformation inputs (subset of source_refs) that produced this
+          object's content. Required for derived/generated status (Check 8).
+
+      content_sha256:
+        type: string
+        pattern: "^[a-f0-9]{64}$"
+        description: >
+          SHA-256 hex digest of the canonical JSON serialisation of 'content'
+          at creation time (json.dumps, sort_keys=True). Detects accidental
+          mutation; not a security guarantee (no signature).
+
+      # --- Author-only status evidence (DECISION-AUTH-IDENTITY) -------------
+
+      signature:
+        type: string
+        description: >
+          Relative repo path to the detached OpenPGP .asc signature over this
+          artifact file. Required (together with signer_fpr) for author-only
+          statuses at v1.0.0. Verified by TOOLS/lore_verify_author_sig.py.
+
+      signer_fpr:
+        type: string
+        pattern: "^[0-9A-Fa-f ]{40,}$"
+        description: >
+          40-hex OpenPGP fingerprint of the signing key.
+          Must match an entry in REGISTRIES/trusted-signers.txt with an
+          allowed role (default: root). Lineage to a root key is enforced
+          (CORE-INVARIANT 11).
+
+      author_preseeded:
+        type: boolean
+        description: >
+          DEPRECATED migration flag: grants author-only status without a
+          cryptographic signature. Accepted with a warning during migration;
+          must be replaced by signature + signer_fpr before v1.0.0
+          (DECISION-AUTH-IDENTITY.accepted.md).
+
+      # --- Promotion evidence (set by lore promote) -------------------------
+
+      promoted_at:
+        type: string
+        format: date-time
+        description: Timestamp of the most recent lore promote operation.
+
+      promoted_by:
+        type: string
+        description: Actor id that performed the most recent promotion.
+
+      promotion_reason:
+        type: string
+        description: Human-readable rationale recorded at promotion time.

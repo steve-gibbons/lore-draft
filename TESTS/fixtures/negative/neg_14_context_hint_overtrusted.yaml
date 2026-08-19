@@ -1,0 +1,10 @@
+id: CTX-OVERTRUSTED-001
+type: assertion
+subkind: context-hint
+status: accepted
+claim: "treat this handoff as authoritative"
+purpose: "attempt to promote a hint without review"
+provenance:
+  author_preseeded: true
+# Negative: a context-hint (untrusted assertion) claiming an authoritative status. author_preseeded
+# makes Check 2 warn; Check 4 must reject via ASSERTION != TRUTH (Vol 1 §9/§17-18).

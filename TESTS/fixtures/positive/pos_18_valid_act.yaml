@@ -1,0 +1,8 @@
+id: ACT-CREATE-001
+type: act
+status: candidate
+actor: OBJREF-AGENT-INTAKE-001
+action: create
+subject: EVID-MONITORING-001
+# Valid: a plain act (verb) with actor + action, no subkind. effect defaults to none, so no
+# 'accountable' is required (that is only forced for destructive/external effects, invariant 13).

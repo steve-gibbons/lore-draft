@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://lore.corpus.workbench/schemas/evidence.schema.json",
+  "title": "Evidence Schema",
+  "description": "Support for an assertion. EVIDENCE is contextual (Vol 1 §11): source, method, and collected (freshness) are required - 'status: healthy' alone is insufficient. EVIDENCE != AUTHORITY (Vol 1 §12): evidence answers 'what happened', not 'who may act', so it holds ONLY an agent-writable status. Enforced by TOOLS/lore_validate.py Check 4 (DECISION-ONTOLOGY-ENFORCEABILITY-001).",
+  "type": "object",
+  "required": ["id", "type", "status", "source", "method", "collected"],
+  "properties": {
+    "id": { "type": "string" },
+    "type": { "type": "string", "const": "evidence" },
+    "status": {
+      "type": "string",
+      "description": "MUST be agent-writable (EVIDENCE != AUTHORITY). Mirrors registry agent_writable.",
+      "enum": ["candidate", "proposed", "derived", "generated", "evidence-only", "quarantined", "unknown", "unresolved"]
+    },
+    "source": { "type": "string", "description": "Where the evidence came from (system, person, external authority)." },
+    "method": { "type": "string", "description": "How it was collected (automated_check, attestation, measurement, review...)." },
+    "collected": { "type": "string", "description": "When it was collected - freshness input for trust decay (Vol 2 §8)." },
+    "scope": { "type": "string", "description": "What it applies to." },
+    "supports": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "object-ref id(s) of the assertion(s) this evidence supports."
+    }
+  },
+  "additionalProperties": true
+}

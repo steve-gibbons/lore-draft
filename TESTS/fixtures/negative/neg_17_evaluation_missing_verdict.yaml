@@ -1,0 +1,8 @@
+id: EVAL-INCOMPLETE-001
+type: assertion
+subkind: evaluation
+status: candidate
+claim: "judged the intake bundle"
+criteria: "completeness"
+# Negative: an evaluation with criteria but no verdict. Check 4 must reject it - a judgment
+# without an outcome is not an evaluation.

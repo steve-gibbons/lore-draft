@@ -1,10 +1,18 @@
 # LORE - trusted signers (EXPERIMENTAL / provisional TEST HARNESS)
 #
+# !!SECURITY BOUNDARY!!  This file controls who can establish artifact authenticity.
+# Treat changes to it as privileged author acts:
+#   - Ideally code-owner protected (e.g. CODEOWNERS entry pointing to the author).
+#   - Every change reviewed and auditable in git history.
+#   - Never edited by an agent; only the human author may add, remove, or relabel entries.
+#   - The dynamic fingerprint helpers in lore_freeze_raw.py and lore_verify_manifest_sig.py
+#     derive their root key hint from the FIRST root entry in this file.
+#
 # Names the OpenPGP signing keys that count as LORE authority, and at what LEVEL.
 # It is the "allowed_signers" root for Track F (forensic integrity, Option C), and it
 # makes CORE-INVARIANT 11 (authority has lineage) executable: trust is bound to the
 # SIGNING-key fingerprint (role), and every accepted signature must additionally CHAIN
-# to a `root` key (lineage), which the verifier enforces.
+# to a `root` key (lineage), which the verifier enforced.
 #
 # STATUS: conceptual test harness, explicitly intended to be replaced by robust key
 # management (HSM / hardware token, rotation, revocation, multi-party custody). Not
@@ -33,12 +41,16 @@
 # and this ambiguity disappears.
 
 # --- ROOT (author-hand) ---
-7309F037A9457C7601C7F3BF068354FBD9B04B5C  root  Steve Gibbons - author primary (D9B04B5C)
-678FD0793A31D313E98471EF36BA3FC140BEDA0B  root  author signing subkey [S] 2026-08-01 (lineage: D9B04B5C)
-
-# --- DELEGATED (agent-hand) - author: uncomment ONE and confirm it is the agent key ---
-# Delegation is DEFERRED (DECISION-AUTH-IDENTITY.accepted.md). Neither candidate is active.
-# Author-only status remains root-only until a concrete delegation need arises and the
-# decision record is updated. Candidates present in the keyring (ed25519 [S], 2026-08-16):
-# 9952EC3552CBDB2021C06A36DC647A2B43EDBC2F  delegated:agent  agent signing subkey (lineage: D9B04B5C)
-# F3BA0EDE2275818A1C2109FDAFFF11415A261321  delegated:agent  agent signing subkey (lineage: D9B04B5C)
+# lore_freeze_raw.py and the `lore sign` command read the FIRST root entry to derive
+# the signing key fingerprint at runtime. Keep the active usable signing subkey first.
+#
+# NOTE: 69FADB14 (created 2026-08-18, expires 2028-08-17) is the active signing subkey
+# with live secret material. Listed first so `lore sign` and lore_verify_manifest_sig.py
+# pin it. F3BA0EDE and 9952EC35 are retained for historical verification of existing
+# signatures but both are now secret-missing. 678FD079 and the primary (7309F037)
+# are retained for lineage record purposes.
+69FADB148F4DCAC85FD59E183E5A2E38850E0C22  root  author signing subkey [S] 2026-08-18 active (lineage: D9B04B5C)
+F3BA0EDE2275818A1C2109FDAFFF11415A261321  root  author signing subkey [S] 2026-08-16 UNUSABLE-secret-missing (lineage: D9B04B5C)
+9952EC3552CBDB2021C06A36DC647A2B43EDBC2F  root  author signing subkey [S] 2026-08-16 UNUSABLE-secret-missing (lineage: D9B04B5C)
+7309F037A9457C7601C7F3BF068354FBD9B04B5C  root  Author - author primary (D9B04B5C)
+678FD0793A31D313E98471EF36BA3FC140BEDA0B  root  author signing subkey [S] 2026-08-01 UNUSABLE-secret-missing (lineage: D9B04B5C)

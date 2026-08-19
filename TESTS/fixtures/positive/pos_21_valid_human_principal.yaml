@@ -1,0 +1,7 @@
+id: PRIN-HUMAN-OPS-001
+type: principal
+status: candidate
+identity: "user:ops.lead@example.com"
+principal_kind: human
+# Positive: a human principal. principal_kind: human -> per invariant 13 this kind CAN
+# be declared Accountable for permanent/risky acts. All required fields present.

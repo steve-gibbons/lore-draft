@@ -1,0 +1,11 @@
+id: ACT-DELETE-NO-ACCOUNT-001
+type: act
+status: candidate
+actor: OBJREF-AGENT-OPS-001
+action: delete
+effect: destructive
+subject: EVID-ARCHIVE-001
+# Negative: a destructive act with no 'accountable' field. Check 4 must reject it:
+# a thing cannot be accountable (invariant 13) and an act with effect 'destructive'
+# MUST name an accountable principal. The absent field means no human accountability
+# chain is declared.

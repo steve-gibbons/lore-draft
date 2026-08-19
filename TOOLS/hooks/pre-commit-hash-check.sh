@@ -11,8 +11,9 @@ echo "=== Running LORE Workbench Pre-Commit Hook ==="
 # Run lore_validate.py
 if [ -f "TOOLS/lore_validate.py" ]; then
     echo "Running standalone validator..."
-    python3 TOOLS/lore_validate.py
-    if [ $? -ne 0 ]; then
+    # NB: `cmd; if [ $? -ne 0 ]` is dead under `set -e` (errexit aborts first);
+    # test the command directly instead (SIG-SH-003).
+    if ! python3 TOOLS/lore_validate.py; then
         echo "ERROR: LORE Corpus Workbench validation failed. Commit aborted."
         exit 1
     fi
@@ -33,6 +34,12 @@ for p in KEYS/__sigguard__.asc INTAKE/__sigguard__.asc __sigguard__.asc; do
     fi
 done
 [ "$sig_bad" -eq 0 ] || { echo "ERROR: signatures would be gitignored. Commit aborted."; exit 1; }
+
+# Guard: shell footgun signatures (SIG-SH-001 pipefail/SIGPIPE, and any later sets).
+if [ -f "TOOLS/lore_lint.py" ]; then
+    echo "Scanning shell scripts for footgun signatures..."
+    python3 TOOLS/lore_lint.py || { echo "ERROR: shell footgun signature matched. Commit aborted."; exit 1; }
+fi
 
 echo "=== LORE Pre-Commit Check Passed ==="
 exit 0

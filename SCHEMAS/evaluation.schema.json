@@ -1,0 +1,20 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://lore.corpus.workbench/schemas/evaluation.schema.json",
+  "title": "Evaluation Schema (subkind of assertion)",
+  "description": "A judgment: an assertion that weighs something against criteria and returns a verdict. Encoded as `type: assertion, subkind: evaluation` (kind+subkind). Inherits ASSERTION != TRUTH (agent-writable status only). Enforced by lore_validate.py Check 4.",
+  "type": "object",
+  "required": ["id", "type", "subkind", "status", "claim", "criteria", "verdict"],
+  "properties": {
+    "id": { "type": "string" },
+    "type": { "type": "string", "const": "assertion" },
+    "subkind": { "type": "string", "const": "evaluation" },
+    "status": { "type": "string", "enum": ["candidate", "proposed", "derived", "generated", "evidence-only", "quarantined", "unknown", "unresolved"] },
+    "claim": { "type": "string", "description": "the judgment as a claim." },
+    "criteria": { "type": "string", "description": "what it was judged against." },
+    "verdict": { "type": "string", "description": "the outcome." },
+    "confidence": { "type": "string" },
+    "of_ref": { "type": "string", "description": "object-ref id of what is being evaluated." }
+  },
+  "additionalProperties": true
+}

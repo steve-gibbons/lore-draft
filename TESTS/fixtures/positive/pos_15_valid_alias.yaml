@@ -1,0 +1,13 @@
+id: ALIAS-PRODUCTION-001
+type: object-ref
+subkind: alias
+status: candidate
+target_id: OBJREF-ENV-PROD-CLUSTER-7-001
+alias: production
+alias_type: environment
+resolves_to: OBJREF-ENV-PROD-CLUSTER-7-001
+owner: OBJREF-PLATFORM-TEAM-001
+resolution_history:
+  - "2025-01-01 -> OBJREF-ENV-PROD-CLUSTER-3-001"
+  - "2026-06-01 -> OBJREF-ENV-PROD-CLUSTER-7-001"
+# Valid: an alias = a named object-ref preserving type/resolution/owner/history. ALIAS != IDENTITY.
