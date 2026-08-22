@@ -15,6 +15,7 @@ TOPICS = {
     "pull": "Fetch remote object into local quarantine. Receipt is not trust or acceptance.",
     "object": "The ABSTRACT base: all objects share the lore/content/provenance envelope and are never stored bare. OBJECT_REF stays a reference (OBJECT_REF != OBJECT).",
     "status": "Agent-writable statuses only from the harness unless author context is explicit.",
+    "seal": "Consolidate the crypto steps for a build stage: freeze (only with --freeze), detached-sign, reference the signature from provenance, then re-run the repo's own gates. Plan-only by default; `--check` exits non-zero while anything is unsealed.",
     "kernel": "Canonical ontology (DECISION-ONTOLOGY-CANONICAL-KERNEL-001): abstract 'object' base; concrete kinds principal, policy, object-ref(+alias), relationship, act(+event), assertion(+evidence/evaluation/context-hint), authority, capability; 'thing' and 'state' are derived projections, not stored.",
 }
 

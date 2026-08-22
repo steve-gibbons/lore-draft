@@ -17,7 +17,7 @@ import stat
 import argparse
 
 sys.path.insert(0, os.path.dirname(__file__))
-from lore_common import load_simple_yaml as _load_simple_yaml
+from lore_common import YamlSupportError, load_simple_yaml as _load_simple_yaml
 
 
 def load_doc(filepath):
@@ -30,7 +30,7 @@ def load_doc(filepath):
     try:
         return json.loads(content)
     except Exception:
-        return _load_simple_yaml(content)
+        return _load_simple_yaml(content, source=filepath)
 
 def get_registry(repo_root):
     reg_path = os.path.join(repo_root, 'REGISTRIES', 'artifact-statuses.yaml')
@@ -432,7 +432,14 @@ def main():
     args = parser.parse_args()
 
     repo_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
-    validator = LoreValidator(repo_root)
+    try:
+        validator = LoreValidator(repo_root)
+    except YamlSupportError as exc:
+        # Handled, not propagated as a traceback: a governance gate that dies with
+        # AttributeError reports the wrong defect (CORE-INVARIANT 9).
+        print("=== LORE Corpus Workbench Validator ===")
+        print("[ABORT] cannot read the registries — %s" % exc, file=sys.stderr)
+        sys.exit(2)
 
     # --- Single-artifact mode (--file or --stdin) ----------------------------
     if args.file or args.stdin:

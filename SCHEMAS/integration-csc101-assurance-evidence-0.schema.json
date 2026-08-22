@@ -1,0 +1,194 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://lore.corpus.workbench/schemas/integration-csc101-assurance-evidence-0.schema.json",
+  "title": "INTEGRATION-CSC101-ASSURANCE-EVIDENCE-0",
+  "description": "Contract for CSC101-supplied implementation-assurance evidence consumed and semantically evaluated by LORE. CSC101 produces the evidence; LORE governs its provenance, integrity, validity, applicability, and assurance use. Adopted by DEC-CSC101-ASSURANCE-ADOPTION-PATH-001.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "artifact_id",
+    "contract_id",
+    "contract_version",
+    "producer",
+    "subject",
+    "generated_at",
+    "provenance",
+    "evidence_items"
+  ],
+  "properties": {
+    "artifact_id": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^CSC101-AE-[A-Za-z0-9._:-]+$"
+    },
+    "contract_id": { "const": "INTEGRATION-CSC101-ASSURANCE-EVIDENCE-0" },
+    "contract_version": { "const": "0" },
+    "producer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["system_id", "system_version", "execution_environment"],
+      "properties": {
+        "system_id": { "const": "CSC101" },
+        "system_version": { "type": "string", "minLength": 1 },
+        "execution_environment": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["ci_system", "run_id"],
+          "properties": {
+            "ci_system": { "type": "string", "minLength": 1 },
+            "run_id": { "type": "string", "minLength": 1 },
+            "pipeline_url": { "type": "string", "format": "uri" }
+          }
+        }
+      }
+    },
+    "subject": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["repository", "revision"],
+      "properties": {
+        "repository": { "type": "string", "minLength": 1 },
+        "revision": { "type": "string", "minLength": 1 },
+        "ref": { "type": "string" }
+      }
+    },
+    "generated_at": { "type": "string", "format": "date-time" },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source_artifact_uri", "digest", "observed_at"],
+      "properties": {
+        "source_artifact_uri": { "type": "string", "format": "uri" },
+        "digest": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["algorithm", "value"],
+          "properties": {
+            "algorithm": { "const": "sha256" },
+            "value": { "type": "string", "pattern": "^[A-Fa-f0-9]{64}$" }
+          }
+        },
+        "observed_at": { "type": "string", "format": "date-time" },
+        "signature_reference": { "type": "string" },
+        "attestation_reference": { "type": "string" }
+      }
+    },
+    "evidence_items": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/definitions/evidence_item" }
+    }
+  },
+  "definitions": {
+    "evidence_item": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "evidence_id",
+        "evidence_type",
+        "declared_at",
+        "execution_state",
+        "execution_state_basis"
+      ],
+      "properties": {
+        "evidence_id": { "type": "string", "minLength": 1 },
+        "evidence_type": {
+          "type": "string",
+          "enum": [
+            "unit_test",
+            "integration_test",
+            "end_to_end_test",
+            "coverage_measurement",
+            "static_analysis",
+            "build_verification",
+            "other"
+          ]
+        },
+        "declared_at": { "type": "string", "format": "date-time" },
+        "execution_state": {
+          "type": "string",
+          "enum": ["declared", "executed", "skipped_by_prior_failure", "indeterminate"]
+        },
+        "execution_state_basis": { "type": "string", "minLength": 1 },
+        "outcome_state": {
+          "type": "string",
+          "enum": ["passed", "failed", "errored", "cancelled"]
+        },
+        "execution": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["started_at", "completed_at"],
+          "properties": {
+            "started_at": { "type": "string", "format": "date-time" },
+            "completed_at": { "type": "string", "format": "date-time" },
+            "command_reference": { "type": "string" },
+            "log_reference": { "type": "string", "format": "uri" }
+          }
+        },
+        "prior_failure": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["blocking_evidence_id", "reason"],
+          "properties": {
+            "blocking_evidence_id": { "type": "string", "minLength": 1 },
+            "reason": { "type": "string", "minLength": 1 }
+          }
+        },
+        "coverage": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["metric", "value", "unit", "report_reference"],
+          "properties": {
+            "metric": {
+              "type": "string",
+              "enum": ["line", "branch", "function", "statement", "instruction"]
+            },
+            "value": { "type": "number", "minimum": 0, "maximum": 100 },
+            "unit": { "const": "percent" },
+            "report_reference": { "type": "string", "format": "uri" }
+          }
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": { "execution_state": { "const": "executed" } },
+            "required": ["execution_state"]
+          },
+          "then": { "required": ["execution", "outcome_state"] }
+        },
+        {
+          "if": {
+            "properties": { "execution_state": { "const": "skipped_by_prior_failure" } },
+            "required": ["execution_state"]
+          },
+          "then": { "required": ["prior_failure"] },
+          "else": { "not": { "required": ["prior_failure"] } }
+        },
+        {
+          "if": {
+            "properties": {
+              "execution_state": { "enum": ["declared", "indeterminate"] }
+            },
+            "required": ["execution_state"]
+          },
+          "then": {
+            "not": {
+              "anyOf": [
+                { "required": ["outcome_state"] },
+                { "required": ["execution"] }
+              ]
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": { "evidence_type": { "const": "coverage_measurement" } },
+            "required": ["evidence_type"]
+          },
+          "then": { "required": ["coverage"] }
+        }
+      ]
+    }
+  }
+}

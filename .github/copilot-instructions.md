@@ -22,18 +22,16 @@ governance so Copilot behaves as a lore-capable assistant in this repository.
 - **Agent-writable statuses ONLY:** `candidate | proposed | derived | generated |
   evidence-only | quarantined | unknown | unresolved`. Record explicit inputs (path +
   SHA-256) for derived/generated work. Preserve uncertainty.
-- Prefer the unified form `lore <verb>` when available (see AGENTS.md). Fall back to
-  `python3 TOOLS/lore_validate.py` only when the CLI entry point or verb is absent.
-- Validate before and after changes; the expected pass count is defined by the current
-  fixture corpus, so require **0 failed** rather than a hard-coded pass total.
+- Validate before/after changes: `python3 TOOLS/lore_validate.py` (expect `12 passed, 0 failed`).
 
 ## Operational traps (see REPO-OPERATING-NOTES.md)
 - **NEVER** push branch `backup/pre-lfs-fullfat` (local full-fidelity backup; 49 MB blob in git).
 - `html-export/*.webarchive` is **Git LFS**; do not force large pushes on constrained bandwidth.
 - `INTAKE/raw/` files must stay read-only (`chmod a-w`); re-freeze if a checkout resets the bit.
-- Verify the default branch with `git remote show origin`; do not rely on a stale branch name.
+- Default branch is `bootstrap/corpus-workbench-scaffold`; `main` is unrelated LICENSE boilerplate.
 
 ## Adopting a hat (persona / lens)
+
 **Conversational protocol (works on any surface, incl. github.com - no terminal needed).**
 When the user says **`hat <LENS-ID>`** (optionally `--profile maintainer`; default profile is
 `evaluator`), do exactly this:
@@ -44,8 +42,8 @@ When the user says **`hat <LENS-ID>`** (optionally `--profile maintainer`; defau
    (profile + lens) and reprint the EXPERIMENTAL banner.
 - `hat list` → list the lens IDs from `lenses.md`.  `hat off` → return to the maintainer default.
 
-**Terminal alternative:** prefer `lore prompt <LENS-ID>` when available; otherwise
-`python3 TOOLS/lore_prompt.py <LENS-ID>` prints the same composed prompt.
+**Terminal alternative (VS Code / CLI only):** `python3 TOOLS/lore_prompt.py <LENS-ID>` prints
+the same composed prompt.
 
 **Named-lens rule (mandatory):** a named lens is "grounded in the public work of" that person -
 never their actual opinion or endorsement (ALIAS != IDENTITY; no fabricated provenance). A

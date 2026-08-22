@@ -20,7 +20,20 @@ WHAT A PASS PROVES, per author-only artifact
                  with an allowed role (default: `root`; --accept-delegated also allows
                  `delegated:agent` for lower-trust author-only artifacts).
   3. LINEAGE   - the signature chains to a `root` key (CORE-INVARIANT 11), and the signing
-                 fingerprint matches the artifact's declared provenance.signer_fpr.
+                 fingerprint matches the artifact's declared provenance.signer_fpr when
+                 the artifact declares one.
+
+HOW A SIGNATURE IS FOUND (the resolution contract)
+  The signature for an artifact is the SIBLING file `<artifact>.asc`. An in-file
+  `provenance.signature` declaration is corroborating, not authoritative.
+
+  It used to be the only route: "signed" meant "the artifact says it is signed", so an
+  artifact that simply omitted the field was counted UNSIGNED and skipped - the artifact
+  decided whether it got verified. That is KF-01 one level down (authority asserted, not
+  authenticated), and it was not theoretical: no artifact in this corpus declares the
+  field, and four decision records carry real detached signatures that the gate could not
+  see. If a declaration and a sibling name different files, that is ambiguous provenance
+  and fails rather than picking one.
 
 WHAT IT DOES NOT PROVE
   That a `root` key is held by the *legitimate* author (key custody / binding is the
@@ -124,6 +137,53 @@ def find_author_only_artifacts(statuses):
     return hits
 
 
+def resolve_signature(path, declared_ref):
+    """Decide which detached signature covers `path`.
+
+    Returns (asc_path | None, source, error | None) where `source` is 'sibling',
+    'declared', or None. A returned asc_path is guaranteed to exist on disk.
+
+    Precedence, and why:
+      sibling only    -> sibling. The fix. A signature sitting next to its artifact is a
+                         signature, whether or not the artifact mentions it.
+      both, agreeing  -> sibling. The declaration corroborates; nothing to resolve.
+      both, differing -> error. Two answers to "what signs this?" is not a detail to
+                         paper over by preferring one; the author has to say which.
+      declared only   -> declared, if it exists. Keeps signatures that legitimately live
+                         elsewhere working, and keeps the missing-file case a FAIL.
+      neither         -> unsigned.
+
+    AUTHOR RULINGS (2026-08-21), recorded so they are not re-litigated by inference:
+      - Declaration is DEMOTED, not removed. "Demote is the better model." A declaration
+        alone still resolves, so a signature that legitimately lives elsewhere keeps
+        working; what it can no longer do is be the sole gate on whether verification
+        happens at all.
+      - Disagreement is a hard error, "until we can generalize better." Explicitly
+        PROVISIONAL: the rule is right for a corpus with one signing hand and one
+        convention, and is expected to be revisited when signatures need to describe
+        richer arrangements (multiple signers, rotated keys, signatures over subsets).
+        Treat a future change here as reopening a settled question, not overturning one.
+    """
+    sibling = path + '.asc'
+    have_sibling = os.path.isfile(sibling)
+    declared = os.path.join(REPO, declared_ref) if declared_ref else None
+
+    if have_sibling and declared:
+        if os.path.abspath(declared) != os.path.abspath(sibling):
+            return None, None, (
+                "ambiguous provenance - a sibling signature exists at %s but the artifact "
+                "declares %s. Remove one, or make the declaration name the sibling."
+                % (os.path.relpath(sibling, REPO), declared_ref))
+        return sibling, 'sibling', None
+    if have_sibling:
+        return sibling, 'sibling', None
+    if declared:
+        if not os.path.isfile(declared):
+            return None, None, "declared signature missing at %s" % declared_ref
+        return declared, 'declared', None
+    return None, None, None
+
+
 def gpg_verify(artifact_path, asc_path):
     """Return (ok, signing_fpr, primary_fpr, raw) using gpg --status-fd."""
     try:
@@ -168,17 +228,17 @@ def main():
 
     for path, sig_ref, fpr in sorted(artifacts):
         rel = os.path.relpath(path, REPO)
-        if not sig_ref:
+        asc, source, err = resolve_signature(path, sig_ref)
+        if err:
+            print(f"[FAIL] {rel}: {err}")
+            failed += 1
+            continue
+        if asc is None:
             unsigned += 1
             tag = 'FAIL' if args.strict else 'WARN'
             print(f"[{tag}] UNSIGNED author-only artifact (migration TODO): {rel}")
             if args.strict:
                 failed += 1
-            continue
-        asc = os.path.join(REPO, sig_ref)
-        if not os.path.isfile(asc):
-            print(f"[FAIL] {rel}: detached signature missing at {sig_ref}")
-            failed += 1
             continue
         ok, signing_fpr, primary_fpr, raw = gpg_verify(path, asc)
         if ok is None:
@@ -208,9 +268,25 @@ def main():
             failed += 1
             continue
         accepted += 1
-        print(f"[PASS] {rel}: {role} — {label} (lineage root {primary_fpr})")
+        print(f"[PASS] {rel}: {role} — {label} (lineage root {primary_fpr}) [{source}]")
 
     print(f"\nSummary: {accepted} accepted, {unsigned} unsigned, {failed} failed.")
+
+    # A gate that examined nothing has asserted nothing. Reporting success for an empty
+    # set is how this gate came to be green while seven signed .md artifacts — AGENTS.md
+    # among them — went unverified, and while no KEYS/*.asc existed for it to verify
+    # against. Under --strict, "I checked zero things" is not a pass.
+    vacuous = args.strict and accepted == 0 and unsigned == 0 and failed == 0
+    if vacuous:
+        print()
+        print("FAIL: --strict, but this gate verified nothing.")
+        if not artifacts:
+            print("  No author-only artifacts were found at all. Either the corpus")
+            print("  genuinely holds none, or discovery is not reaching them")
+            print("  (this gate scans .yaml/.yml/.json only).")
+        print("  A green gate must mean a signature was checked, not that none was.")
+        return 1
+
     print("NOTE: EXPERIMENTAL test-harness gate — replace with robust key management.")
     return 1 if failed else 0
 

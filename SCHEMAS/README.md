@@ -11,3 +11,4 @@ Contains core JSON schemas for LORE Corpus Workbench Phase 1.
 - `object-ref.schema.json`
 - `corpus-manifest.schema.json`
 - `integration-contract.schema.json` ([FUTURE] stub)
+- `integration-csc101-assurance-evidence-0.schema.json`: contract `INTEGRATION-CSC101-ASSURANCE-EVIDENCE-0` — bounded ingestion of CSC101 implementation-assurance evidence (DEC-CSC101-ASSURANCE-ADOPTION-PATH-001).

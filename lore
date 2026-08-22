@@ -1,0 +1,237 @@
+#!/usr/bin/env bash
+#
+# lore - convenience wrapper for LORE Corpus Workbench maintainer/author operations
+#        + local workbench harness (v0.1 mini-effort).
+#
+# EXPERIMENTAL / provisional. Thin dispatcher over TOOLS/* .
+# Accepts either `lore <verb>` or `lore --<verb>`.
+#
+# Signing remains a ROOT/author act. Transport token authorizes quarantine
+# import only — never promotion or destructive clearance.
+#
+set -euo pipefail
+
+# Resolve this script's real location, following symlinks (e.g. a ~/bin/lore
+# symlink on PATH), so REPO points at the actual checkout, not the link's dir.
+SOURCE="${BASH_SOURCE[0]}"
+while [ -L "$SOURCE" ]; do
+  dir="$(cd -P "$(dirname "$SOURCE")" >/dev/null 2>&1 && pwd)"
+  SOURCE="$(readlink "$SOURCE")"
+  [ "${SOURCE#/}" = "$SOURCE" ] && SOURCE="$dir/$SOURCE"   # relative link -> absolutize
+done
+REPO="$(cd -P "$(dirname "$SOURCE")" >/dev/null 2>&1 && pwd)"
+MANIFEST="$REPO/INTAKE/RAW-MANIFEST.sha256"
+# Derive the first root key from REGISTRIES/trusted-signers.txt at runtime so
+# the signing command stays correct after a key rotation. Trailing '!' forces
+# the exact key (guards against gpg defaulting to a delegated subkey).
+ROOT_KEY="$(awk '!/^#/ && !/^$/ && $2=="root" {print $1; exit}' \
+    "$REPO/REGISTRIES/trusted-signers.txt" 2>/dev/null || echo '')"
+if [[ -z "$ROOT_KEY" ]]; then
+  echo "lore: warning: no 'root' key found in REGISTRIES/trusted-signers.txt" >&2
+fi
+
+# Default transport port for this workbench harness
+DEFAULT_LISTEN="127.0.0.1:22469"
+
+usage() {
+  cat <<'EOF'
+lore - LORE workbench operations wrapper (EXPERIMENTAL v0.1)
+
+Usage: lore [global-flags] <verb> [args]
+       lore [global-flags] --<verb> [args]
+
+Global flags:
+  --version, -V          Tool version
+  --help, -h             This message (or verb help)
+  --explain TOPIC        Short explanation
+  --verbose, -v          Extra context
+  --debug                Diagnostics (secrets redacted)
+  --check                Validate only; no mutation
+  --dry-run              Show planned ops; no mutation
+  --format yaml|json|text
+  --repo PATH            Workbench root
+
+Verbs (maintenance / governance):
+  validate               Run governance/structural checks
+  check [--file F]       Fast pre-write artifact validator (subset of validate)
+  freeze                 Re-hash INTAKE/raw into RAW-MANIFEST.sha256
+  build-manifest         Regenerate CORPUS-MANIFEST.yaml from the corpus
+  sign [PATH]            ROOT act: detached-sign manifest or PATH
+  verify                 Verify raw-manifest signature
+  verify-authors         Verify signatures on author-only artifacts
+  reseal                 freeze → sign → verify → validate
+  seal [--stage S]       Plan/perform the crypto steps for a build stage
+  lint                   Scan shell scripts for footgun signatures
+  status                 Health + signature + git short status
+  prompt [LENS]          Assemble a LORE hat
+
+Verbs (workbench harness v0.1):
+  init [--generate-token] [--force]
+  create <kind>          Create typed object (thing|act|…|handoff)
+  get <object-ref>
+  list [kind]
+  search <query>
+  promote <object-ref> <status>   Move object to an author-only status
+  handoff create|inbox|show
+  serve [--listen HOST:PORT]   default 127.0.0.1:22469
+  pull <remote>
+  push <remote> <object-ref...>
+  exchange push|pull|list|verify   git-backed shared context (no network)
+  ingest --vendor N --file F        bridge a foreign agent's output into quarantine
+  watch [--interval S] [--once]     enforcement checkpoint on a timer over EXCHANGE/
+  export [--target DIR] [--staging DIR] [--dry-run]   governed private->public export
+  install                Reserved (no-op in v0.1)
+
+Examples:
+  lore init --generate-token
+  lore create assertion --file ./draft.yaml
+  lore handoff create --from agent:a --to agent:b
+  lore serve
+  lore validate
+  lore freeze && lore sign && lore reseal
+EOF
+}
+
+VERSION="0.1.0-workbench"
+
+# Very light arg pre-parse for global flags we care about in the shell.
+# Remaining args are passed through to the Python tools.
+VERBOSE=0
+DEBUG=0
+CHECK=0
+DRY_RUN=0
+FORMAT="text"
+EXPLAIN=""
+REPO_OVERRIDE=""
+
+ARGS=()
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    --version|-V) echo "lore $VERSION"; exit 0 ;;
+    --help|-h) usage; exit 0 ;;
+    --explain) EXPLAIN="${2:-}"; shift 2 || true; continue ;;
+    --verbose|-v) VERBOSE=1; shift; continue ;;
+    --debug) DEBUG=1; shift; continue ;;
+    --check) CHECK=1; shift; continue ;;
+    --dry-run) DRY_RUN=1; shift; continue ;;
+    --format) FORMAT="${2:-text}"; shift 2 || true; continue ;;
+    --repo) REPO_OVERRIDE="${2:-}"; shift 2 || true; continue ;;
+    --) shift; break ;;
+    *) ARGS+=("$1"); shift; continue ;;
+  esac
+done
+set -- "${ARGS[@]:-}" "$@"
+
+if [[ -n "$EXPLAIN" ]]; then
+  exec python3 "$REPO/TOOLS/lore_explain.py" "$EXPLAIN"
+fi
+
+verb="${1:-help}"
+shift || true
+verb="${verb#--}"
+
+export LORE_VERBOSE="$VERBOSE"
+export LORE_DEBUG="$DEBUG"
+export LORE_CHECK="$CHECK"
+export LORE_DRY_RUN="$DRY_RUN"
+export LORE_FORMAT="$FORMAT"
+export LORE_REPO="${REPO_OVERRIDE:-$REPO}"
+export LORE_DEFAULT_LISTEN="$DEFAULT_LISTEN"
+
+do_sign() {
+  local target="${1:-manifest}"
+  local f
+  case "$target" in
+    manifest|"") f="$MANIFEST" ;;
+    *) f="$target" ;;
+  esac
+  [ -f "$f" ] || { echo "lore sign: no such file: $f" >&2; exit 2; }
+  command -v gpg >/dev/null 2>&1 || { echo "lore sign: gpg not found on PATH" >&2; exit 2; }
+  echo "Signing (ROOT $ROOT_KEY): $f"
+  # Non-interactive output handling. Explicit --output names the target so gpg
+  # never falls into the "Enter new filename:" branch, and --yes overwrites an
+  # existing "$f.asc" without the "File exists. Overwrite?" prompt. A stale
+  # detached signature must always be replaced wholesale (never appended/kept).
+  # Both prompts otherwise collide with queued keystrokes and can corrupt a
+  # reseal (pasted shell commands get eaten as gpg answers). No --batch: pinentry
+  # still handles the passphrase, so this stays an author ROOT act.
+  gpg --yes --armor --output "$f.asc" --detach-sign -u "${ROOT_KEY}!" "$f"
+  echo "Wrote $f.asc"
+}
+
+case "$verb" in
+  validate)
+    exec python3 "$REPO/TOOLS/lore_validate.py" "$@" ;;
+  check)
+    exec python3 "$REPO/TOOLS/lore_check.py" "$@" ;;
+  freeze)
+    exec python3 "$REPO/TOOLS/lore_freeze_raw.py" "$@" ;;
+  build-manifest)
+    exec python3 "$REPO/TOOLS/lore_build_manifest.py" "$@" ;;
+  sign)
+    do_sign "${1:-}" ;;
+  verify|verify-sig)
+    exec python3 "$REPO/TOOLS/lore_verify_manifest_sig.py" "$@" ;;
+  verify-authors|authors)
+    exec python3 "$REPO/TOOLS/lore_verify_author_sig.py" "$@" ;;
+  reseal)
+    echo "== freeze ==" && python3 "$REPO/TOOLS/lore_freeze_raw.py"
+    echo "== sign ==" && do_sign manifest
+    echo "== verify ==" && python3 "$REPO/TOOLS/lore_verify_manifest_sig.py"
+    echo "== validate ==" && python3 "$REPO/TOOLS/lore_validate.py" ;;
+  seal)
+    # Plan-only by default. Signing is a ROOT act; the tool refuses to freeze
+    # implicitly and re-runs the repo's own gates rather than certifying itself.
+    exec python3 "$REPO/TOOLS/lore_seal.py" "$@" ;;
+  status)
+    echo "== validator ==" && python3 "$REPO/TOOLS/lore_validate.py" 2>&1 | tail -1 || true
+    echo "== signature ==" && python3 "$REPO/TOOLS/lore_verify_manifest_sig.py" --soft 2>&1 | head -6 || true
+    echo "== author-only sigs ==" && python3 "$REPO/TOOLS/lore_verify_author_sig.py" 2>&1 | tail -2 || true
+    if [[ -d "${LORE_HOME:-$HOME/.lore}" ]]; then
+      echo "== workbench ==" && python3 "$REPO/TOOLS/lore_status.py" 2>&1 || true
+    fi
+    echo "== git ==" && git -C "$REPO" status --short 2>/dev/null || true
+    ;;
+  prompt|hat)
+    exec python3 "$REPO/TOOLS/lore_prompt.py" "$@" ;;
+
+  # --- workbench harness ---
+  init)
+    exec python3 "$REPO/TOOLS/lore_init.py" "$@" ;;
+  create)
+    exec python3 "$REPO/TOOLS/lore_objects.py" create "$@" ;;
+  get)
+    exec python3 "$REPO/TOOLS/lore_objects.py" get "$@" ;;
+  list)
+    exec python3 "$REPO/TOOLS/lore_objects.py" list "$@" ;;
+  search)
+    exec python3 "$REPO/TOOLS/lore_objects.py" search "$@" ;;
+  handoff)
+    exec python3 "$REPO/TOOLS/lore_handoff.py" "$@" ;;
+  serve)
+    exec python3 "$REPO/TOOLS/lore_serve.py" "$@" ;;
+  pull)
+    exec python3 "$REPO/TOOLS/lore_transport.py" pull "$@" ;;
+  push)
+    exec python3 "$REPO/TOOLS/lore_transport.py" push "$@" ;;
+  exchange)
+    exec python3 "$REPO/TOOLS/lore_exchange.py" "$@" ;;
+  ingest)
+    exec python3 "$REPO/TOOLS/lore_ingest.py" "$@" ;;
+  watch)
+    exec python3 "$REPO/TOOLS/lore_watch.py" "$@" ;;
+  lint)
+    exec python3 "$REPO/TOOLS/lore_lint.py" "$@" ;;
+  promote)
+    exec python3 "$REPO/TOOLS/lore_promote.py" "$@" ;;
+  export)
+    exec python3 "$REPO/TOOLS/lore_export.py" "$@" ;;
+  install)
+    echo "lore install: reserved (no-op in v0.1)" >&2
+    exit 0 ;;
+  help|"")
+    usage ;;
+  *)
+    echo "lore: unknown verb '$verb' (try: lore help)" >&2
+    exit 2 ;;
+esac

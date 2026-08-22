@@ -143,41 +143,67 @@ def append_event(action: str, *, actor: str = "local", object_refs: Optional[Lis
         fh.write(json.dumps(rec, separators=(",", ":")) + "\n")
 
 
-def load_simple_yaml(text: str) -> Dict[str, Any]:
-    """Minimal YAML subset loader (dicts, lists, scalars). Good enough for harness."""
+class YamlSupportError(RuntimeError):
+    """A document used a construct the dependency-free parser does not implement.
+
+    Raised rather than guessed at. The original fallback parsed only flat `key: value`
+    lines; handed a nested document it returned a mapping of empty strings, and the
+    caller died later somewhere unrelated (`'str' object has no attribute 'get'`) with
+    nothing naming the real cause. TOOLS/lore_yaml now covers the subset this corpus
+    actually uses, so this fires only for genuinely unsupported constructs — anchors,
+    aliases, merge keys, tags, multi-document streams.
+
+    Degrading silently to a wrong answer is worse than stopping: *executed is not
+    success* (CORE-INVARIANT 9), and the corpus cannot enforce what its own tools
+    cannot reliably read (CORE-INVARIANT 10). Installing PyYAML is deliberately not
+    the remedy — the zero-dependency posture of the TCB is an author imperative.
+    See ACTION_ITEMS/open/AI-003.
+    """
+
+
+def load_simple_yaml(text: str, *, source: str = "<text>") -> Dict[str, Any]:
+    """Load a YAML document. PyYAML when present, TOOLS/lore_yaml otherwise.
+
+    lore_yaml implements the subset this corpus uses and is verified against PyYAML
+    over every YAML file in the repository (TESTS/test_yaml_parser.py), so a document
+    means the same thing whether or not PyYAML happens to be installed. That equality
+    is the property worth having here; it is what three separate defects came from
+    lacking.
+    """
     try:
         import yaml  # type: ignore
         return yaml.safe_load(text) or {}
     except ImportError:
         pass
-    # ultra-minimal fallback: only flat key: value and simple nested via indent is not fully supported;
-    # prefer JSON when PyYAML absent.
-    text = text.strip()
-    if text.startswith("{"):
-        return json.loads(text)
-    data: Dict[str, Any] = {}
-    for line in text.splitlines():
-        line = line.split("#", 1)[0].rstrip()
-        if not line.strip() or ":" not in line:
-            continue
-        k, v = line.split(":", 1)
-        k = k.strip()
-        v = v.strip().strip("\"'")
-        if v.lower() in ("true", "false"):
-            data[k] = v.lower() == "true"
-        elif v.isdigit():
-            data[k] = int(v)
-        else:
-            data[k] = v
-    return data
+    stripped = text.strip()
+    if stripped.startswith("{"):
+        return json.loads(stripped)
+    from lore_yaml import YamlParseError, parse as _parse
+    try:
+        return _parse(text) or {}
+    except YamlParseError as exc:
+        raise YamlSupportError(
+            "cannot parse %s without PyYAML: %s\n"
+            "  TOOLS/lore_yaml covers the subset this corpus uses; this document is\n"
+            "  outside it. Failing closed rather than guessing.\n"
+            "  See ACTION_ITEMS/open/AI-003." % (source, exc)) from exc
 
 
 def dump_yaml(data: Any) -> str:
+    """Emit YAML. PyYAML when present, TOOLS/lore_yaml otherwise — never JSON.
+
+    The old fallback returned json.dumps, so `lore handoff show` printed YAML on a
+    machine with PyYAML and JSON on one without. Output that changes shape with the
+    ambient environment is the same defect as input that does (AI-003); it is how
+    demo.sh came to assert on a serializer and pass locally while failing in CI.
+    """
     try:
         import yaml  # type: ignore
         return yaml.safe_dump(data, sort_keys=False, allow_unicode=True)
     except ImportError:
-        return json.dumps(data, indent=2, default=str)
+        pass
+    from lore_yaml import dump as _dump
+    return _dump(data)
 
 
 def read_object_file(path: Path) -> Dict[str, Any]:

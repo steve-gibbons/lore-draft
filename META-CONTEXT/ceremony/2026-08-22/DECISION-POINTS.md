@@ -1,0 +1,33 @@
+# Ceremony 2026-08-22 — decision points (key state)
+
+**Status:** evidence / process log (not an accepted record)  
+**Rule:** append a row at every branch cut, policy amend, accept/sign, or public SHA pin. Do not rewrite history; add a line.
+
+## Key state (this ceremony)
+
+| Role | Fingerprint | Notes |
+|------|-------------|-------|
+| Author primary (root lineage) | `7309F037A9457C7601C7F3BF068354FBD9B04B5C` | D9B04B5C; published in `KEYS/` |
+| Active signing subkey | `69FADB148F4DCAC85FD59E183E5A2E38850E0C22` | 69FADB14; used for all 2026-08-22 `lore sign` |
+| Public checkout | `~/Developer/lore-public` → `steve-gibbons/lore-draft` | |
+| Private checkout | `~/Developer/lore` → `steve-gibbons/lore` | |
+
+Unusable / missing-secret subkeys remain listed in `REGISTRIES/trusted-signers.txt`. They are not used here.
+
+## Log
+
+| When (UTC) | Point | Private SHA | Public SHA (`lore-draft`) | Signer | What |
+|------------|-------|-------------|---------------------------|--------|------|
+| 2026-08-22 | Gate A | (pre-package) | `dffb11c` | — | Author: promote recommended minimum |
+| 2026-08-22 | Gate B OBS-001 | `1606891` | `dffb11c` | 69FADB14 | accept + detach-sign |
+| 2026-08-22 | Gate B IBMBOB-001 | `f767bf4` | `dffb11c` | 69FADB14 | accept + detach-sign |
+| 2026-08-22 | Gate B PROP-001 | `49c0907` | `dffb11c` | 69FADB14 | accept + detach-sign (`lore publish` spec; verb not implemented) |
+| 2026-08-22 | Export order | `c722df4` | `dffb11c` | — | PRESERVE before leak-scan; skip-copy PRESERVE paths |
+| 2026-08-22T17:31Z | Leak-scan amend | `2d944dc` | `dffb11c` | — | Drop public-identity patterns; keep path/URL/non-public mail |
+| 2026-08-22T17:43Z | Whitelist Gate B | *(this commit)* | `dffb11c` | — | OBS/IBMBOB/PROP accepted+.asc + DECISION-POINTS.md on whitelist |
+
+## Next line (template)
+
+```
+| YYYY-MM-DDTHH:MMZ | <point> | <private SHA> | <public SHA or —> | 69FADB14 or — | <one line> |
+```
