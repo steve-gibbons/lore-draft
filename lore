@@ -90,6 +90,11 @@ Examples:
   lore serve
   lore validate
   lore freeze && lore sign && lore reseal
+
+Tree-local tools:
+  A verb whose TOOLS/lore_<name>.py is not in this tree exits 2
+  (not "unknown verb"). Public checkouts only ship the whitelist subset.
+  `lore status` skips missing tools instead of aborting.
 EOF
 }
 
@@ -123,10 +128,6 @@ while [[ $# -gt 0 ]]; do
 done
 set -- "${ARGS[@]:-}" "$@"
 
-if [[ -n "$EXPLAIN" ]]; then
-  exec python3 "$REPO/TOOLS/lore_explain.py" "$EXPLAIN"
-fi
-
 verb="${1:-help}"
 shift || true
 verb="${verb#--}"
@@ -138,6 +139,44 @@ export LORE_DRY_RUN="$DRY_RUN"
 export LORE_FORMAT="$FORMAT"
 export LORE_REPO="${REPO_OVERRIDE:-$REPO}"
 export LORE_DEFAULT_LISTEN="$DEFAULT_LISTEN"
+
+# Fail closed: never exec a tool that is not in this tree (public subset,
+# incomplete checkout, or a verb added to the dispatcher before its TOOLS/
+# file is whitelisted). Same rule for every verb — not a publish special case.
+exec_tool() {
+  local script="$1"; shift
+  local path="$REPO/TOOLS/$script"
+  if [[ ! -f "$path" ]]; then
+    echo "lore: '$verb' is not available in this tree (missing TOOLS/$script)" >&2
+    exit 2
+  fi
+  exec python3 "$path" "$@"
+}
+
+run_tool() {
+  local script="$1"; shift
+  local path="$REPO/TOOLS/$script"
+  if [[ ! -f "$path" ]]; then
+    echo "lore: '$verb' is not available in this tree (missing TOOLS/$script)" >&2
+    exit 2
+  fi
+  python3 "$path" "$@"
+}
+
+run_tool_soft() {
+  local script="$1"; shift
+  local path="$REPO/TOOLS/$script"
+  if [[ ! -f "$path" ]]; then
+    echo "(skip: TOOLS/$script not in this tree)"
+    return 0
+  fi
+  python3 "$path" "$@"
+}
+
+if [[ -n "$EXPLAIN" ]]; then
+  verb="explain"
+  exec_tool lore_explain.py "$EXPLAIN"
+fi
 
 do_sign() {
   local target="${1:-manifest}"
@@ -162,73 +201,73 @@ do_sign() {
 
 case "$verb" in
   validate)
-    exec python3 "$REPO/TOOLS/lore_validate.py" "$@" ;;
+    exec_tool lore_validate.py "$@" ;;
   check)
-    exec python3 "$REPO/TOOLS/lore_check.py" "$@" ;;
+    exec_tool lore_check.py "$@" ;;
   freeze)
-    exec python3 "$REPO/TOOLS/lore_freeze_raw.py" "$@" ;;
+    exec_tool lore_freeze_raw.py "$@" ;;
   build-manifest)
-    exec python3 "$REPO/TOOLS/lore_build_manifest.py" "$@" ;;
+    exec_tool lore_build_manifest.py "$@" ;;
   sign)
     do_sign "${1:-}" ;;
   verify|verify-sig)
-    exec python3 "$REPO/TOOLS/lore_verify_manifest_sig.py" "$@" ;;
+    exec_tool lore_verify_manifest_sig.py "$@" ;;
   verify-authors|authors)
-    exec python3 "$REPO/TOOLS/lore_verify_author_sig.py" "$@" ;;
+    exec_tool lore_verify_author_sig.py "$@" ;;
   reseal)
-    echo "== freeze ==" && python3 "$REPO/TOOLS/lore_freeze_raw.py"
+    echo "== freeze ==" && run_tool lore_freeze_raw.py
     echo "== sign ==" && do_sign manifest
-    echo "== verify ==" && python3 "$REPO/TOOLS/lore_verify_manifest_sig.py"
-    echo "== validate ==" && python3 "$REPO/TOOLS/lore_validate.py" ;;
+    echo "== verify ==" && run_tool lore_verify_manifest_sig.py
+    echo "== validate ==" && run_tool lore_validate.py ;;
   seal)
     # Plan-only by default. Signing is a ROOT act; the tool refuses to freeze
     # implicitly and re-runs the repo's own gates rather than certifying itself.
-    exec python3 "$REPO/TOOLS/lore_seal.py" "$@" ;;
+    exec_tool lore_seal.py "$@" ;;
   status)
-    echo "== validator ==" && python3 "$REPO/TOOLS/lore_validate.py" 2>&1 | tail -1 || true
-    echo "== signature ==" && python3 "$REPO/TOOLS/lore_verify_manifest_sig.py" --soft 2>&1 | head -6 || true
-    echo "== author-only sigs ==" && python3 "$REPO/TOOLS/lore_verify_author_sig.py" 2>&1 | tail -2 || true
+    echo "== validator ==" && run_tool_soft lore_validate.py 2>&1 | tail -1 || true
+    echo "== signature ==" && run_tool_soft lore_verify_manifest_sig.py --soft 2>&1 | head -6 || true
+    echo "== author-only sigs ==" && run_tool_soft lore_verify_author_sig.py 2>&1 | tail -2 || true
     if [[ -d "${LORE_HOME:-$HOME/.lore}" ]]; then
-      echo "== workbench ==" && python3 "$REPO/TOOLS/lore_status.py" 2>&1 || true
+      echo "== workbench ==" && run_tool_soft lore_status.py 2>&1 || true
     fi
     echo "== git ==" && git -C "$REPO" status --short 2>/dev/null || true
     ;;
   prompt|hat)
-    exec python3 "$REPO/TOOLS/lore_prompt.py" "$@" ;;
+    exec_tool lore_prompt.py "$@" ;;
 
   # --- workbench harness ---
   init)
-    exec python3 "$REPO/TOOLS/lore_init.py" "$@" ;;
+    exec_tool lore_init.py "$@" ;;
   create)
-    exec python3 "$REPO/TOOLS/lore_objects.py" create "$@" ;;
+    exec_tool lore_objects.py create "$@" ;;
   get)
-    exec python3 "$REPO/TOOLS/lore_objects.py" get "$@" ;;
+    exec_tool lore_objects.py get "$@" ;;
   list)
-    exec python3 "$REPO/TOOLS/lore_objects.py" list "$@" ;;
+    exec_tool lore_objects.py list "$@" ;;
   search)
-    exec python3 "$REPO/TOOLS/lore_objects.py" search "$@" ;;
+    exec_tool lore_objects.py search "$@" ;;
   handoff)
-    exec python3 "$REPO/TOOLS/lore_handoff.py" "$@" ;;
+    exec_tool lore_handoff.py "$@" ;;
   serve)
-    exec python3 "$REPO/TOOLS/lore_serve.py" "$@" ;;
+    exec_tool lore_serve.py "$@" ;;
   pull)
-    exec python3 "$REPO/TOOLS/lore_transport.py" pull "$@" ;;
+    exec_tool lore_transport.py pull "$@" ;;
   push)
-    exec python3 "$REPO/TOOLS/lore_transport.py" push "$@" ;;
+    exec_tool lore_transport.py push "$@" ;;
   exchange)
-    exec python3 "$REPO/TOOLS/lore_exchange.py" "$@" ;;
+    exec_tool lore_exchange.py "$@" ;;
   ingest)
-    exec python3 "$REPO/TOOLS/lore_ingest.py" "$@" ;;
+    exec_tool lore_ingest.py "$@" ;;
   watch)
-    exec python3 "$REPO/TOOLS/lore_watch.py" "$@" ;;
+    exec_tool lore_watch.py "$@" ;;
   lint)
-    exec python3 "$REPO/TOOLS/lore_lint.py" "$@" ;;
+    exec_tool lore_lint.py "$@" ;;
   promote)
-    exec python3 "$REPO/TOOLS/lore_promote.py" "$@" ;;
+    exec_tool lore_promote.py "$@" ;;
   export)
-    exec python3 "$REPO/TOOLS/lore_export.py" "$@" ;;
+    exec_tool lore_export.py "$@" ;;
   publish)
-    exec python3 "$REPO/TOOLS/lore_publish.py" "$@" ;;
+    exec_tool lore_publish.py "$@" ;;
   install)
     echo "lore install: reserved (no-op in v0.1)" >&2
     exit 0 ;;

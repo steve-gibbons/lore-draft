@@ -4,7 +4,7 @@ corpus: LORE
 version: v0.5.0-phase1-scaffold
 status: candidate
 description: "Phase-1 bootstrap scaffold for LORE Corpus Workbench."
-generated_at: "2026-08-22T19:12:34Z"
+generated_at: "2026-08-22T19:35:16Z"
 generator: "TOOLS/lore_build_manifest.py"
 
 schemas:
