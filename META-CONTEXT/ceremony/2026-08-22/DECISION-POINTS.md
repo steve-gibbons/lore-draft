@@ -29,7 +29,12 @@ Unusable / missing-secret subkeys remain listed in `REGISTRIES/trusted-signers.t
 | 2026-08-22T17:54Z | Public export | `43b7276` | `f2ab129` | — | lore-draft overlay; leak-scan CLEAN; manifest rebuilt on published tree |
 
 | 2026-08-22T18:16Z | TR-002 accepted | `49082f1` | `f2ab129` | 69FADB14 | signed TR-PUBLIC-EXPORT-002.accepted.yaml |
-| 2026-08-22T18:31Z | Whitelist TR-002 | *(this commit)* | `e54e567` | — | accepted TR yaml+.asc on whitelist for public overlay |
+| 2026-08-22T18:31Z | Whitelist TR-002 | `c5f1279` | `e54e567` | — | accepted TR yaml+.asc on whitelist for public overlay |
+| 2026-08-22T18:34Z | Public TR overlay | `c5f1279` | `8467838` | — | TR-002 accepted+.asc + whitelist yaml on lore-draft |
+| 2026-08-22T18:45Z | CI always() | `649c266` | `8467838` | — | signature convention + LL-004 no longer muted |
+| 2026-08-22T18:46Z | Public gitignore | `649c266` | `cf2869a` | — | Developer path note + extensionless iCloud hole |
+| 2026-08-22T18:49Z | Public KEYS | `649c266` | `bd787d0` | — | current bundle + 69FADB14; D9B04B5C.asc alias |
+| 2026-08-22T18:52Z | Gate D nits | *(this commit)* | `bd787d0` | — | private KEYS alias, README, MMETA typo, runbook executed banner |
 
 ## Next line (template)
 

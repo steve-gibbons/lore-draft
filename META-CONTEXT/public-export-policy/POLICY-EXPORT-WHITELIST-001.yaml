@@ -46,7 +46,6 @@ content:
     # Instructions for the AI "hats" 
     - META-CONTEXT/reviewer-panel/EVALUATOR-PROMPT.template.md
     - META-CONTEXT/reviewer-panel/profiles
-    - MMETA-CONTEXT/reviewer-panel/profiles/evaluator.txt
     - META-CONTEXT/reviewer-panel/profiles/maintainer.txt
 
     # Accepted decisions (public-safe governance records)
