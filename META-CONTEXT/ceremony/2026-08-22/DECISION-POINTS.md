@@ -38,7 +38,13 @@ Unusable / missing-secret subkeys remain listed in `REGISTRIES/trusted-signers.t
 | 2026-08-22T19:05Z | lore publish | `f628244` | `8847d5f` | — | compose export+manifest+validate; no commit/push/TR-promote |
 
 | 2026-08-22T19:16Z | Public publish overlay | `f628244` | `23d4d59` | — | lore publish live; leak-scan CLEAN; validate 48/0 |
-| 2026-08-22T19:23Z | Tree-local verbs + TR next | *(this commit)* | `23d4d59` | — | dispatcher/CI skip missing tools; next export is TR-003 (002 accepted stays) |
+| 2026-08-22T19:23Z | Tree-local verbs + TR next | `a23bcec` | `23d4d59` | — | dispatcher/CI skip missing tools; next export is TR-003 (002 accepted stays) |
+
+| 2026-08-22T19:39Z | Public overlay | `a23bcec` | `ac9741d` | — | tree-local dispatcher+CI; TR-003.draft; TR-002 still accepted |
+
+| 2026-08-22T20:00Z | TR-003 accepted | `5e835a6` | `ac9741d` | 69FADB14 | signed TR-003 |
+| 2026-08-22T20:01Z | TR template verbs | `17be150` | `ac9741d` | -- | generator verbs |
+| 2026-08-22T20:04Z | Whitelist TR-003 | `6ecd264` | `ac9741d` | -- | TR-003 yaml+asc |
 
 ## Next line (template)
 
