@@ -24,7 +24,11 @@ Unusable / missing-secret subkeys remain listed in `REGISTRIES/trusted-signers.t
 | 2026-08-22 | Gate B PROP-001 | `49c0907` | `dffb11c` | 69FADB14 | accept + detach-sign (`lore publish` spec; verb not implemented) |
 | 2026-08-22 | Export order | `c722df4` | `dffb11c` | — | PRESERVE before leak-scan; skip-copy PRESERVE paths |
 | 2026-08-22T17:31Z | Leak-scan amend | `2d944dc` | `dffb11c` | — | Drop public-identity patterns; keep path/URL/non-public mail |
-| 2026-08-22T17:43Z | Whitelist Gate B | *(this commit)* | `dffb11c` | — | OBS/IBMBOB/PROP accepted+.asc + DECISION-POINTS.md on whitelist |
+| 2026-08-22T17:43Z | Whitelist Gate B | `43b7276` | `dffb11c` | — | OBS/IBMBOB/PROP accepted+.asc + DECISION-POINTS.md on whitelist |
+
+| 2026-08-22T17:54Z | Public export | `43b7276` | `f2ab129` | — | lore-draft overlay; leak-scan CLEAN; manifest rebuilt on published tree |
+
+| 2026-08-22T18:16Z | TR-002 accepted | `49082f1` | `f2ab129` | 69FADB14 | signed TR-PUBLIC-EXPORT-002.accepted.yaml |
 
 ## Next line (template)
 
