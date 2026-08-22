@@ -43,8 +43,16 @@ Unusable / missing-secret subkeys remain listed in `REGISTRIES/trusted-signers.t
 | 2026-08-22T20:22Z | Public export | `5ac867a` | `e381186` | -- | lore publish; TR-003 on lore-draft |
 | 2026-08-22T20:29Z | TR-004 receipt | `54896f4` | `e381186` | 69FADB14 | accept TR-004 private only; no re-export |
 | 2026-08-22T21:10Z | QA CI hole | `54896f4` | `e381186` | — | lore_yaml absent on public; local PyYAML hid it |
-| 2026-08-22T21:30Z | Whitelist TCB | *(this commit)* | `e381186` | — | TOOLS/lore_yaml.py + OBS-EXPORT-TCB-CLOSURE candidate; AI-003 stays open |
+| 2026-08-22T21:30Z | Whitelist TCB | `4960a21` | `e381186` | — | TOOLS/lore_yaml.py + OBS-EXPORT-TCB-CLOSURE candidate; AI-003 stays open |
 
+| 2026-08-22T22:43Z | Public export | `4960a21` | `6584959` | — | lore_yaml TCB; CI green run 32603261039 |
+
+| 2026-08-22T22:47Z | Pin public SHA | `cccae6a` | `6584959` | — | pin lore_yaml public SHA 6584959 (CI green) |
+| 2026-08-22T22:52Z | TR-005 receipt | `ae1d547` | `6584959` | 69FADB14 | accept TR-PUBLIC-EXPORT-005; receipt for 6584959; not re-exported |
+| 2026-08-22T22:59Z | OBS TCB accept | `788619b` | `6584959` | 69FADB14 | accept + detach-sign OBS-EXPORT-TCB-CLOSURE-001 (private-only) |
+| 2026-08-22T23:02Z | Close AI-003 | `84a2454` | `6584959` | — | close AI-003; lore_yaml on public TCB at 6584959 |
+| 2026-08-22T23:05Z | Drop parenthetical | `a164b4f` | `6584959` | — | drop stale AI-003 parenthetical |
+| 2026-08-22T23:31Z | Whitelist OBS | `457ef48` | `6584959` | — | OBS-EXPORT-TCB-CLOSURE accepted.md+.asc on whitelist |
 ## Next line (template)
 
 ```
