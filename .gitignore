@@ -7,13 +7,20 @@ Thumbs.db
 *.swp
 *~
 
-# iCloud Drive sync-conflict copies. This repo lives under ~/Documents (iCloud-synced);
+# iCloud Drive sync-conflict copies. The repo tree moved to ~/Developer (out of
+# ~/Documents) to escape iCloud/OneDrive/Google-Drive collisions; this guard is retained
+# as defense-in-depth for any clone that still lands in a cloud-synced folder.
 # iCloud mints "<name> 2.<ext>" copies on conflicts (e.g. GitHub Desktop branch switches
 # racing the sync), and `git add -A` will silently ingest them. This pattern keeps the
 # file-level copies out. If you ever need a legitimately-named "... 2.md" file, add it
-# with `git add -f`. (We deliberately do NOT guard extensionless "<name> 2" — that would
-# also swallow legitimately-named directories like "Draft 2/".)
+# with `git add -f`.
 * [0-9].*
+# The extensionless form ("<name> 2", no dot) is the one that actually got in: 14 such files
+# were tracked before this guard, because `* [0-9].*` requires a dot after the number. The
+# earlier note here said we deliberately left it loose to protect directories like "Draft 2/";
+# the negation below protects those explicitly, which is cheaper than leaving the hole open.
+* [0-9]
+!Draft [0-9]/
 
 # Python bytecode cache (e.g. TOOLS/__pycache__ from importing lore_validate in lore_build_manifest).
 __pycache__/
