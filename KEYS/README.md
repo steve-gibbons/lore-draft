@@ -7,7 +7,8 @@ management (hardware token / HSM, rotation, revocation, multi-party custody).
 
 | | |
 |---|---|
-| **Key** | `steve-gibbons-D9B04B5C.asc` (in this directory) |
+| **Key** | `steve-gibbons-D9B04B5C.asc` (same bytes as `steve-gibbons-author-primary.asc`) |
+| **Active signing subkey** | `69FADB148F4DCAC85FD59E183E5A2E38850E0C22` |
 | **Owner** | Steve Gibbons `<steve_gibbons@icloud.com>` |
 | **Short id** | `D9B04B5C` |
 | **Primary fingerprint** | `7309 F037 A945 7C76 01C7  F3BF 0683 54FB D9B0 4B5C` |
