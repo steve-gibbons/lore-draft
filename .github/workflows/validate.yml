@@ -29,10 +29,14 @@ jobs:
       - name: Run lore_export PRESERVE tests (private->public boundary)
         if: always()
         run: python3 TESTS/test_export.py
+      - name: Run lore_publish composition tests
+        if: always()
+        run: python3 TESTS/test_publish.py
       - name: Dependency-free YAML parser matches PyYAML (AI-003)
         if: always()
         run: python3 TESTS/test_yaml_parser.py
       - name: Signature resolution contract (sibling .asc, not self-declaration)
+        if: always()
         run: python3 TESTS/test_signature_convention.py
       - name: Manifest is generated and not stale (T3.5)
         if: always()
@@ -42,6 +46,7 @@ jobs:
         shell: bash
         run: 'if compgen -G "KEYS/*.asc" > /dev/null; then gpg --batch --import KEYS/*.asc; else echo "no KEYS/*.asc to import"; fi'
       - name: Every detached signature covers its artifact (LL-004)
+        if: always()
         run: python3 TOOLS/lore_verify_signatures.py
       - name: Verify author-only artifact signatures (strict, KF-01)
         if: always()

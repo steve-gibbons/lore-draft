@@ -80,6 +80,7 @@ Verbs (workbench harness v0.1):
   ingest --vendor N --file F        bridge a foreign agent's output into quarantine
   watch [--interval S] [--once]     enforcement checkpoint on a timer over EXCHANGE/
   export [--target DIR] [--staging DIR] [--dry-run]   governed private->public export
+  publish [--dry-run] [--staging DIR] [--target DIR]  compose export+manifest+validate; no commit
   install                Reserved (no-op in v0.1)
 
 Examples:
@@ -226,6 +227,8 @@ case "$verb" in
     exec python3 "$REPO/TOOLS/lore_promote.py" "$@" ;;
   export)
     exec python3 "$REPO/TOOLS/lore_export.py" "$@" ;;
+  publish)
+    exec python3 "$REPO/TOOLS/lore_publish.py" "$@" ;;
   install)
     echo "lore install: reserved (no-op in v0.1)" >&2
     exit 0 ;;

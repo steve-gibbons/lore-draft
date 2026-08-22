@@ -35,6 +35,7 @@ Unusable / missing-secret subkeys remain listed in `REGISTRIES/trusted-signers.t
 | 2026-08-22T18:46Z | Public gitignore | `649c266` | `cf2869a` | — | Developer path note + extensionless iCloud hole |
 | 2026-08-22T18:49Z | Public KEYS | `649c266` | `bd787d0` | — | current bundle + 69FADB14; D9B04B5C.asc alias |
 | 2026-08-22T18:52Z | Gate D nits | `9931b91` | `bd787d0` | — | private KEYS alias, README, MMETA typo, runbook executed banner |
+| 2026-08-22T19:05Z | lore publish | *(this commit)* | `8847d5f` | — | compose export+manifest+validate; no commit/push/TR-promote |
 
 ## Next line (template)
 

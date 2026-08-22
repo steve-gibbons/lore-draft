@@ -429,9 +429,12 @@ def main():
                         help="Validate a single artifact file and exit")
     parser.add_argument("--stdin", action="store_true",
                         help="Read a single artifact from stdin and validate it")
+    parser.add_argument("--dir", metavar="DIR",
+                        help="Corpus root (default: repository containing this script)")
     args = parser.parse_args()
 
-    repo_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+    repo_root = os.path.abspath(args.dir) if args.dir else os.path.abspath(
+        os.path.join(os.path.dirname(__file__), '..'))
     try:
         validator = LoreValidator(repo_root)
     except YamlSupportError as exc:

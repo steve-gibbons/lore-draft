@@ -128,7 +128,13 @@ def main():
     ap = argparse.ArgumentParser(description='Generate/verify CORPUS-MANIFEST.yaml (T3.5).')
     ap.add_argument('--check', action='store_true',
                     help='Exit non-zero if the on-disk manifest is stale (for CI/build).')
+    ap.add_argument('--dir', metavar='DIR',
+                    help='Corpus root to index (default: repository containing this script).')
     args = ap.parse_args()
+    global REPO, MANIFEST
+    if args.dir:
+        REPO = os.path.abspath(args.dir)
+        MANIFEST = os.path.join(REPO, 'CORPUS-MANIFEST.yaml')
     return cmd_check() if args.check else cmd_write()
 
 
