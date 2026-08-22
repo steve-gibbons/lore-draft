@@ -29,6 +29,7 @@ Unusable / missing-secret subkeys remain listed in `REGISTRIES/trusted-signers.t
 | 2026-08-22T17:54Z | Public export | `43b7276` | `f2ab129` | — | lore-draft overlay; leak-scan CLEAN; manifest rebuilt on published tree |
 
 | 2026-08-22T18:16Z | TR-002 accepted | `49082f1` | `f2ab129` | 69FADB14 | signed TR-PUBLIC-EXPORT-002.accepted.yaml |
+| 2026-08-22T18:31Z | Whitelist TR-002 | *(this commit)* | `e54e567` | — | accepted TR yaml+.asc on whitelist for public overlay |
 
 ## Next line (template)
 

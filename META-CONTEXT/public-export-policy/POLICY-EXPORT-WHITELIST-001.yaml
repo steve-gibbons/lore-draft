@@ -1,0 +1,115 @@
+lore:
+  format_version: 1
+  kind: policy
+  id: "policy:local:db7bd807daa69461"
+  status: accepted
+  created_at: "2026-08-18T00:00:00Z"
+  created_by: "agent:local"
+
+content:
+  id: POLICY-EXPORT-WHITELIST-001
+  type: policy
+  status: accepted
+  statement: >
+    Only files and directories listed in the whitelist may be copied from the
+    private corpus to the public export staging directory. Any path not on the
+    whitelist is implicitly denied. Whitelist entries are path prefixes relative
+    to the private repo root; a trailing '/' includes the directory recursively.
+    Glob patterns (e.g. '*.md') are permitted within a directory entry.
+    This policy does not override POLICY-EXPORT-EXCLUSION-001 — exclusions
+    always win.
+  applies_to: "lore_export.py / TR-PUBLIC-EXPORT-* / private->public boundary crossing"
+  effect: deny
+
+  # --- Whitelist entries (relative to private repo root) ---
+  whitelist:
+    # Governance scaffold
+    - AGENTS.md
+    - CORE-INVARIANTS.md
+    - CORPUS-MANIFEST.yaml
+    - CONTRIBUTING.md
+    - DEVELOPMENT.md
+    - README.md
+    - GOVERNANCE-LOCKIN.action.md
+
+    # Structural directory READMEs for non-public directories (scaffold visibility)
+    - ACTION_ITEMS/README.md
+    - ACTION_ITEMS/open/README.md
+    - ACTION_ITEMS/resolved/README.md
+    - GUIDELINES/README.md
+    - GUIDELINES/candidates/README.md
+    - LESSONS_LEARNED/README.md
+    - LESSONS_LEARNED/candidates/README.md
+    - RELEASES/README.md
+    - RELEASES/candidates/README.md
+    
+    # Instructions for the AI "hats" 
+    - META-CONTEXT/reviewer-panel/EVALUATOR-PROMPT.template.md
+    - META-CONTEXT/reviewer-panel/profiles
+    - MMETA-CONTEXT/reviewer-panel/profiles/evaluator.txt
+    - META-CONTEXT/reviewer-panel/profiles/maintainer.txt
+
+    # Accepted decisions (public-safe governance records)
+    - DECISION-AUTH-IDENTITY.accepted.md
+    - DECISION-DEPLOYMENT-UPDATE-MODEL.accepted.md
+    - DECISION-DEPLOYMENT-UPDATE-MODEL.accepted.md.asc
+    - DECISION-INTAKE-SCOPE-AND-TRANSPORT.accepted.md
+    - DECISION-LICENSING.accepted.md
+    - DECISION-ONTOLOGY-CANONICAL-KERNEL.accepted.md
+    - DECISION-ONTOLOGY-CANONICAL-KERNEL.accepted.md.asc
+    - DECISION-ONTOLOGY-ENFORCEABILITY.accepted.md
+    - DECISION-ONTOLOGY-ENFORCEABILITY.accepted.md.asc
+    - DECISION-PROSE-RECONCILIATION.accepted.md
+    - DECISION-PROSE-RECONCILIATION.accepted.md.asc
+    - DECISION-LICENSING-IBMBOB-NONADOPTION.accepted.md
+    - DECISION-LICENSING-IBMBOB-NONADOPTION.accepted.md.asc
+    - OBS-EXPORT-PLACEHOLDERS-AND-LEAKSCAN-SELFREF.accepted.md
+    - OBS-EXPORT-PLACEHOLDERS-AND-LEAKSCAN-SELFREF.accepted.md.asc
+    - PROP-LORE-PUBLISH-COMPOSITION.accepted.md
+    - PROP-LORE-PUBLISH-COMPOSITION.accepted.md.asc
+
+    # Schemas, registries, tests
+    - SCHEMAS/             # all *.json and *.yaml schema files
+    - REGISTRIES/artifact-statuses.yaml
+    - REGISTRIES/trusted-signers.txt
+    - TESTS/fixtures/positive/
+    - TESTS/fixtures/negative/
+    - TESTS/README.md
+
+    # Governance content directories (accepted artifacts only)
+    - GUIDELINES/accepted/
+    - LESSONS_LEARNED/accepted/
+    - META-CONTEXT/public-export-policy/
+    - META-CONTEXT/ceremony/2026-08-22/DECISION-POINTS.md
+    - META-CONTEXT/public-export-TR-PUBLIC-EXPORT-002.accepted.yaml
+    - META-CONTEXT/public-export-TR-PUBLIC-EXPORT-002.accepted.yaml.asc
+
+    # Tools (public subset — excludes private-only tools)
+    - lore
+    - TOOLS/README.md
+    - TOOLS/lore_validate.py
+    - TOOLS/lore_freeze_raw.py
+    - TOOLS/lore_verify_author_sig.py
+    - TOOLS/lore_prompt.py
+    - TOOLS/lore_common.py
+    - TOOLS/lore_objects.py
+    - TOOLS/lore_serve.py
+    - TOOLS/lore_check.py
+    - TOOLS/lore_build_manifest.py
+    - TOOLS/lore_handoff.py
+    - TOOLS/lore_init.py
+    - TOOLS/lore_explain.py
+    - TOOLS/lore_status.py
+    - TOOLS/hooks/pre-commit-hash-check.sh
+    - .github/workflows/validate.yml
+    - .github/copilot-instructions.md  # genericize required — see POLICY-EXPORT-GENERICIZE-001
+    - .gitignore
+    - KEYS/
+
+provenance:
+  source_refs:
+    - "META-CONTEXT/public-export-transformation.generated.yaml"
+    - "META-CONTEXT/public-corpus-import.generated.yaml"
+  derived_from:
+    - "META-CONTEXT/public-export-transformation.generated.yaml"
+  content_sha256: "0281514c501438a1b83d325779110e04d3444b6e84cb990825448db8e3c67688"
