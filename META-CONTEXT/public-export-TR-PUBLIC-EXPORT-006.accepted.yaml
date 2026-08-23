@@ -1,0 +1,51 @@
+id: TR-PUBLIC-EXPORT-006
+type: transformation-record
+status: accepted
+title: "Curated public-draft export of LORE governance scaffold (post-Aug-2026 work)"
+generated_by: agent
+under_author_direction: true
+generated_context: "2026-08-22"
+
+experimental_scope:
+  provisional: true
+  production_ready: false
+  permitted_use: "evaluation of LORE and demonstration of principles only"
+
+inputs:
+  - source: "private LORE working corpus (lore repo) at export time"
+    ref: "1b4d5dc676b6"
+    policies_ref: "META-CONTEXT/public-export-policy/ (git SHA: see below)"
+
+transformation:
+  method: "whitelist curation + genericization; run by lore export against export policies"
+  policy_versions:
+    - POLICY-EXPORT-EXCLUSION-001.yaml: c355cfdd91a5bf92
+    - POLICY-EXPORT-GENERICIZE-001.yaml: 91b0416bb6b129b8
+    - POLICY-EXPORT-LEAK-SCAN-001.yaml: 3281d36ef3fab7ba
+    - POLICY-EXPORT-PRESERVE-001.yaml: b4361001e21868f4
+    - POLICY-EXPORT-WHITELIST-001.yaml: 266e0b967350adb3
+  stats:
+    candidates_passed: 152
+    denied_by_exclusion: 425
+    denied_by_whitelist: 91
+    genericized: 4
+    preserved_from_target: 10
+  verification:
+    - "leak-scan: CLEAN"
+    - "author must run: lore validate --dir <staging> before push"
+
+output:
+  public_sha: "26fd6d0"
+  public_repo: "steve-gibbons/lore-draft"
+  accepted_at: "2026-08-22"
+  accepted_public_sha: "26fd6d0"
+  artifact: "curated public-draft repository — staged at /tmp/lore-publish-staging-20260822-234549"
+  action_required: >
+    AUTHOR: review diff, confirm leak-scan CLEAN, run validator in staged
+    public repo, then push to lore-draft. Update status to 'accepted' and
+    record the public commit SHA before committing this record to private.
+
+provenance_note: >
+  The private corpus retains full history and this transformation-record.
+  The public artifact carries a clean history (no private git history exported).
+  The private->public boundary crossing is a governed transformation, recorded here.

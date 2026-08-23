@@ -53,6 +53,9 @@ Unusable / missing-secret subkeys remain listed in `REGISTRIES/trusted-signers.t
 | 2026-08-22T23:02Z | Close AI-003 | `84a2454` | `6584959` | — | close AI-003; lore_yaml on public TCB at 6584959 |
 | 2026-08-22T23:05Z | Drop parenthetical | `a164b4f` | `6584959` | — | drop stale AI-003 parenthetical |
 | 2026-08-22T23:31Z | Whitelist OBS | `457ef48` | `6584959` | — | OBS-EXPORT-TCB-CLOSURE accepted.md+.asc on whitelist |
+| 2026-08-22T23:49Z | Public export | `1b4d5dc` | `26fd6d0` | — | OBS-EXPORT-TCB-CLOSURE accepted+.asc on lore-draft |
+| 2026-08-22T23:52Z | Pin public SHA | `1eae0a5` | `26fd6d0` | — | pin 26fd6d0; CI green run 32606248246 |
+| 2026-08-23T00:10Z | TR-006 accepted | `b326be6` | `26fd6d0` | 69FADB14 | author Steve Gibbons: sidecar .asc like TR-005; Check 2 pre-sign not blocking if TR-005 matches; git rm tracked draft |
 ## Next line (template)
 
 ```
