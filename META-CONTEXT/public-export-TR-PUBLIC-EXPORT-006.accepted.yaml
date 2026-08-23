@@ -49,3 +49,6 @@ provenance_note: >
   The private corpus retains full history and this transformation-record.
   The public artifact carries a clean history (no private git history exported).
   The private->public boundary crossing is a governed transformation, recorded here.
+provenance:
+  signature: "META-CONTEXT/public-export-TR-PUBLIC-EXPORT-006.accepted.yaml.asc"
+  signer_fpr: "69FADB148F4DCAC85FD59E183E5A2E38850E0C22"

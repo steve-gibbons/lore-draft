@@ -56,6 +56,15 @@ Unusable / missing-secret subkeys remain listed in `REGISTRIES/trusted-signers.t
 | 2026-08-22T23:49Z | Public export | `1b4d5dc` | `26fd6d0` | — | OBS-EXPORT-TCB-CLOSURE accepted+.asc on lore-draft |
 | 2026-08-22T23:52Z | Pin public SHA | `1eae0a5` | `26fd6d0` | — | pin 26fd6d0; CI green run 32606248246 |
 | 2026-08-23T00:10Z | TR-006 accepted | `b326be6` | `26fd6d0` | 69FADB14 | author Steve Gibbons: sidecar .asc like TR-005; Check 2 pre-sign not blocking if TR-005 matches; git rm tracked draft |
+| 2026-08-23T00:30Z | Public export | `93168c7` | `854c734` | — | TR-006 accepted+.asc on lore-draft |
+| 2026-08-23T00:33Z | Pin public SHA | `3e4b497` | `854c734` | — | pin 854c734; CI green run 32608028357 |
+| 2026-08-23T00:42Z | TR-007 accepted | `05159ae` | `854c734` | 69FADB14 | author Steve Gibbons: private-only receipt for 854c734; not re-exported (TR-005 pattern); skip DP-only overlay |
+| 2026-08-23T01:04Z | Freeze v0.6.0 | `011d874` | `854c734` | 69FADB14 | signed tags v0.6.0 both trees; do not publish |
+| 2026-08-23T03:21Z | OBS Check 2 sidecar | `309f736` | `854c734` | — | OBS-CHECK2-TR-SIDECAR candidate; TRs lack provenance.signature; out of v0.6.0 |
+| 2026-08-23T03:28Z | TR-007 Check 2 | `c83d008` | `854c734` | 69FADB14 | backfill provenance.signature+signer_fpr; re-sign; lore check PASS |
+| 2026-08-23T03:39Z | TR-005 Check 2 | `dba9709` | `6584959` | 69FADB14 | backfill provenance.signature+signer_fpr; re-sign; lore check PASS |
+| 2026-08-23T03:50Z | OBS Check 2 accept | `130a798` | `854c734` | 69FADB14 | accept+sign OBS-CHECK2-TR-SIDECAR; private-only; no publish |
+| 2026-08-23T03:58Z | TR-006 Check 2 | `94e4631` | `854c734` | 69FADB14 | backfill provenance.signature+signer_fpr; re-sign; lore check PASS; overlay next |
 ## Next line (template)
 
 ```
