@@ -13,8 +13,10 @@
 *what* a project decided, but **why**, **who had the authority to decide it**, and **what's still
 uncertain** - in a form that both people and AI agents can read, and that neither can quietly
 rewrite. Think "version control for reasoning and authority," aimed especially at AI-agent
-workflows. This is the **canonical repository**: the governance scaffold plus the full corpus,
-working drafts, and release history. (A curated subset is published as the public draft.)
+workflows. This is the **public curated draft** of LORE (not the private canonical tree). It is an
+intentional, freeze-cut export for evaluation and demonstration. The private repository
+may be ahead; bounded lag is by design. Ask "which edition am I on?" — see the release
+tag and `CORPUS-MANIFEST.yaml` `version:` field.
 
 No prior exposure needed. Start below.
 
@@ -26,19 +28,17 @@ Open this repo in any agent that can read a repository - GitHub Copilot Chat, Cl
 The agent picks up [`AGENTS.md`](AGENTS.md) (and [`.github/copilot-instructions.md`](.github/copilot-instructions.md)),
 adopts LORE's own reviewer lenses, and turns them back on LORE itself - a self-referential
 evaluation that is also the fastest way to see what the framework *does*. Compare what it finds
-against our own [`KNOWN-FINDINGS.md`](META-CONTEXT/self-assessment/KNOWN-FINDINGS.md). For a local
+against our own [`KNOWN-FINDINGS.md`](KNOWN-FINDINGS.md). For a local
 agent, clone and point it at the top-level directory - see [`DEVELOPMENT.md`](DEVELOPMENT.md).
 
-**Want to read LORE itself?** The corpus - ~120 short volumes (0-120) - lives in the `Draft 1/` and
-`Draft 2/` working directories (being consolidated under [`SOURCE/`](SOURCE/), the normative home).
-Start with the core volumes (*Origin & Design Intent* → *Implementation*).
+**Want to read LORE itself?** Normative volumes live under [`SOURCE/`](SOURCE/) (core set: [`SOURCE/CORE-VOLUMES/`](SOURCE/CORE-VOLUMES/), *Origin & Design Intent* → *Implementation*). Extended and historical material is under the other `SOURCE/` trees. Public-draft shape may differ — see PROVENANCE on that edition.
 
 ## Find your part (pick the one that sounds like you)
 | You are… | Open these, in order |
 |---|---|
-| **Just curious / no background** | this page → [`KNOWN-FINDINGS.md`](META-CONTEXT/self-assessment/KNOWN-FINDINGS.md) (we list our own weaknesses) → [`AGENTS.md`](AGENTS.md) |
+| **Just curious / no background** | this page → [`KNOWN-FINDINGS.md`](KNOWN-FINDINGS.md) (we list our own weaknesses) → [`AGENTS.md`](AGENTS.md) |
 | **Building AI agents** | [`AGENTS.md`](AGENTS.md) (the rules agents follow) → [`META-CONTEXT/reviewer-panel/`](META-CONTEXT/reviewer-panel/) (the "hat/lens" system) → [`.github/copilot-instructions.md`](.github/copilot-instructions.md) |
-| **Security / threat-modeling** | [`KNOWN-FINDINGS.md`](META-CONTEXT/self-assessment/KNOWN-FINDINGS.md) (KF-01…) → [`CORE-INVARIANTS.md`](CORE-INVARIANTS.md) (the TCB) → [`TOOLS/lore_validate.py`](TOOLS/lore_validate.py) |
+| **Security / threat-modeling** | [`KNOWN-FINDINGS.md`](KNOWN-FINDINGS.md) (KF-01…) → [`CORE-INVARIANTS.md`](CORE-INVARIANTS.md) (the TCB) → [`TOOLS/lore_validate.py`](TOOLS/lore_validate.py) |
 | **Ontology / knowledge representation** | [`SCHEMAS/`](SCHEMAS/) → [`REGISTRIES/artifact-statuses.yaml`](REGISTRIES/artifact-statuses.yaml) → `object-ref` (ALIAS ≠ IDENTITY) |
 | **Governance / records / legal** | [`AGENTS.md`](AGENTS.md) → [`DECISION-LICENSING.accepted.md`](DECISION-LICENSING.accepted.md) → [`SOURCE/long-horizon-rationale.accepted.md`](SOURCE/long-horizon-rationale.accepted.md) |
 | **Setting up locally / maintaining** | [`DEVELOPMENT.md`](DEVELOPMENT.md) - clone, hooks, validator |
@@ -53,7 +53,7 @@ Start with the core volumes (*Origin & Design Intent* → *Implementation*).
 | `REVIEWERS.md` | The review guide |
 | `AGENTS.md` | **The heart** - authority model, what agents may/may not do, the closed status set |
 | `CORE-INVARIANTS.md` | The minimal "what must be true" (the trusted core / TCB), honestly marking enforced vs. asserted |
-| `META-CONTEXT/self-assessment/KNOWN-FINDINGS.md` | Our own pre-review self-assessment - known weaknesses |
+| `KNOWN-FINDINGS.md` | Our own pre-review self-assessment - known weaknesses |
 | `DECISION-LICENSING.accepted.md` | The licensing decision (eval-only → Apache-2.0 + CC BY 4.0 at v1.0.0) |
 | `DECISION-AUTH-IDENTITY.accepted.md` | The KF-01 decision - binding author authority to a signature, not a self-set flag |
 | `GOVERNANCE-LOCKIN.action.md` | Open owner action - the governance-formation gate for v1.0.0 |
@@ -83,7 +83,7 @@ Start with the core volumes (*Origin & Design Intent* → *Implementation*).
    open, type `hat P1` (or run `python3 TOOLS/lore_prompt.py P1-SEC-THREATMODEL`). `hat list` shows
    all six lenses.
 
-3. **Read the honest self-critique** - [`KNOWN-FINDINGS.md`](META-CONTEXT/self-assessment/KNOWN-FINDINGS.md).
+3. **Read the honest self-critique** - [`KNOWN-FINDINGS.md`](KNOWN-FINDINGS.md).
    A governance system that publishes its own weaknesses before you find them is either confident or
    foolish; you decide.
 

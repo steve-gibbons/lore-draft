@@ -15,9 +15,11 @@ called for ("define the TCB for LORE"); *authenticating* it is the fast-follower
 ## Invariants (the irreducible core)
 1. **Closed status.** Every artifact `status` is drawn from the closed enum in
    `REGISTRIES/artifact-statuses.yaml`. - *enforced (validator Check 1)*
-2. **Authority boundary.** Only the author (or a preseeded author fixture) may assign author-only
+2. **Authority boundary.** Only the author (or a registered trusted signer) may assign author-only
    statuses (`accepted, normative, canonical, verified, released, superseded, deleted`).
-   - *asserted, not authenticated (KF-01)*
+   - *partially enforced (Check 2: signature reference + signer_fpr against REGISTRIES/trusted-signers.txt
+     preferred; bare `author_preseeded: true` still accepted with deprecation warning — NEW-02 retirement
+     pending; cryptographic verification of the signature is a separate CI gate; T5 key-custody open) (KF-01)*
 3. **Uncertainty preservation.** Non-authoritative artifacts retain an uncertainty status
    (`candidate/unknown/unresolved/quarantined/evidence-only`). - *enforced for proposals (Check 9)*
 4. **Explicit transformation provenance.** Every `derived`/`generated` artifact records inputs
@@ -101,7 +103,8 @@ called for ("define the TCB for LORE"); *authenticating* it is the fast-follower
 ## Trusted Computing Base (what must be trusted for the above to hold)
 - **The validator** (`TOOLS/lore_validate.py`) - the single enforcement point. *(KF-03: hand-rolled
   parser, no defense in depth.)*
-- **The author's identity & judgment** - the root of authority. *(KF-01: identity unauthenticated.)*
+- **The author's identity & judgment** - the root of authority. *(KF-01: identity bound to trusted-signers
+  + signature reference in Check 2; cryptographic verification and key-custody (T5) still open.)*
 - **Artifact integrity** - that files are what they claim. *(KF-06: hashes opt-in.)*
 
 ## Honest posture
@@ -111,6 +114,7 @@ enforced** (validator Check 4 over the canonical kinds via kind+subkind; closes 
 **Invariant 13 (accountability) is partially enforced** (accountable-on-risky-acts + principal_kind;
 the human-resolution + gate-clearing remain asserted via the gate/effect model). **Invariants 14–15**
 (core/deployment boundary and conservative engineering doctrine) are **asserted** architectural and
-engineering constraints. Invariants **2, 6, 7** - and the added rules **8–11** - remain
-**asserted, not authenticated** (KF-01).
-*Authenticating* this core is LORE's primary hardening path.
+engineering constraints. Invariant **2** is **partially enforced** (Check 2 representation binding; crypto gate separate;
+migration grace for `author_preseeded` still live — NEW-02). Invariants **6, 7** and the added
+rules **8–11** remain **asserted, not fully authenticated**. Completing authentication of the
+authority boundary (retire grace path; T5 custody) remains LORE's primary hardening path for KF-01.

@@ -65,6 +65,10 @@ Unusable / missing-secret subkeys remain listed in `REGISTRIES/trusted-signers.t
 | 2026-08-23T03:39Z | TR-005 Check 2 | `dba9709` | `6584959` | 69FADB14 | backfill provenance.signature+signer_fpr; re-sign; lore check PASS |
 | 2026-08-23T03:50Z | OBS Check 2 accept | `130a798` | `854c734` | 69FADB14 | accept+sign OBS-CHECK2-TR-SIDECAR; private-only; no publish |
 | 2026-08-23T03:58Z | TR-006 Check 2 | `94e4631` | `854c734` | 69FADB14 | backfill provenance.signature+signer_fpr; re-sign; lore check PASS; overlay next |
+| 2026-08-23T04:09Z | Public export | `446644b` | `0ecc862` | — | TR-006 Check 2 provenance on lore-draft |
+| 2026-08-23T04:09Z | Pin public SHA | `446644b` | `0ecc862` | — | pin 0ecc862; CI green run 32617105390 |
+| 2026-08-23T04:23Z | TR-008 accepted | `34bcc51` | `0ecc862` | 69FADB14 | author Steve Gibbons: private-only receipt for 0ecc862; Check 2 provenance; not re-exported |
+| 2026-08-23T04:27Z | Freeze v0.6.1 | `d1ae303` | `0ecc862` | 69FADB14 | signed tags v0.6.1 both trees; v0.6.0 stays 854c734; do not publish |
 ## Next line (template)
 
 ```
