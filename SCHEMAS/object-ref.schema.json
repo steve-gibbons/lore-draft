@@ -1,17 +1,68 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://lore.corpus.workbench/schemas/object-ref.schema.json",
-  "title": "Object Reference Schema (Phase-1 Minimal)",
+  "title": "Object Reference Schema",
+  "description": "A pointer to an object. OBJECT_REF is never the object itself (ALIAS != IDENTITY). subkind 'alias' adds a stable name, owner, and resolution history.",
   "type": "object",
   "required": ["id", "type", "target_id", "status"],
   "properties": {
-    "id": { "type": "string" },
-    "type": { "type": "string", "const": "object-ref" },
-    "target_id": { "type": "string" },
-    "status": { "type": "string" },
-    "alias": { "type": "string" },
-    "target_type": { "type": "string" },
-    "resolved": { "type": "boolean" }
+    "id": {
+      "type": "string",
+      "description": "Stable identifier of this reference record itself."
+    },
+    "type": {
+      "type": "string",
+      "const": "object-ref"
+    },
+    "subkind": {
+      "type": "string",
+      "enum": ["alias"],
+      "description": "Optional. When present and equal to 'alias', additional fields become required."
+    },
+    "target_id": {
+      "type": "string",
+      "description": "The identifier of the object being referenced. Must not be treated as identity of the referent."
+    },
+    "target_type": {
+      "type": "string",
+      "description": "Optional declared type of the target (principal, assertion, etc.)."
+    },
+    "status": {
+      "type": "string",
+      "description": "Lifecycle / authority status drawn from the closed enum."
+    },
+    "alias": {
+      "type": "string",
+      "description": "Human-meaningful name when subkind is alias."
+    },
+    "alias_type": {
+      "type": "string",
+      "description": "Classification of the alias (e.g. short-name, external-id)."
+    },
+    "resolves_to": {
+      "type": "string",
+      "description": "Current resolution target when known."
+    },
+    "owner": {
+      "type": "string",
+      "description": "Principal responsible for the alias."
+    },
+    "resolution_history": {
+      "type": "array",
+      "description": "Ordered history of prior resolutions (for audit).",
+      "items": { "type": "object" }
+    },
+    "resolved": {
+      "type": "boolean",
+      "description": "Advisory flag indicating whether the target was successfully resolved in a given context."
+    }
   },
-  "additionalProperties": true
+  "additionalProperties": true,
+  "if": {
+    "properties": { "subkind": { "const": "alias" } },
+    "required": ["subkind"]
+  },
+  "then": {
+    "required": ["alias", "alias_type", "resolves_to", "owner", "resolution_history"]
+  }
 }
