@@ -14,7 +14,7 @@ lenses are *grounded in the public work of* their namesakes, never their opinion
 **Dispositions below are agent-proposed, pending author confirmation.**
 Legend: 🔴 mitigate-now · 🟡 fast-follower · 🔵 accepted-risk (draft stage) · ⚪ wontfix · 🟢 keep
 
-**Progress:** KF-02 hook fixed (CI workflow pending a token-scope grant) · KF-04 & KF-05-rationale drafted (`CORE-INVARIANTS.md`, `SOURCE/long-horizon-rationale.accepted.md`) · KF-14 recorded as an accepted decision (`DECISION-LICENSING.accepted.md`).
+**Progress:** KF-02 hook fixed (CI workflow pending a token-scope grant) · KF-04 & KF-05-rationale drafted (`CORE-INVARIANTS.md`, `SOURCE/long-horizon-rationale.accepted.md`) · KF-14 recorded as an accepted decision (`DECISION-LICENSING.accepted.md`) · **2026-08-24 fast-follower pass:** KF-13 adoption path, KF-09 prior-art crosswalk, KF-08 residual + object-ref schema, KF-03 parser posture, KF-15 data-architecture notes, KF-12 records-lifecycle stub - all landed as `candidate` under `META-CONTEXT/` (plus schema update for object-ref).
 
 ## Priority view (deduped across all ten lenses)
 
@@ -22,19 +22,19 @@ Legend: 🔴 mitigate-now · 🟡 fast-follower · 🔵 accepted-risk (draft sta
 |----|---------|--------|----------|-------------|
 | KF-01 | Trust boundaries are **declarative, not authenticated** (author-only status, agent-vs-author, identity all self-asserted) | P1·P2·P3·P4·C6 | **Major** | 🟡 fast-follower · ✅ Option C built (`DECISION-AUTH-IDENTITY.accepted.md`): root list + signature-bound Check 2 + CI gate at `--strict`; ⏸ delegation deferred (author-only stays root-only); T5 key-custody still open |
 | KF-02 | **No enforcement at rest** - validator opt-in, pre-commit hook uninstalled & currently un-installable | P1·P2 | **Major** | ✅ hook fixed · CI ⏳ (needs `workflow` scope) |
-| KF-03 | **Single-point / parser-differential enforcement** (hand-rolled YAML parser is the whole TCB) | P1·P2 | **Major** | 🟡 fast-follower |
-| KF-04 | **The TCB is never defined or minimized** | P2·P6 | **Major** | ✅ drafted - `CORE-INVARIANTS.md` (proposed) |
+| KF-03 | **Single-point / parser-differential enforcement** (hand-rolled YAML parser is the whole TCB) | P1·P2 | **Major** | 🟡 residual documented (`META-CONTEXT/kf-03-parser-differential.candidate.md`); dual-path + fail-closed already in place; residual accepted-risk pending author |
+| KF-04 | **The TCB is never defined or minimized** | P2·P6 | **Major** | ✅ drafted - `CORE-INVARIANTS.md` (normative) |
 | KF-05 | **Governance-across-time is unbuilt** - no succession, consolidation, or sousveillance of authority | P6·C5 | **Major** | 🟡 fast-follower · ✅ rationale promoted · ▶ owner action open (`GOVERNANCE-LOCKIN.action.md` - blocks v1.0.0) |
 | KF-06 | **Evidence integrity advisory, not forensic** | P1·P3·C6 | Moderate | ✅ hardened - manifest Check 6 (git-preservable) · forensic signing open |
 | KF-07 | **Agent-consumption use case not realizable** (context-package contract is a stub) | P4 | Moderate | 🔵 accepted-risk (phase-2 scope) |
-| KF-08 | **Object/relationship & status ontology thin/conflated** | P1·P5 | Moderate | 🟡 fast-follower |
-| KF-09 | **Unmapped overlap with prior art** (PROV-O, RDF, OAIS/ISO, event-sourcing) | P5·C2·C6·C7 | Moderate | 🟡 fast-follower |
+| KF-08 | **Object/relationship & status ontology thin/conflated** | P1·P5 | Moderate | 🟡 residual documented + object-ref schema tightened (`META-CONTEXT/kf-08-ontology-residual.candidate.md`); remote resolution still advisory |
+| KF-09 | **Unmapped overlap with prior art** (PROV-O, RDF, OAIS/ISO, event-sourcing) | P5·C2·C6·C7 | Moderate | 🟡 crosswalk drafted (`META-CONTEXT/prior-art-crosswalk.candidate.md`) |
 | KF-10 | **Complexity as systemic risk** ("abstraction expansion") | P2·C2·C7 | Moderate | 🔵 accepted-risk (monitor; tie to KF-08 consolidation) |
 | KF-11 | **AFFIRM - strong foundations to protect** | P2·P3·P4·P5·P6 | Info | 🟢 keep (invariants) |
-| KF-12 | **No retention / disposition / legal-hold model** (preserve-everything, no records lifecycle) | C6 | Moderate | 🟡 fast-follower |
-| KF-13 | **No integration surface / adoption path / scale story** (interoperability gap) | C2 | Moderate | 🟡 fast-follower (adoption-path doc could be a quick win) |
+| KF-12 | **No retention / disposition / legal-hold model** (preserve-everything, no records lifecycle) | C6 | Moderate | 🟡 minimal model drafted (`META-CONTEXT/records-lifecycle.candidate.md`) |
+| KF-13 | **No integration surface / adoption path / scale story** (interoperability gap) | C2 | Moderate | 🟡 MVP adoption path drafted (`META-CONTEXT/adoption-path.candidate.md`) |
 | KF-14 | **Unsustainable single-maintainer governance** - no contribution/evolution/versioning process; **no LICENSE** | C5 | **Major** | 🟡 `LICENSE.DRAFT` staged + trigger decided (v1.0.0 [gated on governance lock-in] → Apache-2.0 + CC BY 4.0); legal polish open · governance-process → `GOVERNANCE-LOCKIN.action.md` (owner) |
-| KF-15 | **Data-architecture model undefined** - Act-vs-State / event-sourcing, projections, concurrency/merge semantics | C7 | Moderate | 🟡 fast-follower |
+| KF-15 | **Data-architecture model undefined** - Act-vs-State / event-sourcing, projections, concurrency/merge semantics | C7 | Moderate | 🟡 notes drafted (`META-CONTEXT/data-architecture-notes.candidate.md`) |
 
 ## Cross-lens convergence (conviction signal)
 - **KF-01** - now flagged by **5 lenses** incl. legal (admissibility). Root of KF-02/06 and part of KF-07/14. Highest conviction.
@@ -66,11 +66,10 @@ binding them to something unforgeable can be escalated by any writer or adversar
 not installed (and rejects the mode-644 `INTAKE/raw/README.md` the validator exempts). *Quick
 win:* fix the hook's README exemption + run the validator in CI.
 
-**KF-03 · Parser-differential.** `SimpleYAMLParser` isn't a conforming parser; a crafted doc can
-validate benign while reading differently to a real tool. One validator, no defense-in-depth.
+**KF-03 · Parser-differential.** Originally a pure hand-rolled parser. Current posture: dual-path (PyYAML preferred, lore_yaml fallback, fail-closed on unsupported constructs). Residual risk and operator practice recorded in `META-CONTEXT/kf-03-parser-differential.candidate.md`.
 
 **KF-04 · TCB undefined.** LORE never names its minimal trusted invariants - what the design
-source ("define the TCB for LORE") asked for. Everything else is harder to secure until it exists.
+source ("define the TCB for LORE") asked for. Everything else is harder to secure until it exists. (Now addressed by CORE-INVARIANTS.md.)
 
 **KF-05 · Governance-across-time unbuilt.** No succession for "sole authority," no
 consolidation/decay, authority not itself auditable. *Quick win:* promote the long-horizon
@@ -83,12 +82,9 @@ check opt-in; no append-only tamper-evident log; break-glass unenforced.
 validated context-package, no machine-enforced generated-vs-knowledge signal, tool/capability
 delegation out of scope.
 
-**KF-08 · Ontology thin/conflated.** `object-ref` target never resolved (Check 7 only checks the
-id is a string); the one `status` field conflates lifecycle + authority + epistemic state; terms
-lack formal definitions.
+**KF-08 · Ontology thin/conflated.** Canonical kernel advanced the core distinctions. Residual (remote resolution, single status field load, formal glossary) recorded in `META-CONTEXT/kf-08-ontology-residual.candidate.md`; object-ref schema tightened.
 
-**KF-09 · Prior art unmapped.** No positioning vs. W3C PROV-O, RDF, event-sourcing, or archival
-standards (OAIS/ISO 14721, ISO 15489).
+**KF-09 · Prior art unmapped.** Crosswalk to PROV-O, OAIS, ISO 15489 and event-sourcing now in `META-CONTEXT/prior-art-crosswalk.candidate.md`.
 
 **KF-10 · Complexity risk.** Growing surface (status enum, transition matrix, schemas,
 indirection) - "abstraction expansion" from the minimalist lens.
