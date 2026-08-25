@@ -1,8 +1,9 @@
 # LORE Data-Architecture Notes (Act-vs-State, Projections, Concurrency)
 
-> **Status: candidate**  
+> **Status: accepted**  
 > **Addresses:** KF-15  
-> **Date:** 2026-08-24
+> **Authority:** Accepted by author 2026-08-25.  
+> **Date:** 2026-08-24 (drafted) / 2026-08-25 (accepted)
 
 ## 1. Act vs State
 
@@ -39,7 +40,7 @@ Phase-1 mitigation (asserted, not yet enforced):
 - Prefer small, frequent commits of decisions so the window for silent divergence is short.
 - Use the reviewer hats and the assisted-evaluation procedure to surface contradictions.
 
-Future hardening (out of scope for this candidate):
+Future hardening (out of scope for this note):
 - Explicit conflict records or a merge-gate that refuses to promote when two accepted lineages exist for the same subject without an explicit reconciliation act.
 
 ## 4. Relationship to event-sourcing
@@ -50,4 +51,4 @@ LORE is currently file-state + explicit change records, not a pure event-sourced
 These notes close the "model undefined" gap for KF-15 at the documentation level. Implementation of materialised projections or governance-aware merge remains future work and does not block the current MVP adoption path.
 
 ## Provenance
-Drafted 2026-08-24 as the fifth fast-follower item. Agent-generated under author direction.
+Drafted 2026-08-24 as the fifth fast-follower item. Agent-generated under author direction. Accepted by author 2026-08-25.

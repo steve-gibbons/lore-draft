@@ -1,9 +1,9 @@
 # Minimal Viable Adoption Path for LORE
 
-> **Status: candidate**  
+> **Status: accepted**  
 > **Addresses:** KF-13 (No integration surface / adoption path / scale story)  
-> **Authority:** Agent-drafted under author direction. Not yet accepted.  
-> **Date:** 2026-08-24
+> **Authority:** Accepted by author 2026-08-25.  
+> **Date:** 2026-08-24 (drafted) / 2026-08-25 (accepted)
 
 ## Purpose
 Provide a concrete, low-friction path for an organization or individual to start using LORE without requiring the full future federation, API surface, or enterprise connectors. This is the "first useful step" that was missing.
@@ -70,7 +70,7 @@ These remain future work; the MVP path does not depend on them.
 - `AGENTS.md` authority model
 - `CORE-INVARIANTS.md`
 - KF-07 (agent-consumption contract remains phase-2)
-- KF-09 / KF-15 (prior-art and data-architecture mappings still open)
+- KF-09 / KF-15 (prior-art and data-architecture mappings still open at time of draft; both now accepted)
 
 ## Provenance
-Drafted 2026-08-24 as the first fast-follower clean-up item for KF-13. Agent-generated under author direction. Status remains `candidate` until author acceptance.
+Drafted 2026-08-24 as the first fast-follower clean-up item for KF-13. Agent-generated under author direction. Accepted by author 2026-08-25.

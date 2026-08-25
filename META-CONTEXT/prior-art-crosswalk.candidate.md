@@ -1,9 +1,9 @@
-# LORE Prior-Art Crosswalk (candidate)
+# LORE Prior-Art Crosswalk
 
-> **Status: candidate**  
+> **Status: accepted**  
 > **Addresses:** KF-09 (Unmapped overlap with prior art)  
-> **Authority:** Agent-drafted under author direction. Not yet accepted.  
-> **Date:** 2026-08-24
+> **Authority:** Accepted by author 2026-08-25.  
+> **Date:** 2026-08-24 (drafted) / 2026-08-25 (accepted)
 
 ## Purpose
 Make the relationship between LORE and established standards explicit so reviewers and adopters can see what is reused, what is specialized, and what is intentionally different. This is a mapping, not a claim of conformance.
@@ -92,4 +92,4 @@ LORE is intentionally stronger on authority lineage and agent-vs-author separati
 | Event-sourcing | Explicit change history | File + git as current store | Act-vs-State projections, merge rules |
 
 ## Provenance
-Drafted 2026-08-24 as the second fast-follower item for KF-09. Agent-generated under author direction. Status remains `candidate` until author acceptance.
+Drafted 2026-08-24 as the second fast-follower item for KF-09. Agent-generated under author direction. Accepted by author 2026-08-25.

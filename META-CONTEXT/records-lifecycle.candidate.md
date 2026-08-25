@@ -1,8 +1,9 @@
 # Minimal Records Lifecycle & Disposition Model for LORE
 
-> **Status: candidate**  
+> **Status: accepted**  
 > **Addresses:** KF-12  
-> **Date:** 2026-08-24
+> **Authority:** Accepted by author 2026-08-25.  
+> **Date:** 2026-08-24 (drafted) / 2026-08-25 (accepted)
 
 ## Problem restated
 LORE preserves everything by design (supersede-not-delete). That satisfies provenance and audit goals but leaves no explicit retention schedule, disposition authority, or legal-hold concept. ISO 15489 and records-management practice expect these.
@@ -42,4 +43,4 @@ LORE preserves everything by design (supersede-not-delete). That satisfies prove
 - Keeps the core/deployment boundary intact (CORE-INVARIANT 14).
 
 ## Provenance
-Drafted 2026-08-24 as the sixth and final fast-follower item in this pass. Agent-generated under author direction.
+Drafted 2026-08-24 as the sixth and final fast-follower item in this pass. Agent-generated under author direction. Accepted by author 2026-08-25.
