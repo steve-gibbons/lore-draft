@@ -190,18 +190,15 @@ def load_simple_yaml(text: str, *, source: str = "<text>") -> Dict[str, Any]:
 
 
 def dump_yaml(data: Any) -> str:
-    """Emit YAML. PyYAML when present, TOOLS/lore_yaml otherwise — never JSON.
+    """Emit YAML via the dependency-free serializer only (AI-003 Option B).
 
-    The old fallback returned json.dumps, so `lore handoff show` printed YAML on a
-    machine with PyYAML and JSON on one without. Output that changes shape with the
-    ambient environment is the same defect as input that does (AI-003); it is how
-    demo.sh came to assert on a serializer and pass locally while failing in CI.
+    Always uses TOOLS/lore_yaml.dump so output shape is identical regardless of
+    whether PyYAML is installed. PyYAML remains preferred on the *load* path
+    (see load_simple_yaml); it is deliberately not used for output so that
+    representation never depends on ambient packages.
+
+    Callers that want JSON already branch on LORE_FORMAT before calling this.
     """
-    try:
-        import yaml  # type: ignore
-        return yaml.safe_dump(data, sort_keys=False, allow_unicode=True)
-    except ImportError:
-        pass
     from lore_yaml import dump as _dump
     return _dump(data)
 
