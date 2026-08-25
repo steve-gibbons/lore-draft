@@ -9,14 +9,40 @@
 > **Maintainers / developers:** local setup - clone, hooks, validator - is in
 > [`DEVELOPMENT.md`](DEVELOPMENT.md).  **Reviewers:** start at [`REVIEWERS.md`](REVIEWERS.md).
 
-**What is this, in one breath?** LORE is a small, self-contained framework for recording not just
-*what* a project decided, but **why**, **who had the authority to decide it**, and **what's still
-uncertain** - in a form that both people and AI agents can read, and that neither can quietly
-rewrite. Think "version control for reasoning and authority," aimed especially at AI-agent
-workflows. This is the **public curated draft** of LORE (not the private canonical tree). It is an
-intentional, freeze-cut export for evaluation and demonstration. The private repository
-may be ahead; bounded lag is by design. Ask "which edition am I on?" — see the release
-tag and `CORPUS-MANIFEST.yaml` `version:` field.
+**The problem.** Information survives. Context does not. When a decision, an assumption, or an
+authority claim moves between people or agents, the *why*, the *who*, and the remaining uncertainty
+are routinely stripped away. What remains looks complete and is not.
+
+**The insight.** Trust is not a property of an artifact. It is a relationship among identity,
+authority, evidence, and the boundary that crossed. Without those relationships made explicit and
+unforgeable, later readers (human or agent) cannot tell justified action from plausible invention.
+
+**What LORE is.** A small, self-contained framework for recording not just *what* a project decided,
+but **why**, **who had the authority to decide it**, and **what is still uncertain** - in a form
+that both people and AI agents can read, and that neither can quietly rewrite. Think "version control
+for reasoning and authority," aimed especially at AI-agent workflows.
+
+**Three load-bearing distinctions**
+- **Thing ≠ reference** (ALIAS ≠ IDENTITY) - a pointer is never the object.
+- **Claim ≠ evidence** (ASSERTION ≠ TRUTH) - an assertion stays agent-writable until human authority
+  promotes it.
+- **Authority ≠ capability** - the right to decide is not the same as the ability to act; both must
+  carry lineage.
+
+**One worked boundary failure.** An agent receives a design decision marked `accepted` from another
+workbench. The status field is present, the text is coherent, and the file validates. Nothing in the
+record binds the status to a registered signer. The receiving side promotes it. Later audit cannot
+tell whether the original human actually authorized the decision or whether the status was simply
+copied. LORE's Check 2 and the trusted-signers registry exist to make that forgery detectable.
+
+**What LORE is not (explicit non-goals for this stage)**
+- Not a live multi-tenant service or real-time collaboration platform.
+- Not a replacement for enterprise GRC, IAM, or records-management systems.
+- Not production-ready governance; the public draft is a freeze-cut evaluation artifact with bounded
+  lag behind the private canonical tree.
+
+This is the **public curated draft** of LORE (not the private canonical tree). Ask "which edition am
+I on?" - see the release tag and `CORPUS-MANIFEST.yaml` `version:` field.
 
 No prior exposure needed. Start below.
 
