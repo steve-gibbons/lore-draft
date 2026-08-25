@@ -14,14 +14,14 @@ lenses are *grounded in the public work of* their namesakes, never their opinion
 **Dispositions below are agent-proposed, pending author confirmation where noted.**
 Legend: 🔴 mitigate-now · 🟡 fast-follower · 🔵 accepted-risk (draft stage) · ⚪ wontfix · 🟢 keep
 
-**Progress:** KF-02 hook fixed (CI workflow pending a token-scope grant) · KF-04 & KF-05-rationale drafted (`CORE-INVARIANTS.md`, `SOURCE/long-horizon-rationale.accepted.md`) · KF-14 recorded as an accepted decision (`DECISION-LICENSING.accepted.md`) · **2026-08-24/25 fast-follower pass:** KF-13, KF-09, KF-08 residual, KF-03 residual, KF-15, KF-12 — drafted then **accepted by author 2026-08-25** (docs under `META-CONTEXT/*.accepted.md`; object-ref schema tightened; dump_yaml pinned).
+**Progress:** KF-02 ✅ hook fixed + CI active and green (token-scope note was stale) · KF-04 & KF-05-rationale drafted (`CORE-INVARIANTS.md`, `SOURCE/long-horizon-rationale.accepted.md`) · KF-14 recorded as an accepted decision (`DECISION-LICENSING.accepted.md`) · **2026-08-24/25 fast-follower pass:** KF-13, KF-09, KF-08 residual, KF-03 residual, KF-15, KF-12 — drafted then **accepted by author 2026-08-25** (docs under `META-CONTEXT/*.accepted.md`; object-ref schema tightened; dump_yaml pinned).
 
 ## Priority view (deduped across all ten lenses)
 
 | ID | Finding | Lenses | Severity | Disposition |
 |----|---------|--------|----------|-------------|
 | KF-01 | Trust boundaries are **declarative, not authenticated** (author-only status, agent-vs-author, identity all self-asserted) | P1·P2·P3·P4·C6 | **Major** | 🟡 · ✅ Option C built (`DECISION-AUTH-IDENTITY.accepted.md`); ⏸ delegation deferred; T5 key-custody still open |
-| KF-02 | **No enforcement at rest** - validator opt-in, pre-commit hook uninstalled & currently un-installable | P1·P2 | **Major** | ✅ hook fixed · CI ⏳ (needs `workflow` scope) |
+| KF-02 | **No enforcement at rest** - validator opt-in, pre-commit hook uninstalled & currently un-installable | P1·P2 | **Major** | ✅ closed — hook fixed; CI workflow active and succeeding on every push (`.github/workflows/validate.yml`) |
 | KF-03 | **Single-point / parser-differential enforcement** | P1·P2 | **Major** | ✅ residual accepted (`META-CONTEXT/kf-03-parser-differential.accepted.md`); load dual-path + fail-closed; output pinned to lore_yaml (AI-003 B) |
 | KF-04 | **The TCB is never defined or minimized** | P2·P6 | **Major** | ✅ drafted - `CORE-INVARIANTS.md` (normative) |
 | KF-05 | **Governance-across-time is unbuilt** - no succession, consolidation, or sousveillance of authority | P6·C5 | **Major** | 🟡 · ✅ rationale promoted · ▶ owner action open (`GOVERNANCE-LOCKIN.action.md` - blocks v1.0.0) |
@@ -62,9 +62,10 @@ and concurrency/merge semantics are undefined (git merge isn't governance-aware)
 unauthenticated git `user.email`. A provenance system that records authority claims without
 binding them to something unforgeable can be escalated by any writer or adversarial INTAKE.
 
-**KF-02 · No enforcement at rest.** Checks run only when the validator is invoked; the hook is
-not installed (and rejects the mode-644 `INTAKE/raw/README.md` the validator exempts). *Quick
-win:* fix the hook's README exemption + run the validator in CI.
+**KF-02 · No enforcement at rest.** Originally: checks ran only when the validator was invoked;
+the pre-commit hook was broken/uninstalled. **Closed 2026-08-25:** hook fixed earlier; CI workflow
+(`.github/workflows/validate.yml`) is active and succeeding on every push (validator, tests,
+manifest check, signature gates). The prior "needs workflow scope" note was stale.
 
 **KF-03 · Parser-differential.** Originally a pure hand-rolled parser. Current posture: dual-path load (PyYAML preferred, lore_yaml fallback, fail-closed); output pinned to lore_yaml only. Residual recorded and accepted in `META-CONTEXT/kf-03-parser-differential.accepted.md`.
 
