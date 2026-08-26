@@ -6,6 +6,7 @@
 > Apache-2.0 + CC BY 4.0 at the **v1.0.0** milestone; the draft license text lives in the public
 > draft repo).
 
+> **See the whole corpus:** [`MAP.md`](MAP.md) — spine, two trees, flow, what is present vs gated.
 > **Maintainers / developers:** local setup - clone, hooks, validator - is in
 > [`DEVELOPMENT.md`](DEVELOPMENT.md).  **Reviewers:** start at [`REVIEWERS.md`](REVIEWERS.md).
 
@@ -62,7 +63,7 @@ agent, clone and point it at the top-level directory - see [`DEVELOPMENT.md`](DE
 ## Find your part (pick the one that sounds like you)
 | You are… | Open these, in order |
 |---|---|
-| **Just curious / no background** | this page → [`KNOWN-FINDINGS.md`](KNOWN-FINDINGS.md) (we list our own weaknesses) → [`AGENTS.md`](AGENTS.md) |
+| **Just curious / no background** | this page → [`MAP.md`](MAP.md) → [`KNOWN-FINDINGS.md`](KNOWN-FINDINGS.md) → [`AGENTS.md`](AGENTS.md) |
 | **Building AI agents** | [`AGENTS.md`](AGENTS.md) (the rules agents follow) → [`META-CONTEXT/reviewer-panel/`](META-CONTEXT/reviewer-panel/) (the "hat/lens" system) → [`.github/copilot-instructions.md`](.github/copilot-instructions.md) |
 | **Security / threat-modeling** | [`KNOWN-FINDINGS.md`](KNOWN-FINDINGS.md) (KF-01…) → [`CORE-INVARIANTS.md`](CORE-INVARIANTS.md) (the TCB) → [`TOOLS/lore_validate.py`](TOOLS/lore_validate.py) |
 | **Ontology / knowledge representation** | [`SCHEMAS/`](SCHEMAS/) → [`REGISTRIES/artifact-statuses.yaml`](REGISTRIES/artifact-statuses.yaml) → `object-ref` (ALIAS ≠ IDENTITY) |
@@ -75,6 +76,7 @@ agent, clone and point it at the top-level directory - see [`DEVELOPMENT.md`](DE
 | Path | What it is |
 |---|---|
 | `README.md` | You are here - orientation |
+| `MAP.md` | Whole-corpus view — spine, two trees, flow, present vs gated |
 | `DEVELOPMENT.md` | Local developer / maintainer guide (clone, hooks, validator) |
 | `REVIEWERS.md` | The review guide |
 | `AGENTS.md` | **The heart** - authority model, what agents may/may not do, the closed status set |
