@@ -130,13 +130,33 @@ That is intentional, not an omission on this map.
 
 ---
 
+## Related operational work (optional)
+
+**Not part of this corpus tree. Not required to evaluate the public draft.**
+
+For **security / threat-model / deployment** reviewers who care how agent tooling is isolated at
+runtime, there is a separate private operational demo:
+
+- **Repo:** `steve-gibbons/lore-mcp-decomposition-demo` (access via author)
+- **What it is:** three-tier MCP isolation — adapter (client gateway) / server (volume-aware
+  workers) / author (sign, reseal, promote — never inside MCP containers); D_Q ≠ D_M;
+  mounts + secrets + mTLS as data-plane controls
+- **What it is not:** an extension of CORE-INVARIANTS or kernel kinds; not production MCP hosting;
+  not a substitute for Level 0–2 flat-file adoption of this draft
+- **Start files if granted access:** `architecture.md`, `threat-model.md`, top-level `README.md`
+
+This is **LORE-DEPLOYMENT** exploration (see CORE-INVARIANT 14). Corpus coherence review does not
+depend on it.
+
+---
+
 ## Orient by role
 
 | You are… | Start here |
 |----------|------------|
 | New reader | `README.md` → this map → `KNOWN-FINDINGS.md` |
 | Agent / implementer | `AGENTS.md` → `CORE-INVARIANTS.md` → `TOOLS/` |
-| Security / threat model | `KNOWN-FINDINGS.md` → `CORE-INVARIANTS.md` → validator |
+| Security / threat model | `KNOWN-FINDINGS.md` → `CORE-INVARIANTS.md` → validator → (optional) MCP demo above |
 | Ontology / KR | `SCHEMAS/` → ontology decisions → `object-ref` |
 | Governance / records | `AGENTS.md` → licensing + long-horizon decisions → lifecycle notes |
 | Formal reviewer | `REVIEWERS.md` |
@@ -163,5 +183,5 @@ Compare results against `KNOWN-FINDINGS.md`.
 ## Provenance of this map
 
 Drafted 2026-08-25 under author direction to close the "corpus as coherent whole" gap without
-advancing governance lock-in or changing edition status. Orientation only; doctrine remains in the
-spine files above.
+advancing governance lock-in or changing edition status. Optional MCP demo pointer added the same
+day. Orientation only; doctrine remains in the spine files above.
